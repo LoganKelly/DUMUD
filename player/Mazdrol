@@ -1,0 +1,64 @@
+#PLAYER
+Name Mazdrol~
+Id   1056325887
+LogO 1056908536
+Vers 5
+CNa  Mazdrol~
+Prom {W-={R%h/%H {B%m/%M {C%v/%V {M%X %b{W=-{x ~
+Race human~
+Sex  1
+Cla  3
+Levl 1
+Sec  0
+Plyd 9563
+Scro 22
+Room 3001
+HMV  20 20 100 100 100 100
+Gold 0
+Silv 0
+Exp  1000
+Act  DEFGHJQT
+Comm NO
+Pos  8
+Prac 5
+Trai 3
+Alig  0
+ACs 100 100 100 100
+Attr 16 13 13 13 13
+AMod 0 0 0 0 0
+Pass mazdrol~
+Titl  the Swordpupil~
+Pnts 40
+TSex 1
+LLev 1
+HMVP 20 100 100
+Cnd  0 0 0 0
+Boards       5 General 0 Ideas 0 Announce 0 Bugs 0 Personal 0 
+Sk 1 'axe'
+Sk 1 'dagger'
+Sk 1 'flail'
+Sk 1 'mace'
+Sk 1 'polearm'
+Sk 1 'shield block'
+Sk 1 'spear'
+Sk 40 'sword'
+Sk 1 'whip'
+Sk 1 'bash'
+Sk 1 'disarm'
+Sk 1 'enhanced damage'
+Sk 1 'parry'
+Sk 1 'rescue'
+Sk 1 'second attack'
+Sk 1 'third attack'
+Sk 1 'scrolls'
+Sk 1 'staves'
+Sk 1 'wands'
+Sk 50 'recall'
+Sk 1 ''
+Gr 'rom basics'
+Gr 'warrior basics'
+Gr 'warrior default'
+Gr 'weaponsmaster'
+End
+
+#END

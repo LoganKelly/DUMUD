@@ -1,0 +1,688 @@
+#AREADATA
+Name {yNewbie Boot Camp{x~
+Builders None~
+VNUMs 32600 32699
+Credits None~
+Security 9
+Low 0
+High 0
+Version 1
+End
+
+
+
+#MOBILES
+#32600
+A recruiter~
+A recruiter~
+The recruiter babbles frantically on the phone, eager to serve his country.
+~
+A recruiter wearing a formal service uniform sits behind his desk, a phone to his ear.  He glances up at you and smiles.
+~
+human~
+AGTY 0 0 0
+5 5 1d3+10 0d0+0 1d2+0 punch
+1 1 1 1
+I 0 0 0
+sit sit male 0
+0 0 medium 'unknown'
+F for AMV
+F par ABCDEFGHIJK
+#32601
+Colonel Hapablap~
+{BCo{Wlo{Rnel {BHap{Wab{Rlap{x~
+{BCo{Wlo{Rnel {BHap{Wab{Rlap{x is here, to make you a better man.
+~
+The Colonel is the best combat veteran you've ever seen, a killing machine,
+whose only desire is to win the war.  If winning means he has to die, he'll
+die, no regrets.  
+~
+human~
+ABCJKQTVb CH 0 0
+0 10 1d1+999 1d1+999 2d4+30 none
+-15 -15 -15 -15
+ACEFHIKN ABCD 0 0
+stand stand male 0
+0 0 medium 'unknown'
+M 'GRALL' 32600 99~
+#32602
+{wThe government agent{x~
+{wA government agent{x~
+A government agent stands here, looking intimidating.
+~
+It is a man in a black suit, red tie, and white shirt, wearing dark
+sunglasses, and an earpiece.  He is a living personification of bureaucratic
+authority.  
+~
+human~
+ABGTY 0 0 0
+5 0 1d2+8 0d0+0 0d0+0 none
+0 0 0 0
+0 0 0 0
+stand stand male 0
+0 0 medium 'unknown'
+F for AHMV
+F par ABCDEFGHIJK
+#32603
+Alf~
+{yAlf{x the furry alien~
+{yAlf{x, the annoying fur-covered alien is here, eating a cat.
+~
+Oh no, now you see why this area was locked up so tight to begin with! 
+Alf tears another bite off of a cat carcass, and then growls menacingly.  
+~
+human~
+ACFGY 0 0 0
+0 0 1d2+8 0d0+0 0d0+0 none
+0 0 0 0
+0 0 0 0
+stand stand none 0
+0 0 medium 'unknown'
+F for AHMV
+F par ABCDEFGHIJK
+#0
+
+
+
+#OBJECTS
+#32600
+Sign~
+A sign for {GNEW PLAYERS{x~
+Hm, looks like this sign has some {GIMPORTANT INFORMATION{X on it.~
+wood~
+trash MO 0
+0 0 0 0 0
+0 0 0 P
+E
+sign~
+For players new to the MUD, refer to the help files.  You may
+do so by typing {Ghelp{x for an index of all help files.  Files that you may
+wish to refer to include movement ({Ghelp north{x, {Ghelp exits{x), working with
+objects ({Ghelp wear{x, {Ghelp get{x), combat ({Ghelp flee{x), using the
+channels ({Ghelp gossip{x, {Ghelp tell{x), and seeing other players ({Ghelp who{x).  If
+these do not help, do not hesitate to ask an immortal (gossip <your
+question>).{x
+~
+#32601
+Another sign~
+A sign~
+A sign that has intimidating, {RBOLD{x lettering hangs here.~
+metal~
+trash MO P
+0 0 0 0 0
+0 0 0 P
+E
+sign~
+{BATTENTION:{x All new characters WILL attend Boot Camp, {RIMMEDIATELY!! 
+{x Failure to do so will result in extra duty, and in many cases, death. 
+-{BCo{Wlo{Rnel {BHap{Wab{Rlap{x 
+~
+#32602
+{GA recruiter's phone{x~
+{GA recruiter's phone{x~
+A recruiter's phone sits here, emitting a beeping sound.~
+plastic~
+weapon 0 AN
+mace 1 5 'pound' 0
+1 10 1 P
+A
+18 1
+#32603
+{wAn Identification Card{x~
+{wA government I.D. card{x~
+It is a government identification card, with a photo of someone and a bar code printed on it.~
+plastic~
+key D A
+0 0 0 0 0
+0 0 0 P
+#0
+
+
+
+#ROOMS
+#32600
+{yEntrance to a Boot Camp{x~
+It appears that you are immediately outside of a training camp of some
+sort.  An old brick wall surrounds the entire camp, which blocks your view
+of most of the interior.  Inside you can hear boot camp lackeys marching in
+unison and singing some typical military chant to keep the same pace.  A
+gate which is {Rimmediately to your north{x appears to be the only entrance
+to the camp. (new players: type {GLOOK SIGN{x) 
+~
+0
+C 1
+D0
+~
+~
+0 0 32601
+S
+#32601
+{yEntry way to the boot camp{x~
+You stand inside of an archway, and directly to the east is a door marked
+{G"Recruitment Office"{x.  From somewhere nearby you vaguely hear the
+reprimanding of a drill instructor, and you shudder.  
+~
+0
+0 0
+D1
+~
+~
+0 0 32602
+D2
+~
+~
+0 0 32600
+S
+#32602
+{yA recruiter office.{x~
+This is a service recruitment office.  Several servicemen are talking on
+telephones with potential recruits, creating a constant murmor of voices in
+the air.  Off to a corner, you notice a set of stairs leading up.  
+~
+0
+D 0
+D0
+~
+~
+0 0 32603
+D1
+~
+~
+0 0 32605
+D2
+~
+~
+0 0 32604
+D3
+~
+~
+0 0 32601
+D4
+~
+~
+0 0 32606
+D6
+~
+~
+0 0 32607
+D7
+~
+~
+0 0 32610
+D8
+~
+~
+0 0 32608
+D9
+~
+~
+0 0 32609
+S
+#32603
+{yInside a Cubicle{x~
+Behind this desk you see a veritable bonanza of service-related
+paraphernalia.  Stickers, buttons, pamphlets, and mass-produced mail litter
+everything in sight.  
+~
+0
+D 0
+D2
+~
+~
+0 0 32602
+S
+#32604
+{yInside a Cubicle{x~
+Behind this desk you see a veritable bonanza of service-related
+paraphernalia.  Stickers, buttons, pamphlets, and mass-produced mail litter
+everything in sight.  
+~
+0
+D 0
+D0
+~
+~
+0 0 32602
+S
+#32605
+{yInside a Cubicle{x~
+Behind this desk you see a veritable bonanza of service-related
+paraphernalia.  Stickers, buttons, pamphlets, and mass-produced mail litter
+everything in sight.  
+~
+0
+D 0
+D3
+~
+~
+0 0 32602
+S
+#32606
+{yAbove the recruiting office{x~
+You enter another bland looking room, with yet more military paraphenelia
+adorning the walls.  There is a line here, and a counter where fresh
+recruits come to be processed and check in their personal possessions... 
+You start to feel queasy as the reality of the situation sets in.  (The
+Colonel can help you train attributes, gain skills, and practice them.  See
+{GHELP TRAIN{x, {GHELP PRACTICE{x, and {GHELP GAIN{x for details.)  
+~
+0
+DKS 0
+D1
+~
+~
+0 0 32611
+D5
+~
+~
+0 0 32602
+S
+#32607
+{yInside a Cubicle{x~
+This is a service recruitment office.  Several servicemen are talking on
+telephones with potential recruits, creating a constant murmor of voices in
+the air.  Off to a corner, you notice a set of stairs leading up.  
+~
+0
+D 0
+D9
+~
+~
+0 0 32602
+S
+#32608
+{yInside a Cubicle{x~
+This is a service recruitment office.  Several servicemen are talking on
+telephones with potential recruits, creating a constant murmor of voices in
+the air.  Off to a corner, you notice a set of stairs leading up.  
+~
+0
+D 0
+D7
+~
+~
+0 0 32602
+S
+#32609
+{yInside a Cubicle{x~
+This is a service recruitment office.  Several servicemen are talking on
+telephones with potential recruits, creating a constant murmor of voices in
+the air.  Off to a corner, you notice a set of stairs leading up.  
+~
+0
+D 0
+D6
+~
+~
+0 0 32602
+S
+#32610
+{yInside a Cubicle{x~
+This is a service recruitment office.  Several servicemen are talking on
+telephones with potential recruits, creating a constant murmor of voices in
+the air.  Off to a corner, you notice a set of stairs leading up.  
+~
+0
+D 0
+D8
+~
+~
+0 0 32602
+S
+#32611
+{yIn a hallway{x~
+You are in a bland looking hallway, with plain white walls and
+flourescent overhead lights that emit an irritating hum.  
+~
+0
+D 0
+D1
+~
+~
+0 0 32612
+D3
+~
+~
+0 0 32606
+S
+#32612
+{yAn intersection in the hallway{x~
+It looks like there are two possible ways to continue down the hallway. 
+The hallway looks very similar in all directions.  
+~
+0
+D 0
+D1
+~
+~
+0 0 32614
+D2
+~
+~
+0 0 32613
+D3
+~
+~
+0 0 32611
+S
+#32613
+{yIn a hallway{x~
+The hallway continues onwards...  The bright flourescent lights and the
+white walls start to give you a headache.  
+~
+0
+D 0
+D0
+~
+~
+0 0 32612
+D2
+~
+~
+0 0 32619
+S
+#32614
+{yIn a hallway{x~
+The hallway continues onwards...  The bright flourescent lights and the
+white walls start to give you a headache.  
+~
+0
+D 0
+D1
+~
+~
+0 0 32615
+D3
+~
+~
+0 0 32612
+S
+#32615
+{yTurn in the hallway{x~
+You have reached a turn in the hallway, which continues to run west and
+north.  
+~
+0
+D 0
+D0
+~
+~
+0 0 32616
+D3
+~
+~
+0 0 32614
+S
+#32616
+{yBefore an {mODD{y looking door.{x~
+It appears that this hallway really does have an end, of sorts.  You
+stand before a large metal door, with a slot for an identification card.  It
+doesn't look as though you are going to get it open without one.  
+~
+0
+D 0
+D0
+~
+~
+2 32603 32617
+D2
+~
+~
+0 0 32615
+S
+#32617
+{yInside a bunker{x~
+It appears that you are in a large bunker, containing all sorts of top
+secret things that the government is hiding.  It suddenly occurs to you that
+you probably shouldn't be in here.  
+~
+0
+D 0
+D0
+~
+~
+0 0 32618
+D2
+~
+~
+2 32603 32616
+S
+#32618
+{yInside a Bunker{x~
+You have reached the end of the bunker...  And it looks as though there
+is an exit to the north!  Maybe this is an opportunity to sneak out of boot
+camp, while you still can...  
+~
+0
+D 0
+D2
+~
+~
+0 0 32617
+S
+#32619
+{yNorthern end of a courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D0
+~
+~
+0 0 32613
+D1
+~
+~
+0 0 32621
+D2
+~
+~
+0 0 32620
+D3
+~
+~
+0 0 32622
+S
+#32620
+{yCenter of a courtyard{x~
+This is the center of the courtyard, where a large statue in the likeness
+of Colonel Hapablap stands.  It commemorates his service in a particularly
+unpopular war.  
+~
+0
+0 0
+D0
+~
+~
+0 0 32619
+D1
+~
+~
+0 0 32624
+D2
+~
+~
+0 0 32625
+D3
+~
+~
+0 0 32623
+S
+#32621
+{yNortheast corner of a courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D2
+~
+~
+0 0 32624
+D3
+~
+~
+0 0 32619
+S
+#32622
+{yNorthwest corner of a courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D1
+~
+~
+0 0 32619
+D2
+~
+~
+0 0 32623
+S
+#32623
+{yWestern end of courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D0
+~
+~
+0 0 32622
+D1
+~
+~
+0 0 32620
+D2
+~
+~
+0 0 32627
+S
+#32624
+{yEastern end of a courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D0
+~
+~
+0 0 32621
+D2
+~
+~
+0 0 32626
+D3
+~
+~
+0 0 32620
+S
+#32625
+{ySouthern end of a courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D0
+~
+~
+0 0 32620
+D1
+~
+~
+0 0 32626
+D3
+~
+~
+0 0 32627
+S
+#32626
+{ySoutheast corner of a courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D0
+~
+~
+0 0 32624
+D3
+~
+~
+0 0 32625
+S
+#32627
+{ySouthwest corner of a courtyard{x~
+You are standing in a courtyard, where all the trainees come to perform
+their daily calisthenics...  Doesn't look like much fun.  
+~
+0
+0 0
+D0
+~
+~
+0 0 32623
+D1
+~
+~
+0 0 32625
+S
+#32699
+{yInside a Cubicle{x~
+Behind this desk you see a veritable bonanza of service-related
+paraphernalia.  Stickers, buttons, pamphlets, and mass-produced mail litter
+everything in sight.  
+~
+0
+C 0
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+D 0 32616 0 2
+D 0 32617 2 2
+O 0 32600 0 32600
+O 0 32601 0 32601
+M 0 32600 7 32603 1
+E 0 32602 0 16
+M 0 32600 7 32604 1
+E 0 32602 0 16
+M 0 32600 7 32605 1
+E 0 32602 0 16
+M 0 32601 1 32606 1
+M 0 32600 7 32607 1
+E 0 32602 0 16
+M 0 32600 7 32608 1
+E 0 32602 0 16
+M 0 32600 7 32609 1
+E 0 32602 0 16
+M 0 32600 7 32610 1
+E 0 32602 0 16
+M 0 32602 1 32616 1
+G 0 32603 0
+M 0 32603 1 32618 1
+M 0 32600 1 32699 1
+E 0 32602 0 16
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

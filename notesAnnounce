@@ -1,0 +1,62 @@
+Sender  Neepzeep~
+Date    Sat Jun 28 12:56:16 2003~
+Stamp   1056825226
+Expire  1108663001
+To      all~
+Subject Work so far on the mud~
+Text
+Features we have added to the MUD so far:
+#1:The MUD came with Lope's color code, and Ivan's OLC v.201 + MobProgs
+#2:Added NE, NW, SE, and SW directions
+#3:Set equipment slots that are empty to show in equipment list
+#4:Added the lifebar battle prompt
+#5:Fixed issue with characters with colored names so that they would save to the correct file
+#6:Spiffed up the score sheet, still needs debugging
+#7:Lengthend prompt from 50 to 100 characters max length
+#8:Added auto-damage, and got it to work correctly
+#9:Added Erwin's Board System, and made string editor usable for writing notes (w00t!)
+#10: Midgaard is now replaced with Haven, and southern midgaard is removed
+#11: Newbie boot camp being worked on, Vnums 32600-32699
+~
+
+Sender  Neepzeep~
+Date    Sat Jun 28 21:46:54 2003~
+Stamp   1056854878
+Expire  1108694844
+To      all~
+Subject Board Change~
+Text
+Added total notes column to board
+~
+
+Sender  Neepzeep~
+Date    Sat Jun 28 22:13:34 2003~
+Stamp   1056856527
+Expire  1108696427
+To      all~
+Subject Auto flags changed~
+Text
+Set more autoflags to on by default for new characters (autodamage,
+autoexit, autosac, autoloot, and autogold).  
+~
+
+Sender  Neepzeep~
+Date    Sun Jun 29 00:24:47 2003~
+Stamp   1056864354
+Expire  1108704304
+To      all~
+Subject Ansi color at startup~
+Text
+Prompt for ANSI color was added at startup
+~
+
+Sender  Neepzeep~
+Date    Sun Jun 29 15:36:35 2003~
+Stamp   1056919033
+Expire  1108759010
+To      all~
+Subject Title Screen added~
+Text
+Title screen added for DUMUD
+~
+

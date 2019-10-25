@@ -1,0 +1,22 @@
+CC      = gcc
+PROF    = -O -ggdb
+NOCRYPT =
+C_FLAGS =  -Wall $(PROF) $(NOCRYPT) 
+L_FLAGS =  $(PROF) 
+
+O_FILES = act_comm.o act_enter.o act_info.o act_move.o act_obj.o act_wiz.o \
+          alias.o ban.o comm.o const.o db.o db2.o effects.o fight.o flags.o \
+	  handler.o healer.o interp.o board.o lookup.o magic.o magic2.o \
+	  music.o recycle.o save.o scan.o skills.o special.o tables.o \
+ 	  update.o mob_cmds.o mob_prog.o olc.o olc_act.o olc_save.o bit.o \
+	  mem.o string.o pedit.o hedit.o cmdedit.o raedit.o skedit.o \
+	  sedit.o gedit.o tablesave.o screen.o
+
+rom: $(O_FILES)
+	$(CC) $(L_FLAGS) -o rom $(O_FILES)
+
+.c.o: merc.h
+	$(CC) -c $(C_FLAGS) -Dunix -DOLD_RAND -DNOCRYPT $<
+
+clean:
+	rm *.o rom.exe

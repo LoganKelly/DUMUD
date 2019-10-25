@@ -1,0 +1,641 @@
+--- act_comm.c	1998/01/25 13:58:18	1.1
++++ act_comm.c	1998/01/25 13:59:40
+@@ -1423,6 +1423,11 @@
+      * After extract_char the ch is no longer valid!
+      */
+     save_char_obj( ch );
++
++    /* Free note that might be there somehow */
++    if (ch->pcdata->in_progress)
++	free_note (ch->pcdata->in_progress);
++
+     id = ch->id;
+     d = ch->desc;
+     extract_char( ch, TRUE );
+--- board.c	1998/01/25 13:58:58	1.1
++++ board.c	1998/01/25 14:03:34
+@@ -29,6 +29,7 @@
+ /* #include "do.h" */ /* My do_XXX functions are declared in this file */
+ #include "colordef.h"
+ 
++DECLARE_DO_FUN( do_help		);
+ 
+ /*
+  
+@@ -68,7 +69,7 @@
+ 
+ { "General",  	"General discussion",            0,     2,     "all", DEF_INCLUDE,21, NULL, FALSE },
+ { "Ideas",	  	"Suggestion for improvement",	 0,     2,     "all", DEF_NORMAL, 60, NULL, FALSE }, 
+-{ "Announce", 	"Announcements from Immortals",  0,     L_IMM, "all", DEF_NORMAL, 60, NULL, FALSE },
++{ "Announce", 	"Announcements from Immortals",  0,     LEVEL_IMMORTAL, "all", DEF_NORMAL, 60, NULL, FALSE },
+ { "Bugs",	  	"Typos, bugs, errors",		     0,     1,     "imm", DEF_NORMAL, 60, NULL, FALSE },
+ { "Personal", 	"Personal messages",			 0,     1,     "all", DEF_EXCLUDE,28, NULL, FALSE }
+ 
+--- comm.c	1998/01/25 13:58:18	1.1
++++ comm.c	1998/01/25 13:59:40
+@@ -65,7 +65,6 @@
+ DECLARE_DO_FUN(do_look		);
+ DECLARE_DO_FUN(do_skills	);
+ DECLARE_DO_FUN(do_outfit	);
+-DECLARE_DO_FUN(do_unread	);
+ 
+ 
+ /*
+@@ -987,7 +986,10 @@
+ 	sprintf( log_buf, "Closing link to %s.", ch->name );
+ 	log_string( log_buf );
+ 	/* cut down on wiznet spam when rebooting */
+-	if ( dclose->connected == CON_PLAYING && !merc_down)
++	/* If ch is writing note or playing, just lose link otherwise clear char */
++	if ((dclose->connected == CON_PLAYING && !merc_down)
++	    ||((dclose->connected >= CON_NOTE_TO)
++	    && (dclose->connected <= CON_NOTE_FINISH)))
+ 	{
+ 	    act( "$n has lost $s link.", ch, NULL, NULL, TO_ROOM );
+ 	    wiznet("Net death has claimed $N.",ch,NULL,WIZ_LINKS,0,0);
+@@ -1551,8 +1553,12 @@
+     int iClass,race,i,weapon;
+     bool fOld;
+ 
+-    while ( isspace(*argument) )
+-	argument++;
++    /* Delete leading spaces UNLESS character is writing a note */
++    if (d->connected != CON_NOTE_TEXT)
++    {
++        while ( isspace(*argument) )
++            argument++;
++    }
+ 
+     ch = d->character;
+ 
+@@ -2043,6 +2049,29 @@
+         d->connected = CON_READ_MOTD;
+ 	break;
+ 
++        /* states for new note system, (c)1995-96 erwin@andreasen.org */
++        /* ch MUST be PC here; have nwrite check for PC status! */
++
++    case CON_NOTE_TO:
++        handle_con_note_to (d, argument);
++        break;
++
++    case CON_NOTE_SUBJECT:
++        handle_con_note_subject (d, argument);
++        break; /* subject */
++
++    case CON_NOTE_EXPIRE:
++        handle_con_note_expire (d, argument);
++        break;
++
++    case CON_NOTE_TEXT:
++        handle_con_note_text (d, argument);
++        break;
++
++    case CON_NOTE_FINISH:
++        handle_con_note_finish (d, argument);
++        break;
++
+     case CON_READ_MOTD:
+         if ( ch->pcdata == NULL || ch->pcdata->pwd[0] == '\0')
+         {
+@@ -2110,7 +2139,9 @@
+ 	    act("$n has entered the game.",ch->pet,NULL,NULL,TO_ROOM);
+ 	}
+ 
+-	do_unread(ch,"");
++	send_to_char("\n", ch);
++	do_board(ch, "");  /* Show board status */
++ 
+ 	break;
+     }
+ 
+@@ -2246,6 +2277,11 @@
+ 		wiznet("$N groks the fullness of $S link.",
+ 		    ch,NULL,WIZ_LINKS,0,0);
+ 		d->connected = CON_PLAYING;
++		/* Inform the character of a note in progress and the possbility
++		 * of continuation!
++		 */
++		if (ch->pcdata->in_progress)
++		    send_to_char ("You have a note in progress. Type NWRITE to continue it.\n\r", ch);
+ 	    }
+ 	    return TRUE;
+ 	}
+@@ -2531,7 +2567,8 @@
+         *point++ = '\n';
+         *point++ = '\r';
+         buf[0]   = UPPER(buf[0]);
+-        write_to_buffer( to->desc, buf, point - buf );
++	if (to->desc && (to->desc->connected == CON_PLAYING))
++            write_to_buffer( to->desc, buf, point - buf );
+     }
+  
+     return;
+--- db.c	1998/01/25 13:58:18	1.1
++++ db.c	1998/01/25 13:59:40
+@@ -80,7 +80,11 @@
+ char *			help_greeting;
+ char			log_buf		[2*MAX_INPUT_LENGTH];
+ KILL_DATA		kill_table	[MAX_LEVEL];
+-NOTE_DATA *		note_list;
++
++/*
++ * NOTE_DATA *		note_list;
++ */
++
+ OBJ_DATA *		object_list;
+ TIME_INFO_DATA		time_info;
+ WEATHER_DATA		weather_info;
+@@ -218,7 +222,6 @@
+ void	load_shops	args( ( FILE *fp ) );
+ void 	load_socials	args( ( FILE *fp ) );
+ void	load_specials	args( ( FILE *fp ) );
+-void	load_notes	args( ( void ) );
+ void	load_bans	args( ( void ) );
+ 
+ void	fix_exits	args( ( void ) );
+@@ -378,7 +381,8 @@
+ 	fix_exits( );
+ 	fBootDb	= FALSE;
+ 	area_update( );
+-	load_notes( );
++	load_boards(); /* Load all boards */
++	save_notes();
+ 	load_bans();
+ 	load_songs();
+     }
+--- handler.c	1998/01/25 13:58:18	1.1
++++ handler.c	1998/01/25 13:59:40
+@@ -2909,3 +2909,22 @@
+ 
+     return ( buf[0] != '\0' ) ? buf+1 : "none";
+ }
++
++/*
++ * See if a string is one of the names of an object.
++ */
++
++bool is_full_name( const char *str, char *namelist )
++{
++    char name[MAX_INPUT_LENGTH];
++
++    for ( ; ; )
++    {
++        namelist = one_argument( namelist, name );
++        if ( name[0] == '\0' )
++            return FALSE;
++        if ( !str_cmp( str, name ) )
++            return TRUE;
++    }
++}
++
+--- interp.c	1998/01/25 13:58:18	1.1
++++ interp.c	1998/01/25 13:59:40
+@@ -112,7 +112,7 @@
+     { "affects",	do_affects,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+     { "areas",		do_areas,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+     { "bug",		do_bug,		POS_DEAD,	 0,  LOG_NORMAL, 1 },
+-    { "changes",	do_changes,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
++    { "board",		do_board,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+     { "commands",	do_commands,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+     { "compare",	do_compare,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+     { "consider",	do_consider,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+@@ -122,10 +122,8 @@
+     { "examine",	do_examine,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+ /*  { "groups",		do_groups,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 }, */
+     { "help",		do_help,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+-    { "idea",		do_idea,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+     { "info",           do_groups,      POS_SLEEPING,    0,  LOG_NORMAL, 1 },
+     { "motd",		do_motd,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+-    { "news",		do_news,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+     { "read",		do_read,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+     { "report",		do_report,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+     { "rules",		do_rules,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+@@ -189,7 +187,6 @@
+     { "gtell",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+     { ";",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL, 0 },
+ /*  { "music",		do_music,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 }, */
+-    { "note",		do_note,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+     { "pose",		do_pose,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+     { "question",	do_question,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+     { "quote",		do_quote,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+@@ -199,7 +196,6 @@
+     { "say",		do_say,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+     { "'",		do_say,		POS_RESTING,	 0,  LOG_NORMAL, 0 },
+     { "shout",		do_shout,	POS_RESTING,	 3,  LOG_NORMAL, 1 },
+-    { "unread",		do_unread,	POS_SLEEPING,    0,  LOG_NORMAL, 1 },
+     { "yell",		do_yell,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+ 
+     /*
+@@ -309,7 +305,8 @@
+     { "nochannels",	do_nochannels,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+     { "noemote",	do_noemote,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+     { "noshout",	do_noshout,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+-    { "notell",		do_notell,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
++    { "note",		do_note,	POS_DEAD,	 0,  LOG_NORMAL, 1 }, 
++    { "notell",		do_notell,	POS_DEAD,	L5,  LOG_ALWAYS, 1 }, 
+     { "pecho",		do_pecho,	POS_DEAD,	L4,  LOG_ALWAYS, 1 }, 
+     { "pardon",		do_pardon,	POS_DEAD,	L3,  LOG_ALWAYS, 1 },
+     { "purge",		do_purge,	POS_DEAD,	L4,  LOG_ALWAYS, 1 },
+@@ -332,7 +329,6 @@
+     { "mwhere",		do_mwhere,	POS_DEAD,	IM,  LOG_NORMAL, 1 },
+     { "owhere",		do_owhere,	POS_DEAD,	IM,  LOG_NORMAL, 1 },
+     { "peace",		do_peace,	POS_DEAD,	L5,  LOG_NORMAL, 1 },
+-    { "penalty",	do_penalty,	POS_DEAD,	L7,  LOG_NORMAL, 1 },
+     { "echo",		do_recho,	POS_DEAD,	L6,  LOG_ALWAYS, 1 },
+     { "return",         do_return,      POS_DEAD,       L6,  LOG_NORMAL, 1 },
+     { "snoop",		do_snoop,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+--- recycle.c	1998/01/25 13:58:18	1.1
++++ recycle.c	1998/01/25 13:59:40
+@@ -38,41 +38,6 @@
+ #include "merc.h"
+ #include "recycle.h"
+ 
+-/* stuff for recyling notes */
+-NOTE_DATA *note_free;
+-
+-NOTE_DATA *new_note()
+-{
+-    NOTE_DATA *note;
+-
+-    if (note_free == NULL)
+-	note = alloc_perm(sizeof(*note));
+-    else
+-    { 
+-	note = note_free;
+-	note_free = note_free->next;
+-    }
+-    VALIDATE(note);
+-    return note;
+-}
+-
+-void free_note(NOTE_DATA *note)
+-{
+-    if (!IS_VALID(note))
+-	return;
+-
+-    free_string( note->text    );
+-    free_string( note->subject );
+-    free_string( note->to_list );
+-    free_string( note->date    );
+-    free_string( note->sender  );
+-    INVALIDATE(note);
+-
+-    note->next = note_free;
+-    note_free   = note;
+-}
+-
+-    
+ /* stuff for recycling ban structures */
+ BAN_DATA *ban_free;
+ 
+--- save.c	1998/01/25 13:58:18	1.1
++++ save.c	1998/01/25 13:59:40
+@@ -164,7 +164,7 @@
+ void fwrite_char( CHAR_DATA *ch, FILE *fp )
+ {
+     AFFECT_DATA *paf;
+-    int sn, gn, pos;
++    int sn, gn, pos, i;
+ 
+     fprintf( fp, "#%s\n", IS_NPC(ch) ? "MOB" : "PLAYER"	);
+ 
+@@ -190,9 +190,6 @@
+ 	fprintf( fp, "Tru  %d\n",	ch->trust	);
+     fprintf( fp, "Plyd %d\n",
+ 	ch->played + (int) (current_time - ch->logon)	);
+-    fprintf( fp, "Not  %ld %ld %ld %ld %ld\n",		
+-	ch->pcdata->last_note,ch->pcdata->last_idea,ch->pcdata->last_penalty,
+-	ch->pcdata->last_news,ch->pcdata->last_changes	);
+     fprintf( fp, "Scro %d\n", 	ch->lines		);
+     fprintf( fp, "Room %d\n",
+         (  ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
+@@ -288,6 +285,13 @@
+ 		    ch->pcdata->alias_sub[pos]);
+ 	}
+ 
++	/* Save note board status */
++	/* Save number of boards in case that number changes */
++	fprintf (fp, "Boards       %d ", MAX_BOARD);
++	for (i = 0; i < MAX_BOARD; i++)
++	    fprintf (fp, "%s %ld ", boards[i].short_name, ch->pcdata->last_note[i]);
++	fprintf (fp, "\n");
++
+ 	for ( sn = 0; sn < MAX_SKILL; sn++ )
+ 	{
+ 	    if ( skill_table[sn].name != NULL && ch->pcdata->learned[sn] > 0 )
+@@ -558,6 +562,7 @@
+ 					| COMM_PROMPT;
+     ch->prompt 				= str_dup("<%hhp %mm %vmv> ");
+     ch->pcdata->confirm_delete		= FALSE;
++    ch->pcdata->board                   = &boards[DEFAULT_BOARD];
+     ch->pcdata->pwd			= str_dup( "" );
+     ch->pcdata->bamfin			= str_dup( "" );
+     ch->pcdata->bamfout			= str_dup( "" );
+@@ -878,6 +883,31 @@
+ 	    KEY( "Bamfout",	ch->pcdata->bamfout,	fread_string( fp ) );
+ 	    KEY( "Bin",		ch->pcdata->bamfin,	fread_string( fp ) );
+ 	    KEY( "Bout",	ch->pcdata->bamfout,	fread_string( fp ) );
++
++	    /* Read in board status */
++	    if (!str_cmp(word, "Boards" ))
++	    {
++		int i,num = fread_number (fp); /* number of boards saved */
++                char *boardname;
++
++                for (; num ; num-- ) /* for each of the board saved */
++                {
++		    boardname = fread_word (fp);
++		    i = board_lookup (boardname); /* find board number */
++
++		    if (i == BOARD_NOTFOUND) /* Does board still exist ? */
++                    {
++			sprintf (buf, "fread_char: %s had unknown board name: %s. Skipped.",
++			    ch->name, boardname);
++			log_string (buf);
++			fread_number (fp); /* read last_note and skip info */
++		    }
++		    else /* Save it */
++			ch->pcdata->last_note[i] = fread_number (fp);
++		} /* for */
++
++                fMatch = TRUE;
++	      } /* Boards */
+ 	    break;
+ 
+ 	case 'C':
+@@ -1001,17 +1031,6 @@
+ 
+ 	case 'N':
+ 	    KEYS( "Name",	ch->name,		fread_string( fp ) );
+-	    KEY( "Note",	ch->pcdata->last_note,	fread_number( fp ) );
+-	    if (!str_cmp(word,"Not"))
+-	    {
+-		ch->pcdata->last_note			= fread_number(fp);
+-		ch->pcdata->last_idea			= fread_number(fp);
+-		ch->pcdata->last_penalty		= fread_number(fp);
+-		ch->pcdata->last_news			= fread_number(fp);
+-		ch->pcdata->last_changes		= fread_number(fp);
+-		fMatch = TRUE;
+-		break;
+-	    }
+ 	    break;
+ 
+ 	case 'P':
+--- board.h	1998/01/25 13:58:58	1.1
++++ board.h	1998/01/25 14:00:33
+@@ -2,12 +2,6 @@
+ /* This is version 2 of the board system, (c) 1995-96 erwin@andreasen.org */
+ 
+ 
+-#define CON_NOTE_TO						10
+-#define CON_NOTE_SUBJECT				11
+-#define CON_NOTE_EXPIRE					12
+-#define CON_NOTE_TEXT					13
+-#define CON_NOTE_FINISH					14
+-
+ #define NOTE_DIR  				"../notes" /* set it to something you like */
+ 
+ #define DEF_NORMAL  0 /* No forced change, but default (any string)   */
+--- colordef.h	1998/01/25 13:58:58	1.1
++++ colordef.h	1998/01/25 14:04:16
+@@ -6,31 +6,30 @@
+ 
+ /* Foreground colors */
+ 
+-#define RED			"&r"
+-#define BLUE		"&l"
+-#define GREEN		"&g"
+-#define BLACK		"&b"
+-#define WHITE		"&w"
+-#define MAGENTA		"&m" /* purple? */
+-#define YELLOW		"&y"
+-#define CYAN		"&c"
++#define RED		""
++#define BLUE		""
++#define GREEN		""
++#define BLACK		""
++#define WHITE		""
++#define MAGENTA		"" /* purple? */
++#define YELLOW		""
++#define CYAN		""
+ 
+ /* Background colors */
+ 
+-#define RED_BG			"&R"
+-#define BLUE_BG			"&L"
+-#define GREEN_BG		"&G"
+-#define BLACK_BG		"&B"
+-#define WHITE_BG		"&W"
+-#define MAGENTA_BG		"&M"
+-#define YELLOW_BG		"&Y"
+-#define CYAN_BG			"&C"
++#define RED_BG			""
++#define BLUE_BG			""
++#define GREEN_BG		""
++#define BLACK_BG		""
++#define WHITE_BG		""
++#define MAGENTA_BG		""
++#define YELLOW_BG		""
++#define CYAN_BG			""
+ 
+ /* Other codes */
+ 
+-#define BOLD			"&@"
+-#define NO_COLOR		"&*" /* Default color */
+-#define BLINK           "&!"
+-#define REVERSE			"&+"
+-#define TILDE           "&-"
+-
++#define BOLD			""
++#define NO_COLOR		"" /* Default color */
++#define BLINK           	""
++#define REVERSE			""
++#define TILDE           	""
+--- interp.h	1998/01/25 13:58:18	1.1
++++ interp.h	1998/01/25 13:59:40
+@@ -86,12 +86,12 @@
+ DECLARE_DO_FUN(	do_ban		);
+ DECLARE_DO_FUN( do_bash		);
+ DECLARE_DO_FUN( do_berserk	);
++DECLARE_DO_FUN( do_board	);
+ DECLARE_DO_FUN(	do_brandish	);
+ DECLARE_DO_FUN( do_brief	);
+ DECLARE_DO_FUN(	do_bug		);
+ DECLARE_DO_FUN(	do_buy		);
+ DECLARE_DO_FUN(	do_cast		);
+-DECLARE_DO_FUN( do_changes	);
+ DECLARE_DO_FUN( do_channels	);
+ DECLARE_DO_FUN( do_clone	);
+ DECLARE_DO_FUN(	do_close	);
+@@ -143,7 +143,6 @@
+ DECLARE_DO_FUN(	do_help		);
+ DECLARE_DO_FUN(	do_hide		);
+ DECLARE_DO_FUN(	do_holylight	);
+-DECLARE_DO_FUN(	do_idea		);
+ DECLARE_DO_FUN(	do_immtalk	);
+ DECLARE_DO_FUN( do_incognito	);
+ DECLARE_DO_FUN( do_clantalk	);
+@@ -168,7 +167,6 @@
+ DECLARE_DO_FUN(	do_murder	);
+ DECLARE_DO_FUN( do_music	);
+ DECLARE_DO_FUN( do_newlock	);
+-DECLARE_DO_FUN( do_news		);
+ DECLARE_DO_FUN( do_nochannels	);
+ DECLARE_DO_FUN(	do_noemote	);
+ DECLARE_DO_FUN( do_nofollow	);
+@@ -176,7 +174,6 @@
+ DECLARE_DO_FUN(	do_north	);
+ DECLARE_DO_FUN(	do_noshout	);
+ DECLARE_DO_FUN( do_nosummon	);
+-DECLARE_DO_FUN(	do_note		);
+ DECLARE_DO_FUN(	do_notell	);
+ DECLARE_DO_FUN(	do_ofind	);
+ DECLARE_DO_FUN(	do_oload	);
+@@ -190,7 +187,6 @@
+ DECLARE_DO_FUN(	do_password	);
+ DECLARE_DO_FUN(	do_peace	);
+ DECLARE_DO_FUN( do_pecho	);
+-DECLARE_DO_FUN( do_penalty	);
+ DECLARE_DO_FUN( do_permban	);
+ DECLARE_DO_FUN(	do_pick		);
+ DECLARE_DO_FUN( do_play		);
+@@ -270,7 +266,6 @@
+ DECLARE_DO_FUN(	do_typo		);
+ DECLARE_DO_FUN( do_unalias	);
+ DECLARE_DO_FUN(	do_unlock	);
+-DECLARE_DO_FUN( do_unread	);
+ DECLARE_DO_FUN(	do_up		);
+ DECLARE_DO_FUN(	do_value	);
+ DECLARE_DO_FUN(	do_visible	);
+--- merc.h	1998/01/25 13:58:18	1.1
++++ merc.h	1998/01/25 13:59:40
+@@ -25,7 +25,6 @@
+ *	ROM license, in the file Rom24/doc/rom.license			   *
+ ***************************************************************************/
+ 
+-
+ /*
+  * Accommodate old non-Ansi compilers.
+  */
+@@ -241,6 +240,11 @@
+ #define CON_READ_IMOTD			13
+ #define CON_READ_MOTD			14
+ #define CON_BREAK_CONNECT		15
++#define CON_NOTE_TO                     16
++#define CON_NOTE_SUBJECT                17
++#define CON_NOTE_EXPIRE                 18
++#define CON_NOTE_TEXT                   19
++#define CON_NOTE_FINISH                 20
+ 
+ 
+ 
+@@ -444,11 +448,6 @@
+  * Data structure for notes.
+  */
+ 
+-#define NOTE_NOTE	0
+-#define NOTE_IDEA	1
+-#define NOTE_PENALTY	2
+-#define NOTE_NEWS	3
+-#define NOTE_CHANGES	4
+ struct	note_data
+ {
+     NOTE_DATA *	next;
+@@ -460,10 +459,12 @@
+     char *	subject;
+     char *	text;
+     time_t  	date_stamp;
++    time_t	expire;
+ };
+ 
+ 
+ 
++
+ /*
+  * An affect.
+  */
+@@ -1353,6 +1354,8 @@
+ };
+ 
+ 
++#include "board.h"
++
+ /*
+  * One character (PC or NPC).
+  */
+@@ -1370,7 +1373,7 @@
+     MOB_INDEX_DATA *	pIndexData;
+     DESCRIPTOR_DATA *	desc;
+     AFFECT_DATA *	affected;
+-    NOTE_DATA *		pnote;
++/*    NOTE_DATA *		pnote; */
+     OBJ_DATA *		carrying;
+     OBJ_DATA *		on;
+     ROOM_INDEX_DATA *	in_room;
+@@ -1459,11 +1462,6 @@
+     char *		bamfin;
+     char *		bamfout;
+     char *		title;
+-    time_t              last_note;
+-    time_t              last_idea;
+-    time_t              last_penalty;
+-    time_t              last_news;
+-    time_t              last_changes;
+     sh_int		perm_hit;
+     sh_int		perm_mana;
+     sh_int		perm_move;
+@@ -1476,6 +1474,9 @@
+     bool              	confirm_delete;
+     char *		alias[MAX_ALIAS];
+     char * 		alias_sub[MAX_ALIAS];
++    BOARD_DATA *	board;			/* The current board 	    */
++    time_t		last_note[MAX_BOARD];	/* last note for the boards */
++    NOTE_DATA *		in_progress;
+ };
+ 
+ /* Data for generating characters -- only used during generation */
+@@ -1926,6 +1927,8 @@
+ extern		char			log_buf		[];
+ extern		TIME_INFO_DATA		time_info;
+ extern		WEATHER_DATA		weather_info;
++extern          NOTE_DATA         *     note_free;
++extern          OBJ_DATA          *     obj_free;
+ 
+ /*
+  * OS-dependent declarations.
+@@ -2048,11 +2051,6 @@
+ #define AREA_LIST       "area.lst"  /* List of areas*/
+ #define BUG_FILE        "bugs.txt" /* For 'bug' and bug()*/
+ #define TYPO_FILE       "typos.txt" /* For 'typo'*/
+-#define NOTE_FILE       "notes.not"/* For 'notes'*/
+-#define IDEA_FILE	"ideas.not"
+-#define PENALTY_FILE	"penal.not"
+-#define NEWS_FILE	"news.not"
+-#define CHANGES_FILE	"chang.not"
+ #define SHUTDOWN_FILE   "shutdown.txt"/* For 'shutdown'*/
+ #define BAN_FILE	"ban.txt"
+ #define MUSIC_FILE	"music.txt"
+@@ -2214,6 +2212,7 @@
+ int	can_carry_n	args( ( CHAR_DATA *ch ) );
+ int	can_carry_w	args( ( CHAR_DATA *ch ) );
+ bool	is_name		args( ( char *str, char *namelist ) );
++bool    is_full_name    args( ( const char *str, char *namelist ) );
+ bool	is_exact_name	args( ( char *str, char *namelist ) );
+ void	affect_to_char	args( ( CHAR_DATA *ch, AFFECT_DATA *paf ) );
+ void	affect_to_obj	args( ( OBJ_DATA *obj, AFFECT_DATA *paf ) );
+--- recycle.h	1998/01/25 13:58:18	1.1
++++ recycle.h	1998/01/25 13:59:40
+@@ -40,12 +40,6 @@
+ #define BUFFER_OVERFLOW	1
+ #define BUFFER_FREED 	2
+ 
+-/* note recycling */
+-#define ND NOTE_DATA
+-ND	*new_note args( (void) );
+-void	free_note args( (NOTE_DATA *note) );
+-#undef ND
+-
+ /* ban data recycling */
+ #define BD BAN_DATA
+ BD	*new_ban args( (void) );
