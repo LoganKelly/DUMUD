@@ -208,6 +208,7 @@ const struct savetable_type skillsavetable [] =
 	{	"name",		CAMPO_STRING,			(void *) &sk.name,		NULL,			NULL	},
 	{	"skill_level",	CAMPO_SHINT_ARRAY,		(void *) &sk.skill_level,	(void *) MAX_CLASS,	NULL	},
 	{	"rating",	CAMPO_SHINT_ARRAY,		(void *) &sk.rating,		(void *) MAX_CLASS,	NULL	},
+	{	"race",		CAMPO_SHINT_ARRAY,		(void *) &sk.race,		(void *) MAX_PC_RACE,	NULL	},
 	{	"spell_fun",	CAMPO_FUNCION_INT_TO_STR,	(void *) &sk.spell_fun,		spell_fun_str,		spell_fun_read	},
 	{	"target",	CAMPO_SHINT_FLAGSTRING,		(void *) &sk.target,		target_table,		NULL	},
 	{	"minimum_position", CAMPO_FUNCION_SHINT_TO_STR,	(void *) &sk.minimum_position,	position_str,		position_read	},

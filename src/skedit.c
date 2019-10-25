@@ -70,8 +70,9 @@ const	struct	olc_comm_type	skill_olc_comm_table	[]	=
  { "slot",	NULL,				ed_olded,		skedit_slot	},
  { "target",	(void *) &xSkill.target,	ed_flag_set_sh,		target_table	},
  { "mana",	(void *) &xSkill.min_mana,	ed_numero_s_pos,	NULL		},
- { "nivel",	NULL,				ed_olded,		skedit_nivel 	},
+ { "level",	NULL,				ed_olded,		skedit_nivel 	},
  { "rating",	NULL,				ed_olded,		skedit_rating   },
+ { "race",	NULL,				ed_olded,		skedit_race	},
  { "gsn",	NULL,				ed_olded,		skedit_gsn	},
  { "spell",	NULL,				ed_olded,		skedit_spell	},
  { "noun",	(void *) &xSkill.noun_damage,	ed_line_string,		NULL		},
@@ -101,7 +102,7 @@ char *spell_name( SPELL_FUN *spell )
 			i++;
 
 	if ( fBootDb )
-		bug( "spell_name : spell_fun inexistente", 0 );
+		bug( "spell_name : spell_fun does not exist", 0 );
 
 	return "";
 }
@@ -120,7 +121,7 @@ char *gsn_name( sh_int *pgsn )
 			i++;
 	
 	if ( fBootDb )
-		bug( "gsn_name : pgsn %d inexistente", *pgsn );
+		bug( "gsn_name : pgsn %d does not exist", *pgsn );
 
 	return "";
 }
@@ -139,7 +140,7 @@ SPELL_FUN *spell_function( char *argument )
 	
 	if ( fBootDb )
 	{
-		sprintf( buf, "spell_function : spell %s inexistente", argument );
+		sprintf( buf, "spell_function : spell %s does not exist", argument );
 		bug( buf, 0 );
 	}
 
@@ -152,7 +153,7 @@ void	check_gsns( void )
 
 	for ( i = 0; gsn_table[i].name; ++i )
 		if ( *gsn_table[i].pgsn == 0 )
-			bugf( "check_gsns : gsn %d(%s) no asignado!", i,
+			bugf( "check_gsns : gsn %d(%s) not assigned!", i,
 				gsn_table[i].name );
 
 	return;
@@ -172,7 +173,7 @@ sh_int *gsn_lookup( char *argument )
 	
 	if ( fBootDb == TRUE )
 	{
-		sprintf( buf, "gsn_lookup : gsn %s inexistente", argument );
+		sprintf( buf, "gsn_lookup : gsn %s does not exist", argument );
 		bug( buf, 0 );
 	}
 
@@ -183,7 +184,7 @@ void    skedit (CHAR_DATA * ch, char *argument)
 {
 	if (ch->pcdata->security < MIN_SKEDIT_SECURITY)
 	{
-		send_to_char ("SKEdit : Seguridad insuficiente para editar skills.\n\r", ch);
+		send_to_char ("SKEdit : Insufficient security level to edit skills.\n\r", ch);
 		edit_done (ch);
 		return;
 	}
@@ -224,13 +225,13 @@ void do_skedit(CHAR_DATA *ch, char *argument)
 
     if ( IS_NULLSTR(argument) )
     {
-    	send_to_char( "Sintaxis : SKEdit [skill]\n\r", ch );
+    	send_to_char( "Syntax : SKEdit [skill]\n\r", ch );
     	return;
     }
 
     if (ch->pcdata->security < MIN_SKEDIT_SECURITY)
     {
-    	send_to_char( "SKEdit : Insuficiente seguridad para editar skills.\n\r", ch );
+    	send_to_char( "SKEdit : Insufficient security level to edit skills.\n\r", ch );
     	return;
     }
 
@@ -248,7 +249,7 @@ void do_skedit(CHAR_DATA *ch, char *argument)
 
     if ( (skill = skill_lookup(argument)) == -1 )
     {
-    	send_to_char( "SKEdit : Skill no existe.\n\r", ch );
+    	send_to_char( "SKEdit : Skill does not exist.\n\r", ch );
     	return;
     }
 
@@ -266,7 +267,7 @@ void skill_list( BUFFER *pBuf )
 	int i;
 
 	sprintf( buf, "Niv   %-20.20s Niv   %-20.20s Niv   %-20.20s\n\r",
-			"Nombre", "Nombre", "Nombre" );
+			"Name", "Name", "Name" );
 	add_buf( pBuf, buf );
 
 	for ( i = 0; i < MAX_SKILL; ++i )
@@ -291,7 +292,7 @@ void spell_list( BUFFER *pBuf )
 	int i;
 	
 	sprintf( buf, "Num %-35.35s Num %-35.35s\n\r",
-			"Nombre", "Nombre" );
+			"Name", "Name" );
 	add_buf( pBuf, buf );
 
 	for ( i = 0; spell_table[i].name; ++i )
@@ -315,7 +316,7 @@ void gsn_list( BUFFER *pBuf )
 	int i;
 	
 	sprintf( buf, "Num %-22.22s Num %-22.2s Num %-22.22s\n\r",
-			"Nombre", "Nombre", "Nombre" );
+			"Name", "Name", "Name" );
 	add_buf( pBuf, buf );
 
 	for ( i = 0; gsn_table[i].name; ++i )
@@ -339,7 +340,7 @@ void slot_list( BUFFER *pBuf )
 	int i, cnt;
 	
 	sprintf( buf, "Num %-22.22s Num %-22.2s Num %-22.22s\n\r",
-			"Nombre", "Nombre", "Nombre" );
+			"Name", "Name", "Name" );
 	add_buf( pBuf, buf );
 
 	cnt = 0;
@@ -369,7 +370,7 @@ SKEDIT( skedit_list )
 	
 	if ( IS_NULLSTR(argument) || !is_name(argument, "gsns skills spells slots") )
 	{
-		send_to_char( "Sintaxis : list [gsns/skills/spells/slots]\n\r", ch );
+		send_to_char( "Syntax : list [gsns/skills/spells/slots]\n\r", ch );
 		return FALSE;
 	}
 
@@ -384,7 +385,7 @@ SKEDIT( skedit_list )
 	else if ( !str_prefix( argument, "gsns" ) )
 		gsn_list(pBuf);
 	else
-		add_buf( pBuf, "Idiota.\n\r" );
+		add_buf( pBuf, "Idiot.\n\r" );
 
 	page_to_char( buf_string(pBuf), ch );
 
@@ -415,7 +416,7 @@ SKEDIT( skedit_show )
 		send_to_char( buf, ch );
 	}
 
-	sprintf( buf, "Clase    + " );
+	sprintf( buf, "Class    + " );
 	
 	for ( i = 0; i < MAX_CLASS; ++i )
 	{
@@ -426,7 +427,7 @@ SKEDIT( skedit_show )
 	strcat( buf, "\n\r" );
 	send_to_char( buf, ch );
 	
-	sprintf( buf, "Nivel    | " );
+	sprintf( buf, "Level    | " );
 
 	for ( i = 0; i < MAX_CLASS; ++i )
 	{
@@ -442,6 +443,28 @@ SKEDIT( skedit_show )
 	for ( i = 0; i < MAX_CLASS; ++i )
 	{
 		sprintf( buf2, "%3d ", pSkill->rating[i] );
+		strcat( buf, buf2 );
+	}
+	
+	strcat( buf, "\n\r" );
+	send_to_char( buf, ch );
+	
+	sprintf( buf, "PC RACES + " );
+	
+	for ( i = 0; i < MAX_PC_RACE; ++i )
+	{
+		sprintf( buf2, "%7s ", race_table[i].name );
+		strcat( buf, buf2 );
+	}
+	
+	strcat( buf, "\n\r" );
+	send_to_char( buf, ch );
+	
+	sprintf( buf, "Race     | " );
+	
+	for ( i = 0; i < MAX_PC_RACE; ++i )
+	{
+		sprintf( buf2, "%7d ", pSkill->race[i] );
 		strcat( buf, buf2 );
 	}
 	
@@ -497,7 +520,7 @@ void crear_tabla_hash_skills( void )
 
 		if ( valor < 0 || valor > 25 )
 		{
-			bug( "Crear_tabla_hash_skills : valor %d invalido", valor );
+			bug( "Create_skill_hash_table : value %d invalid", valor );
 			exit(1);
 		}
 
@@ -554,13 +577,13 @@ SKEDIT( skedit_name )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : name [nombre]\n\r", ch );
+		send_to_char( "Syntax : name [name]\n\r", ch );
 		return FALSE;
 	}
 	
 	if ( skill_lookup(argument) != -1 )
 	{
-		send_to_char( "Un skill/spell con ese nombre ya existe.\n\r", ch );
+		send_to_char( "Skill/spell with that name already exists.\n\r", ch );
 		return FALSE;
 	}
 
@@ -582,13 +605,13 @@ SKEDIT( skedit_slot )
 	
 	if ( IS_NULLSTR(argument) || !is_number(argument) || atoi(argument) < 0 )
 	{
-		send_to_char( "Sintaxis : slot [numero]\n\r", ch );
+		send_to_char( "Syntax : slot [number]\n\r", ch );
 		return FALSE;
 	}
 
 	if ( slot_lookup(atoi(argument)) != -1 )
 	{
-		send_to_char( "Ese slot ya esta ocupado.\n\r", ch );
+		send_to_char( "That slot is already occupied.\n\r", ch );
 		return FALSE;
 	}
 	
@@ -610,13 +633,13 @@ SKEDIT( skedit_nivel )
 
 	if ( IS_NULLSTR(argument) || IS_NULLSTR(arg) || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : nivel [clase] [nivel]\n\r", ch );
+		send_to_char( "Syntax : level [class] [level]\n\r", ch );
 		return FALSE;
 	}
 
 	if ( (clase = class_lookup(arg)) == -1 )
 	{
-		send_to_char( "SKEdit : Clase inexistente.\n\r", ch );
+		send_to_char( "SKEdit : Class does not exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -624,7 +647,7 @@ SKEDIT( skedit_nivel )
 
 	if ( nivel < 0 || nivel > MAX_LEVEL )
 	{
-		send_to_char( "SKEdit : Nivel invalido.\n\r", ch );
+		send_to_char( "SKEdit : Level is invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -645,13 +668,13 @@ SKEDIT( skedit_rating )
 
 	if ( IS_NULLSTR(argument) || IS_NULLSTR(arg) || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : rating [clase] [nivel]\n\r", ch );
+		send_to_char( "Syntax : rating [class] [level]\n\r", ch );
 		return FALSE;
 	}
 
 	if ( (clase = class_lookup(arg)) == -1 )
 	{
-		send_to_char( "SKEdit : Clase inexistente.\n\r", ch );
+		send_to_char( "SKEdit : Class does not exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -659,11 +682,51 @@ SKEDIT( skedit_rating )
 
 	if ( rating < 0 )
 	{
-		send_to_char( "SKEdit : Rating invalido.\n\r", ch );
+		send_to_char( "SKEdit : Rating invalid.\n\r", ch );
 		return FALSE;
 	}
 
 	pSkill->rating[clase] = rating;
+	send_to_char( "Ok.\n\r", ch );
+	return TRUE;
+}
+
+SKEDIT( skedit_race )
+{
+	struct skill_type *pSkill;
+	char arg[MIL];
+	int race, clase;
+
+	EDIT_SKILL(ch,pSkill);
+
+	argument = one_argument( argument, arg );
+
+	if ( IS_NULLSTR(argument) || IS_NULLSTR(arg) || !is_number(argument) )
+	{
+		send_to_char( "Syntax : race [race] [1 or 0(true or false)]\n\r", ch );
+		return FALSE;
+	}
+
+	if ( (clase = race_lookup(arg)) == -1 )
+	{
+		send_to_char( "SKEdit : Race does not exist.\n\r", ch );
+		return FALSE;
+	}
+	if ( race_lookup(arg) > 4)
+	{
+		send_to_char( "SKEdit : Race does not exist.\n\r", ch );
+		return FALSE;
+	}
+
+	race = atoi(argument);
+
+	if ( race < 0 )
+	{
+		send_to_char( "SKEdit : Number invalid.\n\r", ch );
+		return FALSE;
+	}
+
+	pSkill->race[clase] = race;
 	send_to_char( "Ok.\n\r", ch );
 	return TRUE;
 }
@@ -677,7 +740,7 @@ SKEDIT( skedit_spell )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : spell [nombre-spell]\n\r", ch );
+		send_to_char( "Syntax : spell [name-of-spell]\n\r", ch );
 		send_to_char( "           spell spell_null\n\r", ch );
 		return FALSE;
 	}
@@ -685,7 +748,7 @@ SKEDIT( skedit_spell )
 	if ( ( spell = spell_function(argument) ) == spell_null
 	    && str_cmp(argument,"spell_null") )
 	{
-		send_to_char( "SKEdit : Spell inexistente.\n\r", ch );
+		send_to_char( "SKEdit : Spell does not exist.\n\r", ch );
 		return FALSE;
 	}
 	
@@ -704,7 +767,7 @@ SKEDIT( skedit_gsn )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : gsn [nombre-gsn]\n\r", ch );
+		send_to_char( "Syntax : gsn [name-of-gsn]\n\r", ch );
 		send_to_char( "           gsn null\n\r", ch );
 		return FALSE;
 	}
@@ -713,7 +776,7 @@ SKEDIT( skedit_gsn )
 
 	if ( str_cmp(argument,"null") && ( gsn = gsn_lookup(argument) ) == NULL )
 	{
-		send_to_char( "SKEdit : Gsn inexistente.\n\r", ch );
+		send_to_char( "SKEdit : Gsn does not exist.\n\r", ch );
 		return FALSE;
 	}
 	
@@ -739,13 +802,13 @@ SKEDIT( skedit_new )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : new [nombre-de-nuevo-skill]\n\r", ch );
+		send_to_char( "Syntax : new [name-of-the-new-skill]\n\r", ch );
 		return FALSE;
 	}
 
 	if (skill_lookup(argument) != -1)
 	{
-		send_to_char ("Un skill con ese nombre ya existe!\n\r",ch);
+		send_to_char ("A skill with that name already exists!\n\r",ch);
 		return FALSE;
 	}
 
@@ -764,7 +827,7 @@ SKEDIT( skedit_new )
 
 	if (!new_table) /* realloc failed */
 	{
-		send_to_char ("Falla en realloc. Preparate para el impacto.\n\r",ch);
+		send_to_char ("Failure in realloc function. Prepare for impact.\n\r",ch);
 		return FALSE;
 	}
 
@@ -773,9 +836,10 @@ SKEDIT( skedit_new )
 	skill_table[MAX_SKILL-1].name			= str_dup (argument);
 	for ( i = 0; i < MAX_CLASS; ++i )
 	{
-		skill_table[MAX_SKILL-1].skill_level[i]	= 53;
+		skill_table[MAX_SKILL-1].skill_level[i]	= 100;
 		skill_table[MAX_SKILL-1].rating[i]	= 0;
 	}
+	for ( i = 0; i < MAX_PC_RACE; ++i ) skill_table[MAX_SKILL-1].race[i]	= 0;
 	skill_table[MAX_SKILL-1].spell_fun		= spell_null;
 	skill_table[MAX_SKILL-1].target			= TAR_IGNORE;
 	skill_table[MAX_SKILL-1].minimum_position	= POS_STANDING;
@@ -819,7 +883,7 @@ SKEDIT( skedit_new )
 	ch->desc->editor	= ED_SKILL;
 	ch->desc->pEdit		= (void *) &skill_table[MAX_SKILL-1];
 
-	send_to_char ("Nuevo skill creado.\n\r",ch);
+	send_to_char ("New skill created.\n\r",ch);
 	return TRUE;
 }
 #endif

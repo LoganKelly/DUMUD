@@ -143,7 +143,7 @@ typedef int	LOOKUP_F	args( ( const char * ) );
  */
 #define MAX_SOCIALS		  256
 #if defined(FIRST_BOOT)
-#define MAX_SKILL		  150
+#define MAX_SKILL		  151
 #define MAX_GROUP		   30
 #else
 extern int MAX_SKILL;
@@ -155,9 +155,9 @@ extern int MAX_GROUP;
 #define MAX_PC_RACE		    5
 #define MAX_CLAN		    3
 #define MAX_DAMAGE_MESSAGE	   41
-#define MAX_LEVEL		   60
-#define LEVEL_HERO		   (MAX_LEVEL - 9)
-#define LEVEL_IMMORTAL		   (MAX_LEVEL - 8)
+#define MAX_LEVEL		   103
+#define LEVEL_HERO		   (MAX_LEVEL - 3)
+#define LEVEL_IMMORTAL		   (MAX_LEVEL - 2)
 #define MAX_VNUM		32767
 
 #define PULSE_PER_SECOND	    4
@@ -169,13 +169,7 @@ extern int MAX_GROUP;
 
 #define IMPLEMENTOR		MAX_LEVEL
 #define	CREATOR			(MAX_LEVEL - 1)
-#define SUPREME			(MAX_LEVEL - 2)
-#define DEITY			(MAX_LEVEL - 3)
-#define GOD			(MAX_LEVEL - 4)
-#define IMMORTAL		(MAX_LEVEL - 5)
-#define DEMI			(MAX_LEVEL - 6)
-#define ANGEL			(MAX_LEVEL - 7)
-#define AVATAR			(MAX_LEVEL - 8)
+#define AVATAR			(MAX_LEVEL - 2)
 #define HERO			LEVEL_HERO
 
 #define CLEAR		"\e[0m"		/* Resets Colour	*/
@@ -1141,9 +1135,9 @@ struct	kill_data
  */
 #define ROOM_VNUM_LIMBO		      2
 #define ROOM_VNUM_CHAT		   1200
-#define ROOM_VNUM_TEMPLE	   3001
+#define ROOM_VNUM_RECALL	   3014
 #define ROOM_VNUM_ALTAR		   3054
-#define ROOM_VNUM_SCHOOL	   3700
+#define ROOM_VNUM_SCHOOL	   32600
 #define ROOM_VNUM_BALANCE	   4500
 #define ROOM_VNUM_CIRCLE	   4400
 #define ROOM_VNUM_DEMISE	   4201
@@ -1372,6 +1366,7 @@ struct	kill_data
 #define COMM_NOCHANNELS		(W) 
 #define COMM_SNOOP_PROOF	(Y)
 #define COMM_AFK		(Z)
+#define COMM_NOGOCIAL		(aa)
 
 /* WIZnet flags */
 #define WIZ_ON			(A)
@@ -1500,7 +1495,7 @@ struct	char_data
     sh_int		sex;
     sh_int		class;
     sh_int		race;
-    sh_int		level;
+    int			level;
     sh_int		trust;
     int			played;
     int			lines;  /* for the pager */
@@ -1514,6 +1509,10 @@ struct	char_data
     sh_int		max_mana;
     sh_int		move;
     sh_int		max_move;
+    sh_int		bp; /* Blood points */
+    sh_int		max_bp;
+    int			bh_set; /*blood healing set?*/ 
+    int			bh_set2;
     long		gold;
     long		silver;
     int			exp;
@@ -1576,6 +1575,7 @@ struct	pc_data
     sh_int		perm_hit;
     sh_int		perm_mana;
     sh_int		perm_move;
+    sh_int		perm_bp;
     sh_int		true_sex;
     int			last_level;
     sh_int		condition	[4];
@@ -1698,6 +1698,7 @@ struct	obj_data
     char *		material;
     sh_int		timer;
     int			value	[5];
+    int			drained;
 };
 
 
@@ -1839,7 +1840,8 @@ struct	skill_type
 {
     char *	name;			/* Name of skill		*/
     sh_int	skill_level[MAX_CLASS];	/* Level needed by class	*/
-    sh_int	rating[MAX_CLASS];	/* How hard it is to learn	*/	
+    sh_int	rating[MAX_CLASS];	/* How hard it is to learn	*/
+    sh_int	race[MAX_PC_RACE];	/* If a race can learn it */	
     SPELL_FUN *	spell_fun;		/* Spell pointer (for spells)	*/
     sh_int	target;			/* Legal targets		*/
     sh_int	minimum_position;	/* Position for caster / user	*/
@@ -2502,7 +2504,7 @@ RID *	room_by_name	args( ( char *target, int level, bool error) );
 void	advance_level	args( ( CHAR_DATA *ch, bool hide ) );
 void	gain_exp	args( ( CHAR_DATA *ch, int gain ) );
 void	gain_condition	args( ( CHAR_DATA *ch, int iCond, int value ) );
-void	update_handler	args( ( void ) );
+void	update_handler	args( ( int ftick ) );
 
 /* string.c */
 void	string_edit	args( ( CHAR_DATA *ch, char **pString ) );
@@ -2581,6 +2583,8 @@ extern		int			top_shop;
 extern		int			top_vnum_mob;
 extern		int			top_vnum_obj;
 extern		int			top_vnum_room;
+
+extern 		int			ftick;
 
 extern		char			str_empty       [1];
 

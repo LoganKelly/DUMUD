@@ -93,7 +93,7 @@ void move_char( CHAR_DATA *ch, int door, bool follow )
 
     if (IS_SET(pexit->exit_info, EX_CLOSED)
     &&  (!IS_AFFECTED(ch, AFF_PASS_DOOR) || IS_SET(pexit->exit_info,EX_NOPASS))
-    &&   !IS_TRUSTED(ch,ANGEL))
+    &&   !IS_TRUSTED(ch,AVATAR))
     {
 	act( "The $d is closed.", ch, NULL, pexit->keyword, TO_CHAR );
 	return;
@@ -1463,7 +1463,7 @@ void do_recall( CHAR_DATA *ch, char *argument )
   
     act( "$n prays for transportation!", ch, 0, 0, TO_ROOM );
 
-    if ( ( location = get_room_index( ROOM_VNUM_TEMPLE ) ) == NULL )
+    if ( ( location = get_room_index( ROOM_VNUM_RECALL ) ) == NULL )
     {
 	send_to_char( "You are completely lost.\n\r", ch );
 	return;

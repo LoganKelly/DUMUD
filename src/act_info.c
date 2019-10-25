@@ -902,28 +902,18 @@ void do_prompt(CHAR_DATA *ch, char *argument)
        return;
    }
  
-   if( !strcmp( argument, "all" ) )
-	strcpy( buf, "{c<%hhp %mm %vmv>{x " );
-   
-   
-      else
+   if( !strcmp( argument, "all" ) ) strcpy( buf, "{c<%hhp %mm %vmv>{x " );
+   else if( !strcmp( argument, "mort" ) ) strcpy( buf, "{W-={WHP:{x{R%h/%H {WMP:{x{B%m/%M {WMV:{x{C%v/%V {WTNL:{x{M%X%b{W=-{x " );
+   else if( !strcmp( argument, "imm" ) ) strcpy( buf, "{W-=HP:{R%h/%H {WMP:{B%m/%M {WMV:{C%v/%V {WVNUM:{M%R %z %b{W=-{x " );
+   else if( !strcmp( argument, "vamp" ) ) strcpy( buf, "{W-=HP:{R%h/%H {WBP:{M%p/%P {WMV:{C%v/%V {WTNL:{x{M%X%b{W=-{x " );
+   else
    {
-      if( !strcmp( argument, "mort" ) )
-      strcpy( buf, "{W-={WHP:{x{R%h/%H {WMP:{x{B%m/%M {WMV:{x{C%v/%V {WTNL:{x{M%X%b{W=-{x " );
-	else
-	{
-		if( !strcmp( argument, "imm" ) )
-      	strcpy( buf, "{W-=HP:{R%h/%H {WMP:{B%m/%M {WMV:{C%v/%V {WVNUM:{M%R %z %b{W=-{x " );
-		else
-		{
-		if ( strlen(argument) > 100 )
-         	argument[100] = '\0';
-      	strcpy( buf, argument );
-      	smash_tilde( buf );
-      	if (str_suffix("%c",buf))
-		strcat(buf," ");
-		}
-	}
+	if ( strlen(argument) > 100 )
+   	argument[100] = '\0';
+   	strcpy( buf, argument );
+   	smash_tilde( buf );
+   	if (str_suffix("%c",buf))
+	strcat(buf," ");
    }
  
    free_string( ch->prompt );
@@ -1381,7 +1371,7 @@ void do_exits( CHAR_DATA *ch, char *argument )
 	return;
 
     if (fAuto)
-	sprintf(buf,"[Exits:");
+	sprintf(buf,"{G[Exits:");
     else if (IS_IMMORTAL(ch))
 	sprintf(buf,"Obvious exits from room %d:\n\r",ch->in_room->vnum);
     else
@@ -1422,7 +1412,7 @@ void do_exits( CHAR_DATA *ch, char *argument )
 	strcat( buf, fAuto ? " none" : "None.\n\r" );
 
     if ( fAuto )
-	strcat( buf, "]\n\r" );
+	strcat( buf, "]{x\n\r" );
 
     send_to_char( buf, ch );
     return;
@@ -1489,7 +1479,6 @@ void do_score( CHAR_DATA *ch, char *argument )
     sprintf( buf,
 	"{B||{WName:{x %s {WLevel:{x %d {WAge:{x %d (%d hours).",
 	ch->pcdata->cname != NULL ? ch->pcdata->cname : ch->name,
-	/*IS_NPC(ch) ? "" : ch->pcdata->title,            Eliminates character title*/
 	ch->level, get_age(ch),
         ( ch->played + (int) (current_time - ch->logon) ) / 3600);
     send_to_char( buf, ch );
@@ -1537,13 +1526,24 @@ void do_score( CHAR_DATA *ch, char *argument )
     sprintf(buf, "{B||{b--------------------------------------------------------------------{B||{x\n\r");
     send_to_char( buf, ch );
 	
-
+    if( ch->race == 3 )
+    {
+    	sprintf( buf,
+	"{B||{x{WHP:{x {R%d/%d {WBlood:{x {M%d/%d{x {WMV:{x {C%d/%d {x",
+	ch->hit,  ch->max_hit,
+	ch->bp, ch->max_bp,
+	ch->move, ch->max_move);
+    send_to_char( buf, ch );
+    }
+    else
+    {
     sprintf( buf,
-	"{B||{x{WHP:{x {R%d/%d {WMana{x {B%d/%d {WMV:{x {C%d/%d{x",
+	"{B||{x{WHP:{x {R%d/%d {WMana{x {B%d/%d {WMV:{x {C%d/%d {x",
 	ch->hit,  ch->max_hit,
 	ch->mana, ch->max_mana,
 	ch->move, ch->max_move);
     send_to_char( buf, ch );
+    }
     length = 70 - strlen_color(buf);
     for ( iLength=0; iLength < length; iLength ++ )
 	{
@@ -1818,7 +1818,7 @@ void do_score( CHAR_DATA *ch, char *argument )
       }
       else
       {
-      	sprintf( buf, "                        ");
+      	sprintf( buf, "                     ");
         send_to_char(buf,ch);
       }
 
@@ -1832,7 +1832,7 @@ void do_score( CHAR_DATA *ch, char *argument )
       	sprintf( buf, "                      ");
         send_to_char(buf,ch);
       }
-      for ( iLength=0; iLength < 7; iLength ++ )
+      for ( iLength=0; iLength < 10; iLength ++ )
 	{
 	sprintf(buf, " ");
 	send_to_char( buf, ch );
@@ -1862,48 +1862,184 @@ void do_score( CHAR_DATA *ch, char *argument )
     }
     sprintf( buf, "{B||{x{WAlignment:{x %d.  ", ch->alignment );
     send_to_char( buf, ch ); 
-
-    send_to_char( "You are ", ch );
-         if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
-    else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
-    else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
-    else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
-    else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
-    else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
-    else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
-    else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
-    else                             send_to_char( "satanic", ch );
-    for ( iLength=0; iLength < 38; iLength ++ )
-	{
-	sprintf(buf, " ");
-	send_to_char( buf, ch );
+    if (ch->alignment >= 1000)
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 35; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
+    	}
+    else if (ch->alignment >= 100)
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 36; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
+    	}
+    else if (ch->alignment >= 10)
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 37; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
 	}
-    sprintf(buf, "{B||{x\n\r");
-    send_to_char( buf, ch );
-    
-
+    else if (ch->alignment >= 0)
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 38; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
+	}
+     else if (ch->alignment > -10)
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 37; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
+	}
+    else if (ch->alignment > -100)
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 36; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
+	}
+    else if (ch->alignment > -1000)
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 35; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
+	}
+     else
+    	{
+    	send_to_char( "You are ", ch );
+         	if ( ch->alignment >  900 ) send_to_char( "angelic", ch );
+    	else if ( ch->alignment >  700 ) send_to_char( "saintly", ch );
+    	else if ( ch->alignment >  350 ) send_to_char( "good   ",    ch );
+    	else if ( ch->alignment >  100 ) send_to_char( "kind   ",    ch );
+    	else if ( ch->alignment > -100 ) send_to_char( "neutral", ch );
+    	else if ( ch->alignment > -350 ) send_to_char( "mean   ",    ch );
+    	else if ( ch->alignment > -700 ) send_to_char( "evil   ",    ch );
+    	else if ( ch->alignment > -900 ) send_to_char( "demonic", ch );
+    	else                             send_to_char( "satanic", ch );
+    	for ( iLength=0; iLength < 34; iLength ++ )
+		{
+		sprintf(buf, " ");
+		send_to_char( buf, ch );
+		}
+    	sprintf(buf, "{B||{x\n\r");
+    	send_to_char( buf, ch );
+	}
+    sprintf(buf, "{B========================================================================{x\n\r");
+	send_to_char( buf, ch );
     if (IS_SET(ch->comm,COMM_SHOW_AFFECTS))
-	{
-	sprintf(buf, "{B||{b--------------------------------------------------------------------{B||{x\n\r");
-	send_to_char( buf, ch );
 	do_function(ch, &do_affects, "");
-	}
-    else
-	{
-	sprintf(buf, "{B========================================================================{x\n\r");
-	send_to_char( buf, ch );
-	}
 }
 
 void do_affects(CHAR_DATA *ch, char *argument )
 {
     AFFECT_DATA *paf, *paf_last = NULL;
     char buf[MAX_STRING_LENGTH];
-    int iLength;
     
-    if ( ch->affected != NULL )
+    if ( ch->affected != NULL || (ch->bp >= ch->max_bp * 3/4 && ch->race == 3))
     {
 	send_to_char( "You are affected by the following spells:\n\r", ch );
+	if( ch->bp >= ch->max_bp * 3/4 && ch->race == 3)
+	{
+		send_to_char( "Effect: Blood Heal     : doubles health recovery rate\n\r", ch );
+	}	
 	for ( paf = ch->affected; paf != NULL; paf = paf->next )
 	{
 	    if (paf_last != NULL && paf->type == paf_last->type)
@@ -1916,8 +2052,7 @@ void do_affects(CHAR_DATA *ch, char *argument )
 
 	    send_to_char( buf, ch );
 
-	    if ( ch->level >= 20 )
-	    {
+	    
 		sprintf( buf,
 		    ": modifies %s by %d ",
 		    affect_loc_name( paf->location ),
@@ -1928,25 +2063,14 @@ void do_affects(CHAR_DATA *ch, char *argument )
 		else
 		    sprintf( buf, "for %d hours", paf->duration );
 		send_to_char( buf, ch );
-	    }
+	    
 
 	    send_to_char( "\n\r", ch );
 	    paf_last = paf;
 	}
     }
-    else
-        { 
-	send_to_char("{B||{xYou are not affected by any spells.",ch);
-    for ( iLength=0; iLength < 33; iLength ++ )
-	{
-	sprintf(buf, " ");
-	send_to_char( buf, ch );
-	}
-    sprintf(buf, "{B||{x\n\r");
-    send_to_char( buf, ch );
-        }
-    sprintf(buf, "{B========================================================================{x\n\r");
-    send_to_char( buf, ch );
+    else 
+	send_to_char("You are not affected by any spells.\n\r",ch);
 
     return;
 }
@@ -2136,13 +2260,7 @@ void do_whois (CHAR_DATA *ch, char *argument)
 	    {
 		case MAX_LEVEL - 0 : class = "IMP"; 	break;
 		case MAX_LEVEL - 1 : class = "CRE";	break;
-		case MAX_LEVEL - 2 : class = "SUP";	break;
-		case MAX_LEVEL - 3 : class = "DEI";	break;
-		case MAX_LEVEL - 4 : class = "GOD";	break;
-		case MAX_LEVEL - 5 : class = "IMM";	break;
-		case MAX_LEVEL - 6 : class = "DEM";	break;
-		case MAX_LEVEL - 7 : class = "ANG";	break;
-		case MAX_LEVEL - 8 : class = "AVA";	break;
+		case MAX_LEVEL - 2 : class = "AVA";	break;
 	    }
     
 	    /* a little formatting */
@@ -2201,6 +2319,36 @@ void do_who( CHAR_DATA *ch, char *argument )
     bool fClan = FALSE;
     bool fRaceRestrict = FALSE;
     bool fImmortalOnly = FALSE;
+    int iLength;
+    size_t length;
+    int strlen_color( char *argument )
+	{
+    	char        *str;
+    	int         length;
+
+    	if ( argument==NULL || argument[0]=='\0' )
+        return 0;
+
+    	length=0;
+    	str=argument;
+
+    	while ( *str != '\0' )
+    	{
+        	if ( *str != '{' )
+        	{
+            	str++;
+            	length++;
+            	continue;
+        	}	
+
+        	if (*(++str) == '{')
+	    	length++;
+
+        	str++;
+    	}
+
+    	return length;
+	}
  
     /*
      * Set default arguments.
@@ -2332,29 +2480,32 @@ void do_who( CHAR_DATA *ch, char *argument )
 	{
 	default: break;
             {
-                case MAX_LEVEL - 0 : class = "IMP";     break;
-                case MAX_LEVEL - 1 : class = "CRE";     break;
-                case MAX_LEVEL - 2 : class = "SUP";     break;
-                case MAX_LEVEL - 3 : class = "DEI";     break;
-                case MAX_LEVEL - 4 : class = "GOD";     break;
-                case MAX_LEVEL - 5 : class = "IMM";     break;
-                case MAX_LEVEL - 6 : class = "DEM";     break;
-                case MAX_LEVEL - 7 : class = "ANG";     break;
-                case MAX_LEVEL - 8 : class = "AVA";     break;
+                case MAX_LEVEL - 0 : class = "{YI{WM{YP{x";     break;
+                case MAX_LEVEL - 1 : class = "{MC{BR{CE{x";     break;
+                case MAX_LEVEL - 2 : class = "BA{CV{BA{x";     break;
             }
 	}
 
 	/*
 	 * Format it up.
 	 */
-	sprintf( buf, "[%2d %6s %s] %s%s%s%s%s%s%s%s\n\r",
-	    wch->level,
+	sprintf( buf, "{m[{y%3d{x   %s",
+	wch->level,
 #if defined(FIRST_BOOT)
 	    wch->race < MAX_PC_RACE ? pc_race_table[wch->race].who_name 
 				    : "     ",
 #else
-	    race_table[wch->race].who_name,
+	    race_table[wch->race].who_name
 #endif
+	    );
+        add_buf(output,buf);
+        length = 15 - strlen_color(buf);
+    	for ( iLength=0; iLength < length; iLength ++ )
+	{
+	sprintf(buf, " ");
+	add_buf(output, buf);
+	}
+	sprintf( buf, " %s{m]{x %s%s%s%s%s%s%s%s\n\r",
 	    class,
 	    wch->incog_level >= LEVEL_HERO ? "(Incog) " : "",
 	    wch->invis_level >= LEVEL_HERO ? "(Wizi) " : "",
@@ -2704,6 +2855,72 @@ void do_title( CHAR_DATA *ch, char *argument )
     smash_tilde( argument );
     set_title( ch, argument );
     send_to_char( "Ok.\n\r", ch );
+}
+
+void do_namecolor( CHAR_DATA *ch, char *argument )
+{
+	bool name_compare( char *argument, char *name )
+	{
+    	char        *str;
+    	char        cname[MAX_STRING_LENGTH];
+    	int	    count = 0;
+
+    	if ( argument==NULL || argument[0]=='\0' )
+        return FALSE;
+
+    	
+    	str=argument;
+
+    	while ( *str != '\0' )
+    	{
+        	if ( *str != '{' )
+        	{
+            	*(cname + count)=*str;
+            	str++;
+            	count++;
+            	continue;
+        	}	
+
+        	if (*(++str) == '{')
+        	{        	
+	    	*(cname + count)=*str;
+	    	count++;
+	    	}
+
+        	str++;
+        	
+    	}
+    	*(cname + count)='\0';
+    	if(strcmp(cname, name) == 0)
+	return TRUE;
+	else
+	return FALSE;
+	
+    	
+	}
+	
+	if (IS_NPC(ch) )
+	return;
+	
+	if (argument[0] == '\0' )
+	{
+		send_to_char( "Change your colored name to what?\n\r", ch );
+		return;
+	}
+	
+	if( name_compare( argument, ch->name) )
+	{
+		free_string( ch->pcdata->cname );
+		ch->pcdata->cname = str_dup( argument );
+		send_to_char( "Name color set.\n\r", ch );
+	}
+	else
+	{
+		send_to_char( "Name and colored name do not match.\n\r", ch );
+	}
+	
+	return;	
+	
 }
 
 

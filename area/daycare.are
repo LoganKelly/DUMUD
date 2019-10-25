@@ -19,13 +19,16 @@ A young dwarf plays with a toy axe.
 ~
 This is a young but not totally harmless creature.
 ~
-dwarf~
+vampire~
 ACGT 0 -5 0
 3 0 1d4+30 1d1+99 1d4+2 beating
 7 6 7 10
 DJR 0 0 0
 sit stand either 10
-0 0 small '0'
+V 0 small '0'
+F act O
+F aff DF
+F for I
 #6601
 teddy bear~
 a teddy bear~
@@ -105,13 +108,16 @@ An old wrinkled nanny stands here, looking over the little ones.
 You see an old dwarven lady who has been hunched over with age.  However, it
 appears that there is still some fight left in her.
 ~
-dwarf~
+vampire~
 AG 0 10 0
 5 1 4d4+50 5d4+100 1d6+1 slap
 5 5 5 10
 CDR 0 0 0
 stand stand female 50
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6607
 guard~
 the armed guard~
@@ -120,13 +126,16 @@ An armed guard stands here looking lost.
 This is a big mean bully who is tired of being lost in this maze.
 You suddenly think that you had better flee.
 ~
-dwarf~
-ABCT D -800 0
+vampire~
+ABCT 0 -800 0
 8 1 3d10+100 8d4+100 1d7+3 punch
 3 2 3 8
 CDJR 0 0 0
 stand stand male 120
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff F
+F for I
 #6608
 brat spoiled~
 the spoiled brat~
@@ -135,13 +144,16 @@ A spoiled brat is crying here.
 You see a little tyke who has always gotten what he wanted.  You have the
 biggest urge to put him out of his misery.
 ~
-dwarf~
+vampire~
 ABC 0 -400 0
 1 0 2d4+15 1d1+199 2d2+1 beating
 8 8 8 10
 IJN 0 0 0
 stand stand male 50
-0 0 small '0'
+V 0 small '0'
+F act O
+F aff DF
+F for I
 #0
 
 
@@ -168,9 +180,9 @@ treasure G AB
 0 0 0 0 0
 3 10 620 G
 A
-13 4
-A
 1 1
+A
+13 4
 E
 ring pink ice~
 How strange...it's made of ice, but it doesn't melt. It feels pleasantly 
@@ -185,9 +197,9 @@ armor G AK
 1 2 1 1 1
 7 50 780 G
 A
-12 5
-A
 4 1
+A
+12 5
 E
 robe linen~
 It radiates an aura of peace and wisdom.  The perfect garb for a teacher.
@@ -201,9 +213,9 @@ weapon 0 AN
 staff 2 3 'pound' F
 4 30 270 W
 A
-18 -1
-A
 17 -1
+A
+18 -1
 E
 broom~
 It's worn and tired, probably from swatting too many children.
@@ -536,14 +548,14 @@ You are in a small passage that looks just like every other one.
 ~
 0
 AD 2
-D0
-~
-~
-0 -1 6613
 D1
 ~
 ~
 0 -1 6616
+D0
+~
+~
+0 -1 6613
 S
 #6616
 Mini-Maze~
@@ -551,18 +563,18 @@ You are in a small passage that looks just like every other one.
 ~
 0
 AD 2
-D3
-~
-~
-0 -1 6615
-D2
-~
-~
-0 -1 6624
 D0
 ~
 ~
 0 -1 6614
+D2
+~
+~
+0 -1 6624
+D3
+~
+~
+0 -1 6615
 S
 #6624
 End of the Mini-Maze~

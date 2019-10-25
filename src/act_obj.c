@@ -1358,7 +1358,140 @@ void do_eat( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_feed ( CHAR_DATA *ch, char *argument )
+{
+	char arg[MAX_INPUT_LENGTH];
+	OBJ_DATA *corpse;
+	CHAR_DATA *victim;
+	
+	one_argument( argument, arg );
+	
+	if( ch->race != 3)
+	{
+		send_to_char( "Feed? Maybe if you grow some fangs...\n\r", ch );
+		return;
+	}
+	
+	if ( ( victim = ch->fighting ) != NULL )
+    	{
+		WAIT_STATE( ch, skill_table[gsn_feed].beats );
+  	 	 if ( get_skill(ch,gsn_feed) > number_percent())
+ 		   {
+			damage(ch,victim,number_range( 1, ch->level ), gsn_feed,DAM_PIERCE,TRUE);
+			check_improve(ch,gsn_feed,TRUE,1);
+			send_to_char( "You sink your fangs into your victim!\n\r", ch );
+			act( "$n sucks the blood out of $N!\n\r",
+			ch, NULL, victim, TO_ROOM );
+			ch->bp += ch->max_bp / 6;
+			if ( ch->bp > ch->max_bp )
+			ch->bp = ch->max_bp;
+			/*For displaying the blood heal message*/
+			if( ch->bp >= ch->max_bp * 3 /4 && ch->race == 3)
+			{
+			ch->bh_set = 1;
+			}
+	
+			if( ch->bh_set > ch->bh_set2 && ch->race == 3)
+			{
+			send_to_char( "Your blood begins to regenerate your wounds more quickly.\n\r", ch );
+			ch->bh_set2 = 1;
+			}
+			/*end of blood heal display*/
+ 		   }
+  		  else
+  		  {
+			send_to_char( "You attempt to bite your victim, but fail.\n\r", ch );
+			damage( ch, victim, 0, gsn_feed,DAM_PIERCE,TRUE);
+			check_improve(ch,gsn_feed,FALSE,1);
+  		  }
+		check_killer(ch,victim);
+  		  return;
+    	}
+    	else
+    	{
+    	if ( arg[0] == '\0' )
+  	{
+		for ( corpse = ch->in_room->contents; corpse; corpse = corpse->next_content )
+		{
+	   	if ( corpse->item_type == ITEM_CORPSE_NPC || corpse->item_type == ITEM_CORPSE_PC)
+		break;
+		}
 
+		if ( corpse == NULL )
+		{
+	    	send_to_char( "You can't find a corpse on which to feed.\n\r", ch );
+	    	return;
+		}
+    	}
+	else
+    	{
+		if ( ( corpse = get_obj_here( ch, arg ) ) == NULL )
+		{
+	  	  send_to_char( "Feed on what?\n\r", ch );
+	 	   return;
+		}
+  	}
+  	
+
+	switch ( corpse->item_type )
+    	{
+   	default:
+	send_to_char( "You can't feed off of that.\n\r", ch );
+	return;
+	
+	case ITEM_CORPSE_NPC:
+		if ( corpse->drained == 1 )
+		{
+  		send_to_char( "The corpse has already been drained of its blood.\n\r", ch );
+  		return;
+		}
+		     if ( corpse->level >= 80 ) ch->bp += ch->max_bp / 6;
+		else if ( corpse->level >= 60 ) ch->bp += ch->max_bp / 7;
+		else if ( corpse->level >= 40 ) ch->bp += ch->max_bp / 8;
+		else if ( corpse->level >= 20 ) ch->bp += ch->max_bp / 9;
+		else 			        ch->bp += ch->max_bp / 10;
+		if ( ch->bp > ch->max_bp )
+		ch->bp = ch->max_bp;
+		corpse->drained = 1;
+		send_to_char( "You drink the blood out of the corpse.\n\r", ch );
+		act( "$n sucks the blood out of $p!\n\r",
+		ch, corpse, NULL, TO_ROOM );
+		break;
+	
+	case ITEM_CORPSE_PC:
+		if ( corpse->drained == 1 )
+		{
+  		send_to_char( "The corpse has already been drained of its blood.\n\r", ch );
+  		return;
+		}
+		     if ( corpse->level >= 80 ) ch->bp += ch->max_bp / 6;
+		else if ( corpse->level >= 60 ) ch->bp += ch->max_bp / 7;
+		else if ( corpse->level >= 40 ) ch->bp += ch->max_bp / 8;
+		else if ( corpse->level >= 20 ) ch->bp += ch->max_bp / 9;
+		else 			        ch->bp += ch->max_bp / 10;
+		if ( ch->bp > ch->max_bp )
+		ch->bp = ch->max_bp;		  
+		corpse->drained = 1;
+		send_to_char( "You drink the blood out of the corpse.\n\r", ch );
+		act( "$n sucks the blood out of $p!\n\r",
+		ch, corpse, NULL, TO_ROOM );
+		break;
+	}
+	/*For displaying the blood heal message*/
+	if( ch->bp >= ch->max_bp * 3 /4 && ch->race == 3)
+	{
+	    ch->bh_set = 1;
+	}
+	
+	if( ch->bh_set > ch->bh_set2 && ch->race == 3)
+	{
+		send_to_char( "Your blood begins to regenerate your wounds more quickly.\n\r", ch );
+		ch->bh_set2 = 1;
+	}
+	/*end of blood heal display*/
+	return;
+	}
+}
 
 /*
  * Remove an object.
@@ -1754,7 +1887,6 @@ void do_remove( CHAR_DATA *ch, char *argument )
 }
 
 
-
 void do_sacrifice( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
@@ -1772,10 +1904,10 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' || !str_cmp( arg, ch->name ) )
     {
-	act( "$n offers $mself to Mota, who graciously declines.",
+	act( "$n offers $mself to Daugwok, who graciously declines.",
 	    ch, NULL, NULL, TO_ROOM );
 	send_to_char(
-	    "Mota appreciates your offer and may accept it later.\n\r", ch );
+	    "Daugwok appreciates your offer and may accept it later.\n\r", ch );
 	return;
     }
 
@@ -1791,7 +1923,7 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	if (obj->contains)
         {
 	   send_to_char(
-	     "Mota wouldn't like that.\n\r",ch);
+	     "Daugwok wouldn't like that.\n\r",ch);
 	   return;
         }
     }
@@ -1821,10 +1953,10 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 
     if (silver == 1)
         send_to_char(
-	    "Mota gives you one silver coin for your sacrifice.\n\r", ch );
+	    "Daugwok gives you one silver coin for your sacrifice.\n\r", ch );
     else
     {
-	sprintf(buf,"Mota gives you %d silver coins for your sacrifice.\n\r",
+	sprintf(buf,"Daugwok gives you %d silver coins for your sacrifice.\n\r",
 		silver);
 	send_to_char(buf,ch);
     }
@@ -1847,7 +1979,7 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    act( "$n sacrifices $p to Mota.", ch, obj, NULL, TO_ROOM );
+    act( "$n sacrifices $p to Daugwok.", ch, obj, NULL, TO_ROOM );
     wiznet("$N sends up $p as a burnt offering.",
 	   ch,obj,WIZ_SACCING,0,0);
     extract_obj( obj );

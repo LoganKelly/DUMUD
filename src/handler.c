@@ -1351,7 +1351,7 @@ void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
 
 	bug( "Char_to_room: NULL.", 0 );
 	
-	if ((room = get_room_index(ROOM_VNUM_TEMPLE)) != NULL)
+	if ((room = get_room_index(ROOM_VNUM_RECALL)) != NULL)
 	    char_to_room(ch,room);
 	
 	return;
@@ -2692,6 +2692,7 @@ char *comm_bit_name(int comm_flags)
     if (comm_flags & COMM_NOSHOUT	) strcat(buf, " no_shout");
     if (comm_flags & COMM_NOTELL	) strcat(buf, " no_tell");
     if (comm_flags & COMM_NOCHANNELS	) strcat(buf, " no_channels");
+    if (comm_flags & COMM_NOGOCIAL	) strcat(buf, " no_gocial");
     
 
     return ( buf[0] != '\0' ) ? buf+1 : "none";

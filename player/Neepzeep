@@ -1,30 +1,33 @@
 #PLAYER
 Name Neepzeep~
 Id   1056323825
-LogO 1056919059
+LogO 1072301378
 Vers 5
 CNa  {bN{ce{Ce{Wpz{Ce{ce{bp{x~
 Prom {W-=HP:{R%h/%H {WMP:{B%m/%M {WMV:{C%v/%V {WVNUM:{M%R %z %b{W=-{x ~
 Race human~
 Sex  1
 Cla  3
-Levl 60
+Levl 103
 Sec  9
-Plyd 88742
+Plyd 2818439
 Scro 98
-Room 32600
-HMV  9999 9999 9999 9999 9999 9999
-Gold 0
-Silv 138
+Room 32602
+HMVB  9999 9999 9999 9999 9999 9999 10 10
+Gold 4
+Silv 276
 Exp  1000
-Act  DEFGJQT
-Comm NOQ
+Act  DEJQT
+Comm NO
+Wizn AC
 Pos  8
 Prac 484
 Trai 322
 Save  -1
-Alig  0
-ACs 96 96 96 99
+Alig  -1000
+Hit   1000
+Dam   1000
+ACs -104 -104 -104 -101
 Attr 99 99 99 99 99
 AMod 0 0 0 0 0
 Pass foobar~
@@ -34,7 +37,7 @@ TSex 1
 LLev 2
 HMVP 9999 9999 9999
 Cnd  0 48 48 48
-Boards       5 General 1056784729 Ideas 0 Announce 1056919033 Bugs 0 Personal 0 
+Boards       5 General 1058131176 Ideas 1068614913 Announce 1069004811 Bugs 0 Personal 0 
 Sk 100 'acid blast'
 Sk 100 'armor'
 Sk 100 'bless'
@@ -139,6 +142,7 @@ Sk 100 'pick lock'
 Sk 100 'sneak'
 Sk 100 'scrolls'
 Sk 100 'staves'
+Sk 100 'vampiric haste'
 Sk 100 'wands'
 Sk 100 'recall'
 Sk 1 ''
@@ -177,14 +181,6 @@ Cost 0
 End
 
 #O
-Vnum 3704
-Nest 0
-Cond 0
-Wear -1
-Cost 0
-End
-
-#O
 Vnum 3162
 Nest 0
 Cond 0
@@ -193,11 +189,19 @@ Cost 500
 End
 
 #O
-Vnum 3005
+Vnum 3298
+Nest 0
+Cond 0
+Wear 13
+Cost 0
+End
+
+#O
+Vnum 32699
 Nest 0
 Cond 0
 Wear 16
-Cost 5600
+Cost 0
 End
 
 #END

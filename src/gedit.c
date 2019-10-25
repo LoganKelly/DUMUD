@@ -5,7 +5,7 @@
 int MAX_GROUP;
 struct group_type *group_table;
 #endif
-#define GROUP_FILE	DATA_DIR "grupos"
+#define GROUP_FILE	DATA_DIR "groups"
 #define GEDIT( fun )	bool fun( CHAR_DATA *ch, char *argument )
 
 #if !defined(FIRST_BOOT)
@@ -44,7 +44,7 @@ void	load_groups( void )
 
 	if ( !fp )
 	{
-		bug( "No se pudo leer " GROUP_FILE " para cargar grupos.", 0 );
+		bug( "Could not read " GROUP_FILE " to load groups.", 0 );
 		exit(1);
 	}
 
@@ -91,7 +91,7 @@ void save_groups( void )
 	
 	fclose( fpReserve );
 
-	sprintf( buf, "%s/grupos", DATA_DIR );
+	sprintf( buf, "%s/groups", DATA_DIR );
 	fp = fopen( buf, "w" );
 
 	if ( !fp )
@@ -137,7 +137,7 @@ void gedit( CHAR_DATA *ch, char *argument)
     EDIT_GROUP(ch, pGroup);
     if (ch->pcdata->security < 5)
     {
-        send_to_char("SKEdit: Insuficiente seguridad para modificar grupo.\n\r",ch);
+        send_to_char("SKEdit: Insufficient security level to modify skill groups.\n\r",ch);
         edit_done(ch);
         return;
     }
@@ -185,13 +185,13 @@ void do_gedit(CHAR_DATA *ch, char *argument)
 
     if ( IS_NULLSTR(argument) )
     {
-    	send_to_char( "Sintaxis : GEdit [grupo]\n\r", ch );
+    	send_to_char( "Syntax : GEdit [group]\n\r", ch );
     	return;
     }
 
     if (ch->pcdata->security < 5)
     {
-    	send_to_char( "GEdit : Insuficiente seguridad para editar grupos.\n\r", ch );
+    	send_to_char( "GEdit : Insufficient security level to edit groups.\n\r", ch );
     	return;
     }
 
@@ -206,7 +206,7 @@ void do_gedit(CHAR_DATA *ch, char *argument)
 
     if ( (group = group_lookup(command)) == -1 )
     {
-    	send_to_char( "GEdit : Grupo no existe.\n\r", ch );
+    	send_to_char( "GEdit : Group does not exist.\n\r", ch );
     	return;
     }
 
@@ -226,7 +226,7 @@ GEDIT( gedit_show )
 	
 	EDIT_GROUP(ch,pGrp);
 	
-	sprintf(buf, "Nombre    : [%s]\n\r", pGrp->name );
+	sprintf(buf, "Name    : [%s]\n\r", pGrp->name );
 	send_to_char (buf, ch );
 
 	sprintf( buf, "Clase    + " );
@@ -272,13 +272,13 @@ GEDIT( gedit_name )
 	
 	if (IS_NULLSTR(argument))
 	{
-		send_to_char( "Sintaxis : name [nombre-grupo]\n\r", ch );
+		send_to_char( "Syntax : name [name-of-group]\n\r", ch );
 		return FALSE;
 	}
 	
 	if ( group_lookup(argument) != -1 )
 	{
-		send_to_char( "GEdit : Ese grupo ya existe.\n\r", ch );
+		send_to_char( "GEdit : That group already exists.\n\r", ch );
 		return FALSE;
 	}
 	
@@ -301,13 +301,13 @@ GEDIT( gedit_rating )
 
 	if ( IS_NULLSTR(argument) || IS_NULLSTR(arg) || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : rating [clase] [costo]\n\r", ch );
+		send_to_char( "SYntax : rating [class] [cost]\n\r", ch );
 		return FALSE;
 	}
 
 	if ( (clase = class_lookup(arg)) == -1 )
 	{
-		send_to_char( "GEdit : Clase inexistente.\n\r", ch );
+		send_to_char( "GEdit : Class does not exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -315,7 +315,7 @@ GEDIT( gedit_rating )
 
 	if ( rating < -1 )
 	{
-		send_to_char( "GEdit : Rating invalido.\n\r", ch );
+		send_to_char( "GEdit : Rating invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -334,9 +334,9 @@ GEDIT( gedit_spell )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : spell new [nombre]\n\r", ch );
-		send_to_char( "           spell delete [nombre]\n\r", ch );
-		send_to_char( "           spell delete [numero]\n\r", ch );
+		send_to_char( "Syntax : spell new [name]\n\r", ch );
+		send_to_char( "           spell delete [name]\n\r", ch );
+		send_to_char( "           spell delete [name]\n\r", ch );
 		return FALSE;
 	}
 	
@@ -349,13 +349,13 @@ GEDIT( gedit_spell )
 		
 		if ( i == MAX_IN_GROUP )
 		{
-			send_to_char( "GEdit : grupo esta lleno.\n\r", ch );
+			send_to_char( "GEdit : This group already has plenty.\n\r", ch );
 			return FALSE;
 		}
 		
 		if ( skill_lookup(argument) == -1 && group_lookup(argument) == -1 )
 		{
-			send_to_char( "GEdit : skill/spell/grupo no existe.\n\r", ch );
+			send_to_char( "GEdit : skill/spell/group does not exist.\n\r", ch );
 			return FALSE;
 		}
 		
@@ -371,7 +371,7 @@ GEDIT( gedit_spell )
 
 		if ( is_number(argument) && (num < 0 || num >= MAX_IN_GROUP) )
 		{
-			send_to_char( "GEdit : Argumento invalido.\n\r", ch );
+			send_to_char( "GEdit : Argument invalid.\n\r", ch );
 			return FALSE;
 		}
 		
@@ -392,7 +392,7 @@ GEDIT( gedit_spell )
 			++i;
 		}
 						
-		send_to_char( "GEdit : Skills/spell/grupo inexistente.\n\r", ch );
+		send_to_char( "GEdit : Skills/spell/group does not exist.\n\r", ch );
 		return FALSE;
 	}
 

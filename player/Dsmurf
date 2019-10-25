@@ -1,0 +1,145 @@
+#PLAYER
+Name Dsmurf~
+Id   1067116276
+LogO 1068599106
+Vers 5
+CNa  {WD{ws{Bmu{wr{Wf{x~
+Prom {W-={WHP:{x{R%h/%H {WMP:{x{B%m/%M {WMV:{x{C%v/%V {WTNL:{x{M%X%b{W=-{x ~
+Race human~
+Sex  1
+Cla  3
+Levl 102
+Sec  8
+Plyd 72456
+Scro 22
+Room 32606
+HMVB  1448 1448 442 442 706 706 20 20
+Gold 0
+Silv 139
+Exp  102000
+Act  EFGHJQT
+Comm NO
+Pos  8
+Prac 68
+Save  -1
+Alig  -762
+ACs 95 95 95 99
+Attr 25 25 25 25 25
+AMod 0 0 0 0 0
+Pass hades~
+Titl  {GTHE {MC{Yo{Mc{Yk{Mm{Ya{Ms{Yt{Me{Yr{x~
+Pnts 40
+TSex 1
+LLev 11
+HMVP 1448 442 706
+Cnd  0 32 40 40
+Boards       5 General 1058131176 Ideas 0 Announce 1056825226 Bugs 0 Personal 0 
+Sk 75 'axe'
+Sk 1 'dagger'
+Sk 1 'flail'
+Sk 75 'mace'
+Sk 1 'polearm'
+Sk 75 'shield block'
+Sk 1 'spear'
+Sk 75 'sword'
+Sk 1 'whip'
+Sk 100 'bash'
+Sk 75 'disarm'
+Sk 75 'enhanced damage'
+Sk 75 'parry'
+Sk 1 'rescue'
+Sk 75 'second attack'
+Sk 75 'third attack'
+Sk 1 'scrolls'
+Sk 1 'staves'
+Sk 75 'wands'
+Sk 50 'recall'
+Sk 1 ''
+Gr 'rom basics'
+Gr 'warrior basics'
+Gr 'warrior default'
+Gr 'weaponsmaster'
+End
+
+#O
+Vnum 3716
+Nest 0
+Cond 0
+Wear 0
+Cost 0
+Val  0 0 192 0 0
+End
+
+#O
+Vnum 3703
+Nest 0
+Cond 0
+Wear 5
+Cost 0
+End
+
+#O
+Vnum 3704
+Nest 0
+Cond 0
+Wear 11
+Cost 0
+End
+
+#O
+Vnum 3162
+Nest 0
+Cond 0
+Wear -1
+Cost 500
+End
+
+#O
+Vnum 102
+Nest 0
+Cond 0
+Wear -1
+Cost 310
+End
+
+#O
+Vnum 102
+Nest 0
+Cond 0
+Wear -1
+Cost 310
+End
+
+#O
+Vnum 100
+Nest 0
+Cond 0
+Wear -1
+Cost 180
+Spell 1 ''
+Spell 2 ''
+Spell 3 'change sex'
+End
+
+#O
+Vnum 100
+Nest 0
+Cond 0
+Wear -1
+Cost 180
+Spell 1 ''
+Spell 2 ''
+Spell 3 'change sex'
+End
+
+#O
+Vnum 198
+Nest 0
+ShD  {RThe {W Fallus {RErectus{x~
+Desc {RThe {WFallus {WErectus{x~
+Cond 0
+Wear 16
+Cost 50000000
+End
+
+#END

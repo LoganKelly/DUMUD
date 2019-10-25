@@ -177,7 +177,7 @@ void string_add( CHAR_DATA *ch, char *argument)
 	if ( !str_cmp( arg1, ".ld" ) )
 	{
 		*ch->desc->pString = linedel( *ch->desc->pString, atoi(arg2) );
-		write_to_buffer( ch->desc, "Linea borrada.\n\r", 0 );
+		write_to_buffer( ch->desc, "Line erased.\n\r", 0 );
 		return;
 	}
 
@@ -185,12 +185,12 @@ void string_add( CHAR_DATA *ch, char *argument)
 	{
 		if ( strlen( *ch->desc->pString ) + strlen( tmparg3 ) >= ( MAX_STRING_LENGTH - 4 ) )
 		{
-			write_to_buffer( ch->desc, "Cadena demasiado larga.\n\r", 0 );
+			write_to_buffer( ch->desc, "String exceeds maximum length.\n\r", 0 );
 			return;
 		}
 
 		*ch->desc->pString = lineadd( *ch->desc->pString, tmparg3, atoi(arg2));
-		write_to_buffer( ch->desc, "Linea insertada.\n\r", 0 );
+		write_to_buffer( ch->desc, "Line inserted.\n\r", 0 );
 		return;
 	}
 
@@ -198,7 +198,7 @@ void string_add( CHAR_DATA *ch, char *argument)
 	{
 		*ch->desc->pString = linedel( *ch->desc->pString, atoi(arg2) );
 		*ch->desc->pString = lineadd( *ch->desc->pString, tmparg3, atoi(arg2) );
-		write_to_buffer( ch->desc, "Linea reemplazada.\n\r", 0 );
+		write_to_buffer( ch->desc, "Line replaced.\n\r", 0 );
 		return;
 	}
 
@@ -211,9 +211,9 @@ void string_add( CHAR_DATA *ch, char *argument)
             				".s               - show string so far  \n\r"
             				".f               - (word wrap) string  \n\r"
             				".c               - clear string so far \n\r"
-	    				".ld <num>        - borra linea <num>\n\r"
-	    				".li <num> <txt>  - inserta en linea <num> el texto <txt>\n\r"
-	    				".lr <num> <txt>  - reemplaza linea <num> con <txt>\n\r"
+	    				".ld <num>        - delete line <num>\n\r"
+	    				".li <num> <txt>  - insert in line <num> text <txt>\n\r"
+	    				".lr <num> <txt>  - replace line <num> with <txt>\n\r"
             				"@                - end string          \n\r", 0 );
             return;
         }
@@ -225,9 +225,12 @@ void string_add( CHAR_DATA *ch, char *argument)
 
     if ( *argument == '@' )
     {
-	  write_to_buffer (ch->desc, "\n\r\n\r",0);
-        write_to_buffer (ch->desc, "(C)ontinue, (V)iew, (P)ost or (F)orget it?", 0);
-        write_to_buffer (ch->desc, "\n\r", 0);
+	if (ch->pcdata->in_progress)
+	{
+		write_to_buffer (ch->desc, "\n\r\n\r",0);
+        	write_to_buffer (ch->desc, "(C)ontinue, (V)iew, (P)ost or (F)orget it?", 0);
+        	write_to_buffer (ch->desc, "\n\r", 0);
+	}	
         ch->desc->pString = NULL;
 
 	switch(ch->desc->editor)

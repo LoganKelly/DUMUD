@@ -1,8 +1,6 @@
-olc.hlp
-help.are
-rom.are
 group.are
-olc.hlp
+rom.are
+help.are
 immort.are
 ofcol2.are
 shire.are
@@ -51,5 +49,7 @@ tohell.are
 trollden.are
 valley.are
 wyvern.are
-area48.are
+bootcamp.are
+timemach.are
+dsmurf.are
 $

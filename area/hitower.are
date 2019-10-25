@@ -1083,9 +1083,9 @@ weapon G AN
 mace 2 6 'pound' 0
 12 190 1410 P
 A
-1 1
-A
 18 2
+A
+1 1
 #1315
 chest~
 a chest~
@@ -1111,9 +1111,9 @@ weapon 0 AN
 sword 1 8 'slash' 0
 6 80 720 P
 A
-19 2
-A
 18 1
+A
+19 2
 #1318
 dagger silver~
 a silver dagger~
@@ -1123,9 +1123,9 @@ weapon 0 AN
 dagger 3 3 'pierce' 0
 10 50 970 P
 A
-19 2
-A
 18 2
+A
+19 2
 #1319
 scimitar~
 a curved scimitar~
@@ -1265,9 +1265,9 @@ clothing G AE
 0 0 0 0 0
 7 40 1140 P
 A
-4 1
-A
 3 1
+A
+4 1
 #1336
 altar~
 a golden altar~
@@ -1285,9 +1285,9 @@ jewelry GI AC
 0 0 0 0 0
 13 30 2200 P
 A
-5 -1
-A
 4 2
+A
+5 -1
 #1338
 chest~
 a large chest~
@@ -1323,9 +1323,9 @@ clothing 0 AC
 0 0 0 0 0
 35 50 4300 P
 A
-20 -3
-A
 17 -5
+A
+20 -3
 #1342
 chameleon poncho~
 a chameleon poncho~
@@ -1335,9 +1335,9 @@ clothing G AK
 0 0 0 0 0
 17 40 3600 P
 A
-17 -3
-A
 2 2
+A
+17 -3
 #1343
 boots worn~
 a pair of old boots~
@@ -1397,9 +1397,9 @@ trash GH A
 0 0 0 0 0
 0 150 0 P
 A
-14 -82
-A
 12 -100
+A
+14 -82
 #1357
 dagger silvery~
 a silvery dagger~
@@ -1565,9 +1565,9 @@ weapon AG AN
 dagger 3 6 'pierce' 0
 20 60 2100 P
 A
-19 2
-A
 2 1
+A
+19 2
 #1377
 pouch belt beltpouch~
 a beltpouch~
@@ -1593,9 +1593,9 @@ clothing GJ AC
 0 0 0 0 0
 26 50 2900 P
 A
-20 -2
-A
 17 -6
+A
+20 -2
 #1380
 wand ashen~
 an ashen wand~
@@ -1621,9 +1621,9 @@ container GJKY AK
 50 0 0 10 75
 26 80 2900 P
 A
-20 -2
-A
 17 -6
+A
+20 -2
 #1383
 cloak grey~
 a long grey cloak~
@@ -1633,9 +1633,9 @@ clothing GJK AC
 0 0 0 0 0
 29 70 3300 P
 A
-20 -2
-A
 17 -7
+A
+20 -2
 #1384
 bracelet silver~
 a glinting silver bracelet~
@@ -1675,9 +1675,9 @@ container GJLY AK
 50 0 0 10 75
 22 80 2400 P
 A
-20 -2
-A
 17 -5
+A
+20 -2
 #1388
 bracelet onyx~
 an onyx bracelet~
@@ -1697,9 +1697,9 @@ clothing GJL AC
 0 0 0 0 0
 29 80 3300 P
 A
-20 -2
-A
 17 -7
+A
+20 -2
 #1390
 shard black obsidian~
 a sharp shard of obsidian~
@@ -1719,9 +1719,9 @@ container GKLY AK
 50 0 0 10 75
 22 70 2400 P
 A
-20 -2
-A
 17 -5
+A
+20 -2
 #1392
 bracelet white gold~
 a white gold bracelet~
@@ -1741,9 +1741,9 @@ clothing GIKL AC
 0 0 0 0 0
 29 70 3300 P
 A
-20 -2
-A
 17 -7
+A
+20 -2
 #1394
 ivory dagger~
 an ivory hilted dagger~
@@ -1753,9 +1753,9 @@ weapon GIK AN
 dagger 3 8 'pierce' 0
 27 10 2100 P
 A
-19 2
-A
 18 1
+A
+19 2
 #1395
 collar spiked~
 a spiked collar~
@@ -1765,9 +1765,9 @@ armor G AC
 2 2 2 0 0
 20 90 1970 P
 A
-19 2
-A
 17 -2
+A
+19 2
 #1396
 cloak shimmering~
 a shimmering cloak of many colors~
@@ -1777,9 +1777,9 @@ container AGY AC
 100 0 0 10 25
 50 80 10800 P
 A
-20 -4
-A
 17 -12
+A
+20 -4
 #1397
 emerald ring~
 a small emerald ring~
@@ -1799,9 +1799,9 @@ jewelry G AM
 0 0 0 0 0
 20 50 2200 P
 A
-3 1
-A
 17 -5
+A
+3 1
 #1399
 ward major clear crystal~
 a ward major~
@@ -1811,9 +1811,9 @@ gem AG AO
 0 0 0 0 0
 40 60 5100 P
 A
-20 -2
-A
 17 -10
+A
+20 -2
 #1400
 ebony kris~
 the ebony kris~
@@ -1823,9 +1823,9 @@ weapon G AN
 dagger 6 6 'pierce' 0
 46 30 10700 P
 A
-19 5
-A
 2 2
+A
+19 5
 #1401
 green scale shirt~
 a tight fitting green dragon scale shirt~
@@ -1835,9 +1835,9 @@ armor G AD
 10 10 10 5 0
 37 90 17800 P
 A
-17 -5
-A
 2 3
+A
+17 -5
 E
 green scale shirt~
 Green dragon scale shirt was made from a poor unfortunate green dragon.
@@ -1900,6 +1900,16 @@ sounds of moaning and growling come from all directions.
 ~
 0
 AN 3
+D1
+The shadows cloud your vision.
+~
+~
+0 -1 1302
+D3
+The shadows cloud your vision.
+~
+~
+0 -1 1303
 D0
 The shadows cloud your vision.
 ~
@@ -1910,16 +1920,6 @@ The shadows cloud your vision.
 ~
 ~
 0 -1 1304
-D1
-The shadows cloud your vision.
-~
-~
-0 -1 1302
-D3
-The shadows cloud your vision.
-~
-~
-0 -1 1303
 S
 #1302
 The Shadow Grove~
@@ -1930,16 +1930,6 @@ sounds moaning and growling come from all directions.
 ~
 0
 AN 3
-D1
-The shadows cloud your vision.
-~
-~
-0 -1 1303
-D3
-The shadows cloud your vision.
-~
-~
-0 -1 1301
 D2
 The shadows cloud your vision.
 ~
@@ -1950,6 +1940,16 @@ You see a small clearing in the shadows.
 ~
 ~
 0 -1 1311
+D3
+The shadows cloud your vision.
+~
+~
+0 -1 1301
+D1
+The shadows cloud your vision.
+~
+~
+0 -1 1303
 S
 #1303
 The Shadow Grove~
@@ -1960,26 +1960,26 @@ sounds of moaning and growling come from all directions.
 ~
 0
 AN 3
-D2
-The shadows cloud your vision.
-~
-~
-0 -1 1306
 D3
 The shadows cloud your vision.
 ~
 ~
 0 -1 1302
-D0
+D2
 The shadows cloud your vision.
 ~
 ~
-0 -1 1309
+0 -1 1306
 D1
 The shadows cloud your vision.
 ~
 ~
 0 -1 1301
+D0
+The shadows cloud your vision.
+~
+~
+0 -1 1309
 S
 #1304
 The Shadow Grove~
@@ -1990,16 +1990,6 @@ sounds of moaning and growling come from all directions.
 ~
 0
 AN 3
-D2
-The shadows cloud your vision.
-~
-~
-0 -1 1307
-D1
-The shadows cloud your vision.
-~
-~
-0 -1 1305
 D3
 Dark gates loom in the mist.
 ~
@@ -2010,6 +2000,16 @@ The shadows cloud your vision.
 ~
 ~
 0 -1 1301
+D2
+The shadows cloud your vision.
+~
+~
+0 -1 1307
+D1
+The shadows cloud your vision.
+~
+~
+0 -1 1305
 S
 #1305
 The Shadow Grove~
@@ -2025,21 +2025,21 @@ The shadows cloud your vision.
 ~
 ~
 0 -1 1302
-D2
-The shadows cloud your vision.
-~
-~
-0 -1 1308
-D1
-The shadows cloud your vision.
-~
-~
-0 -1 1306
 D3
 The shadows cloud your vision.
 ~
 ~
 0 -1 1304
+D1
+The shadows cloud your vision.
+~
+~
+0 -1 1306
+D2
+The shadows cloud your vision.
+~
+~
+0 -1 1308
 S
 #1306
 The Shadow Grove~
@@ -2050,26 +2050,26 @@ sounds of moaning and growling come from all directions.
 ~
 0
 AN 3
-D0
-The shadows cloud your vision.
-~
-~
-0 -1 1303
 D2
 The shadows cloud your vision.
 ~
 ~
 0 -1 1309
-D1
-You see a shadowy tavern.
+D0
+The shadows cloud your vision.
 ~
 ~
-0 -1 9301
+0 -1 1303
 D3
 The shadows cloud your vision.
 ~
 ~
 0 -1 1305
+D1
+You see a shadowy tavern.
+~
+~
+0 -1 9301
 S
 #1307
 The Shadow Grove~
@@ -2080,26 +2080,26 @@ sounds of moaning and growling come from all directions.
 ~
 0
 AN 3
-D3
-The shadows cloud your vision.
-~
-~
-0 -1 1309
-D0
-The shadows cloud your vision.
-~
-~
-0 -1 1304
 D1
 The shadows cloud your vision.
 ~
 ~
 0 -1 1308
+D3
+The shadows cloud your vision.
+~
+~
+0 -1 1309
 D2
 The shadows cloud your vision.
 ~
 ~
 0 -1 1301
+D0
+The shadows cloud your vision.
+~
+~
+0 -1 1304
 S
 #1308
 The Shadow Grove~
@@ -2110,26 +2110,26 @@ sounds of moaning and growling come from all directions.
 ~
 0
 AN 3
-D2
-The shadows cloud your vision.
-~
-~
-0 -1 1300
-D3
-The shadows cloud your vision.
-~
-~
-0 -1 1307
-D1
-The shadows cloud your vision.
-~
-~
-0 -1 1309
 D0
 The shadows cloud your vision.
 ~
 ~
 0 -1 1305
+D2
+The shadows cloud your vision.
+~
+~
+0 -1 1300
+D1
+The shadows cloud your vision.
+~
+~
+0 -1 1309
+D3
+The shadows cloud your vision.
+~
+~
+0 -1 1307
 S
 #1309
 The Shadow Grove~
@@ -2140,16 +2140,6 @@ sounds of moaning and growling come from all directions.
 ~
 0
 AN 3
-D0
-The shadows cloud your vision.
-~
-~
-0 -1 1306
-D2
-The shadows cloud your vision.
-~
-~
-0 -1 1303
 D3
 The shadows cloud your vision.
 ~
@@ -2160,6 +2150,16 @@ The shadows cloud your vision.
 ~
 ~
 0 -1 1307
+D0
+The shadows cloud your vision.
+~
+~
+0 -1 1306
+D2
+The shadows cloud your vision.
+~
+~
+0 -1 1303
 S
 #1311
 A small clearing~
@@ -3631,6 +3631,18 @@ trap comes back to imprison your soul as well as your body.
 ~
 0
 DN 0
+D5
+~
+~
+0 0 3460
+D4
+~
+~
+0 0 938
+D1
+~
+~
+0 0 5113
 D3
 ~
 ~
@@ -3639,18 +3651,6 @@ D2
 ~
 ~
 0 0 9141
-D5
-~
-~
-0 0 3460
-D1
-~
-~
-0 0 5113
-D4
-~
-~
-0 0 938
 S
 #1393
 A hallway~

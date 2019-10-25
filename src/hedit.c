@@ -25,9 +25,9 @@ const struct olc_cmd_type hedit_table[] =
 /*	{	command		function	}, */
 
 	{	"keyword",	hedit_keyword	},
-	{	"texto",	hedit_text	},
+	{	"text",	        hedit_text      },
 	{	"new",		hedit_new	},
-	{	"nivel",	hedit_level	},
+	{	"level",	hedit_level	},
 	{	"commands",	show_commands	},
 	{	"delete",	hedit_delete	},
 	{	"list",		hedit_list	},
@@ -58,9 +58,9 @@ HEDIT(hedit_show)
 	EDIT_HELP(ch, help);
 
 	sprintf( buf, "Keyword : [%s]\n\r"
-		      "Nivel   : [%d]\n\r"
-		      "Texto   :\n\r"
-		      "%s-FIN-\n\r",
+		      "Level   : [%d]\n\r"
+		      "Text    :\n\r"
+		      "%s-END-\n\r",
 		      help->keyword,
 		      help->level,
 		      help->text );
@@ -78,7 +78,7 @@ HEDIT(hedit_level)
 
 	if ( IS_NULLSTR(argument) || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : nivel [-1..MAX_LEVEL]\n\r", ch );
+		send_to_char( "Syntax : level [-1..MAX_LEVEL]\n\r", ch );
 		return FALSE;
 	}
 
@@ -86,7 +86,7 @@ HEDIT(hedit_level)
 
 	if ( lev < -1 || lev > MAX_LEVEL )
 	{
-		printf_to_char( ch, "HEdit : niveles entre -1 y %d solamente.\n\r", MAX_LEVEL );
+		printf_to_char( ch, "HEdit : Level must be between -1 and  %d.\n\r", MAX_LEVEL );
 		return FALSE;
 	}
 
@@ -103,7 +103,7 @@ HEDIT(hedit_keyword)
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : keyword [keywords]\n\r", ch );
+		send_to_char( "Syntax : keyword [keywords]\n\r", ch );
 		return FALSE;
 	}
 
@@ -123,8 +123,8 @@ HEDIT(hedit_new)
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : new [nombre]\n\r", ch );
-		send_to_char( "           new [area] [nombre]\n\r", ch );
+		send_to_char( "Syntax : new [number]\n\r", ch );
+		send_to_char( "         new [area] [number]\n\r", ch );
 		return FALSE;
 	}
 
@@ -139,7 +139,7 @@ HEDIT(hedit_new)
 
 	if ( help_lookup(argument) )
 	{
-		send_to_char( "HEdit : help ya existe.\n\r", ch );
+		send_to_char( "HEdit : Help already exists.\n\r", ch );
 		return FALSE;
 	}
 
@@ -195,7 +195,7 @@ HEDIT( hedit_text )
 
 	if ( !IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : texto\n\r", ch );
+		send_to_char( "Syntax : text\n\r", ch );
 		return FALSE;
 	}
 
@@ -222,14 +222,14 @@ void hedit( CHAR_DATA *ch, char *argument)
 
     if (had == NULL)
     {
-    	bugf( "hedit : had para help %s NULL", pHelp->keyword );
+    	bugf( "hedit : Had help %s set as NULL", pHelp->keyword );
     	edit_done(ch);
     	return;
     }
 
     if (ch->pcdata->security < 9)
     {
-        send_to_char("HEdit: Insuficiente seguridad para editar help.\n\r",ch);
+        send_to_char("HEdit: Insufficient security level to edit help files.\n\r",ch);
 	edit_done(ch);
 	return;
     }
@@ -269,7 +269,7 @@ void do_hedit(CHAR_DATA *ch, char *argument)
 
 	if ( (pHelp = help_lookup( argument )) == NULL )
 	{
-		send_to_char( "HEdit : Help inexistente.\n\r", ch );
+		send_to_char( "HEdit : Help file does not exist.\n\r", ch );
 		return;
 	}
 
@@ -302,7 +302,7 @@ HEDIT(hedit_delete)
 
 		if ( !temp )
 		{
-			bugf( "hedit_delete : help %s no encontrado en help_first", pHelp->keyword );
+			bugf( "hedit_delete : help %s not found in help_first", pHelp->keyword );
 			return FALSE;
 		}
 
@@ -331,7 +331,7 @@ HEDIT(hedit_delete)
 
 	if ( !found )
 	{
-		bugf( "hedit_delete : help %s no encontrado en had_list", pHelp->keyword );
+		bugf( "hedit_delete : help %s not found in had_list", pHelp->keyword );
 		return FALSE;
 	}
 
@@ -373,7 +373,7 @@ HEDIT(hedit_list)
 	{
 		if ( ch->in_room->area->helps == NULL )
 		{
-			send_to_char( "No hay helps en esta area.\n\r", ch );
+			send_to_char( "There are no helps in this area.\n\r", ch );
 			return FALSE;
 		}
 
@@ -396,8 +396,8 @@ HEDIT(hedit_list)
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : list all\n\r", ch );
-		send_to_char( "           list area\n\r", ch );
+		send_to_char( "Syntax : list all\n\r", ch );
+		send_to_char( "         list area\n\r", ch );
 		return FALSE;
 	}
 

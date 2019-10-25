@@ -153,9 +153,9 @@ armor GK AD
 8 8 8 2 0
 26 300 7600 P
 A
-1 2
-A
 19 1
+A
+1 2
 #5201
 helm mithril~
 a mithril helm~
@@ -175,9 +175,9 @@ armor GK AH
 8 8 8 2 0
 25 100 2700 P
 A
-19 1
-A
 18 1
+A
+19 1
 #5203
 sleeves mithril~
 some mithril sleeves~
@@ -187,9 +187,9 @@ armor GK AI
 8 8 8 2 0
 25 100 2700 P
 A
-19 1
-A
 18 1
+A
+19 1
 #5204
 boots mithril~
 a pair of mithril boots~
@@ -199,9 +199,9 @@ armor GK AG
 8 8 8 2 0
 25 60 3100 P
 A
-2 1
-A
 18 1
+A
+2 1
 #5205
 leggings mithril~
 a set of mithril leggings~
@@ -211,9 +211,9 @@ armor GK AF
 8 8 8 2 0
 25 100 3100 P
 A
-2 1
-A
 18 1
+A
+2 1
 #5206
 girth mithril~
 a mithril girth~
@@ -305,9 +305,9 @@ jewelry AG AC
 0 0 0 0 0
 0 110 0 P
 A
-2 -8
-A
 1 -10
+A
+2 -8
 #5219
 venison chunk~
 a chunk of venison~
@@ -333,9 +333,9 @@ weapon GK AN
 sword 2 12 'chop' F
 26 240 3300 P
 A
-19 3
-A
 18 2
+A
+19 3
 #5222
 robe black silk~
 a black silk robe~
@@ -521,9 +521,9 @@ weapon G AN
 dagger 2 5 'pierce' 0
 8 10 590 P
 A
-19 1
-A
 18 1
+A
+19 1
 #0
 
 
@@ -1936,15 +1936,15 @@ Some writings are on this wall.
 0
 A 3
 E
-skeleton skeletons~
-Something is strange about these skeletons.  Upon further investigation, these
-skeletons appear illusionary.
-~
-E
 writings writing words~
 This cave along with the valley and dwarf forest is made by Hatchet for any
 Merc Mud.
 copyright 1992
+~
+E
+skeleton skeletons~
+Something is strange about these skeletons.  Upon further investigation, these
+skeletons appear illusionary.
 ~
 D0
 You see more of the cave.

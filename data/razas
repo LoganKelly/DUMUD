@@ -33,7 +33,7 @@ form AHMV
 parts ABCDEFGHIJK
 points 0
 class_mult 100 100 100 100 @
-who_name Human~
+who_name {wHuman{x~
 skills ~ ~ ~ ~ ~ @~
 stats 13 13 13 13 13 @
 max_stats 18 18 18 18 18 @
@@ -53,7 +53,7 @@ form AHMV
 parts ABCDEFGHIJK
 points 5
 class_mult 100 125 100 120 @
-who_name  Elf ~
+who_name Elf ~
 skills sneak~ hide~ ~ ~ ~ @~
 stats 12 14 13 15 11 @
 max_stats 16 20 18 21 15 @
@@ -61,20 +61,20 @@ size small~
 #END
 
 #RAZA
-name dwarf~
+name vampire~
 pc true
-act 0
-aff J
+act O
+aff DFJ
 off 0
 imm 0
 res LQ
 vuln R
-form AHMV
+form AHIM
 parts ABCDEFGHIJK
 points 8
 class_mult 150 100 125 100 @
-who_name Dwarf~
-skills berserk~ ~ ~ ~ ~ @~
+who_name {RV{rampire{x~
+skills feed~ ~ ~ ~ ~ @~
 stats 14 12 14 10 15 @
 max_stats 20 16 19 14 21 @
 size medium~
@@ -111,6 +111,13 @@ res 0
 vuln S
 form AGV
 parts ACDEFHJKP
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -124,6 +131,13 @@ res EI
 vuln 0
 form AGV
 parts ABCDEFHJKUV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -137,6 +151,13 @@ res 0
 vuln 0
 form AGV
 parts ACDEFHJKQUV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -150,6 +171,13 @@ res FI
 vuln E
 form ABGO
 parts ACK
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -163,6 +191,13 @@ res 0
 vuln 0
 form AGV
 parts ACDEFHJKUV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -176,6 +211,13 @@ res ES
 vuln GHJKO
 form EJMc
 parts ABCGHK
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -189,6 +231,13 @@ res BEH
 vuln FI
 form AHZ
 parts ACDEFGHIJKPQUVX
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -202,6 +251,13 @@ res 0
 vuln C
 form ABGV
 parts ACDEFHJKQV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -215,6 +271,13 @@ res 0
 vuln 0
 form AGV
 parts ACDEFHJKQV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -228,6 +291,13 @@ res Q
 vuln C
 form AHMV
 parts ABCDEFGHIJK
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -241,6 +311,13 @@ res LQ
 vuln 0
 form AHMV
 parts ABCDEFGHIJKY
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -254,6 +331,13 @@ res L
 vuln C
 form ABHMV
 parts ABCDEFGHIJKQ
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -267,6 +351,13 @@ res L
 vuln I
 form AGXc
 parts ACDEFHKQV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -280,6 +371,13 @@ res HIK
 vuln 0
 form H
 parts ABCGHJK
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -293,6 +391,13 @@ res Q
 vuln S
 form AHMV
 parts ABCDEFGHIJK
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -306,6 +411,13 @@ res 0
 vuln 0
 form AGV
 parts ACDEFHJK
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -319,6 +431,13 @@ res 0
 vuln 0
 form AGV
 parts ACDEFHJK
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -332,6 +451,13 @@ res 0
 vuln C
 form AMV
 parts ABCDEFHJKQU
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -345,6 +471,13 @@ res L
 vuln I
 form AGXYc
 parts ADEFKLQVX
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -358,6 +491,13 @@ res 0
 vuln 0
 form AGW
 parts ACDEFHKP
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -371,6 +511,13 @@ res BE
 vuln HK
 form ABHMV
 parts ABCDEFGHIJKUV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -384,6 +531,13 @@ res R
 vuln 0
 form AGW
 parts ACDEFHKP
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -397,6 +551,13 @@ res 0
 vuln 0
 form AGV
 parts ACDEFJKQV
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -410,6 +571,13 @@ res 0
 vuln S
 form ABGZ
 parts ACDEFHJKQVX
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 
 #RAZA
@@ -423,5 +591,12 @@ res 0
 vuln 0
 form 0
 parts 0
+points 0
+class_mult 0 0 0 0 @
+who_name ~
+skills ~ ~ ~ ~ ~ @~
+stats 0 0 0 0 0 @
+max_stats 0 0 0 0 0 @
+size tiny~
 #END
 

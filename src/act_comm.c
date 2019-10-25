@@ -35,6 +35,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 #include "merc.h"
 #include "interp.h"
 #include "recycle.h"
@@ -102,6 +103,12 @@ void do_channels( CHAR_DATA *ch, char *argument)
  
     send_to_char("gossip         ",ch);
     if (!IS_SET(ch->comm,COMM_NOGOSSIP))
+      send_to_char("ON\n\r",ch);
+    else
+      send_to_char("OFF\n\r",ch);
+      
+    send_to_char("gocial         ",ch);
+    if (!IS_SET(ch->comm,COMM_NOGOCIAL))
       send_to_char("ON\n\r",ch);
     else
       send_to_char("OFF\n\r",ch);
@@ -371,11 +378,178 @@ void do_gossip( CHAR_DATA *ch, char *argument )
              !IS_SET(victim->comm,COMM_NOGOSSIP) &&
              !IS_SET(victim->comm,COMM_QUIET) )
         {
-          act_new( "{c$n gossips '$t'{x", 
+          act_new( "{c$n {cgossips '$t'{x", 
 		   ch,argument, d->character, TO_VICT,POS_SLEEPING );
         }
       }
     }
+}
+
+
+void do_gocial( CHAR_DATA *ch, char *argument )
+{
+    char buf[MAX_STRING_LENGTH];
+    char arg[MAX_INPUT_LENGTH];
+    CHAR_DATA *victim;
+    DESCRIPTOR_DATA *d;
+    char logline[MAX_INPUT_LENGTH];
+    int cmd;
+    bool found;
+    char gocial[MAX_INPUT_LENGTH];
+    
+    
+    strcpy( logline, argument );
+    if ( !isalpha(argument[0]) && !isdigit(argument[0]) )
+    {
+	gocial[0] = argument[0];
+	gocial[1] = '\0';
+	argument++;
+	while ( isspace(*argument) )
+	    argument++;
+    }
+    else
+    {
+	argument = one_argument( argument, gocial );
+    }
+    
+ 
+    if (gocial[0] == '\0' )
+    {
+      if (IS_SET(ch->comm,COMM_NOGOCIAL))
+      {
+        send_to_char("Gocial channel is now ON.\n\r",ch);
+        REMOVE_BIT(ch->comm,COMM_NOGOCIAL);
+        return;
+      }
+      else
+      {
+        send_to_char("Gocial channel is now OFF.\n\r",ch);
+        SET_BIT(ch->comm,COMM_NOGOCIAL);
+        return;
+      }
+      return;
+    }
+    else  /* gocial message sent, turn gossip on if it isn't already */
+  {
+      found  = FALSE;
+      for ( cmd = 0; !IS_NULLSTR(social_table[cmd].name); cmd++ )
+      {
+	if ( gocial[0] == social_table[cmd].name[0]
+	&&   !str_prefix( gocial, social_table[cmd].name ) )
+	{
+	    found = TRUE;
+	    break;
+	}
+      }
+      if ( !found )
+      {
+      	send_to_char("Gocial not found.\n\r",ch);
+	return;
+      }
+      
+      if (IS_SET(ch->comm,COMM_QUIET))
+        {
+          send_to_char("You must turn off quiet mode first.\n\r",ch);
+          return;
+        }
+ 
+        if (IS_SET(ch->comm,COMM_NOCHANNELS))
+        {
+          send_to_char("The gods have revoked your channel priviliges.\n\r",ch);
+          return;
+ 
+       	}
+      
+      REMOVE_BIT(ch->comm,COMM_NOGOCIAL);
+ 
+    if ( !IS_NPC(ch) && IS_SET(ch->comm, COMM_NOEMOTE) )
+    {
+	send_to_char( "You are anti-social!\n\r", ch );
+	return;
+    }
+     
+    one_argument( argument, arg );
+    victim = NULL;
+    if ( arg[0] == '\0' )
+    {
+    	for ( d = descriptor_list; d != NULL; d = d->next )
+      {
+        CHAR_DATA *xvictim;
+ 
+        xvictim = d->original ? d->original : d->character;
+ 
+        if ( d->connected == CON_PLAYING &&
+             d->character != ch &&
+             !IS_SET(xvictim->comm,COMM_NOGOCIAL) &&
+             !IS_SET(xvictim->comm,COMM_QUIET) )
+        {
+          sprintf( buf, "{c[GOCIAL]: %s{x", social_table[cmd].others_no_arg);
+          act_new( (buf), ch, NULL, d->character, TO_VICT, POS_SLEEPING );
+          }
+      }
+      sprintf( buf, "{c[GOCIAL]: %s{x", social_table[cmd].char_no_arg);
+      act_new( (buf),   ch, NULL, victim, TO_CHAR, POS_SLEEPING    );
+	
+    }
+    else if ( ( victim = get_char_world( ch, arg ) ) == NULL )
+    {
+	send_to_char( "They aren't logged on.\n\r", ch );
+    }
+    else if ( victim == ch )
+    {
+    	for ( d = descriptor_list; d != NULL; d = d->next )
+      {
+        CHAR_DATA *xvictim;
+ 
+        xvictim = d->original ? d->original : d->character;
+ 
+        if ( d->connected == CON_PLAYING &&
+             d->character != ch &&
+             !IS_SET(xvictim->comm,COMM_NOGOCIAL) &&
+             !IS_SET(xvictim->comm,COMM_QUIET) )
+        {
+          sprintf( buf, "{c[GOCIAL]: %s{x", social_table[cmd].others_auto);
+          act_new( (buf), ch, NULL, d->character, TO_VICT, POS_SLEEPING );
+          
+        }
+      }  
+        sprintf( buf, "{c[GOCIAL]: %s{x", social_table[cmd].char_auto);
+        act_new( (buf),   ch, NULL, victim, TO_CHAR, POS_SLEEPING    );
+        
+      
+    }
+    else
+    {
+    	for ( d = descriptor_list; d != NULL; d = d->next )
+      {
+        CHAR_DATA *xvictim;
+ 
+        xvictim = d->original ? d->original : d->character;
+ 
+        if ( d->connected == CON_PLAYING &&
+             d->character != ch &&
+             !IS_SET(xvictim->comm,COMM_NOGOCIAL) &&
+             !IS_SET(xvictim->comm,COMM_QUIET) )
+        {
+          if(d->character == victim)
+          {
+          sprintf( buf, "{c[GOCIAL]: %s{x", social_table[cmd].vict_found);
+          act_new( (buf),   ch, NULL, d->character, TO_VICT, POS_SLEEPING );
+          }
+          else
+          {
+          sprintf( buf, "{c[GOCIAL]: %s{x", social_table[cmd].others_found);
+          act_new( (buf), ch, NULL, victim, TO_NOTVICT, POS_SLEEPING );	
+          }
+        }//if
+      }//for
+      sprintf( buf, "{c[GOCIAL]: %s{x", social_table[cmd].char_found);
+      act_new( (buf),   ch, NULL, victim, TO_CHAR, POS_SLEEPING );
+	
+	
+    }//else
+      
+ }//else
 }
 
 void do_grats( CHAR_DATA *ch, char *argument )

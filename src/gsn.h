@@ -3,6 +3,7 @@
  */
 GSN(gsn_backstab)
 GSN(gsn_dodge)
+GSN(gsn_vamp_haste)
 GSN(gsn_envenom)
 GSN(gsn_hide)
 GSN(gsn_peek)
@@ -47,6 +48,7 @@ GSN(gsn_hand_to_hand)
 GSN(gsn_trip)
  
 GSN(gsn_fast_healing)
+GSN(gsn_feed)
 GSN(gsn_haggle)
 GSN(gsn_lore)
 GSN(gsn_meditation)

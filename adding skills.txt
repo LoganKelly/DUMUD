@@ -1,0 +1,6 @@
+Adding a Skill:
+1.Add in function holding the code for the skill, in an act_*.c file or fight.c
+2.Add entry to the skill_table in const.c
+3.Add entry to skills data file, increment total number at start of file.
+3.If it is triggered by a command, add entry into interp.c, command.h and commandos
+4.a GSN entry in db.c and gsn.h

@@ -1,0 +1,102 @@
+#AREADATA
+Name The Time Machine~
+Builders None~
+VNUMs 32500 32599
+Credits None~
+Security 1
+Low 0
+High 0
+Version 1
+End
+
+
+
+#MOBILES
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMS
+#32500
+{yA Little Lawn in a Garden{x~
+You are on top of a sizeable hill, surrounded by purple-blossomed
+rhododendron bushes.  Plush grass extends down all sides of he hill, and
+structures of exotic architecture can be seen in every direction.  The most
+apparent of these is what appears to be a white sphinx immedately to your
+north.  
+~
+0
+C 0
+S
+#32501
+{yBefore the Sphinx{x~
+You are directly in front of a large statue which resembles a winged
+sphinx.  It appears to be made of white marble, and its wings are spread as
+though in flight.  A slight smile is apparent on its face.  The sphinx sits
+upon a bronze pedestal which is covered with corrosion.  
+~
+0
+C 0
+S
+#32502
+{yValley of the Thames{x~
+The river Thames lies below you, silvery and sparkling.  Distant
+structures poke above the greenery of the landscape in all directions.  It
+appears as though the entire area is one, continuous garden.  The river
+extends to the east and west.  
+~
+0
+C 0
+S
+#32503
+{yCombe Wood{x~
+The entire area is very black, and there are dark trees all around you. 
+No light penetrates the canopy of trees above you except for remote glimpses
+of sky visible through occasional gaps.  You can detect the faintest rustle
+of breeze overhead, and the ground is covered with leaves and twigs.  
+~
+0
+C 0
+S
+#32504
+{yBefore the Palace of Green Porcelain{x~
+You are standing in front of a large, Oriental-looking structure which
+appears to be made of a sort of bluish-green Chinese porcelain.  It appears
+to be deserted, as much of the window glass is either broken or missing, and
+large portions of the porcelain facing have fallen away from the underlying
+metal framework.  
+~
+0
+C 0
+S
+#32505
+~
+~
+0
+C 0
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

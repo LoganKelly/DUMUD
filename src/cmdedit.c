@@ -44,11 +44,11 @@ const	struct	olc_comm_type	cmd_olc_comm_table[]	=
 {
 #if !defined(FIRST_BOOT)
 	{ "name",	NULL,		ed_olded,	cmdedit_name	},
-	{ "funcion",	NULL,		ed_olded,	cmdedit_funcion	},
-	{ "nivel",	NULL,		ed_olded,	cmdedit_nivel	},
-	{ "posicion",	&xCmd.position,	ed_shintlookup,	position_lookup	},
+	{ "function",	NULL,		ed_olded,	cmdedit_funcion	},
+	{ "level",	NULL,		ed_olded,	cmdedit_nivel	},
+	{ "position",	&xCmd.position,	ed_shintlookup,	position_lookup	},
 	{ "log",	&xCmd.log,	ed_flag_set_long,log_flags	},
-	{ "tipo",	&xCmd.show,	ed_flag_set_long,show_flags	},
+	{ "type",	&xCmd.show,	ed_flag_set_long,show_flags	},
 	{ "new",	NULL,		ed_olded,	cmdedit_new	},
 	{ "delete",	NULL,		ed_olded,	cmdedit_delete	},
 #endif
@@ -81,7 +81,7 @@ DO_FUN *	cmd_func_lookup( char *arg )
 
 	if ( fBootDb )
 	{
-		bugf( "Cmd_func_lookup : funcion %s inexistente.", arg );
+		bugf( "Cmd_func_lookup : function %s does not exist.", arg );
 		return do_nothing;
 	}
 
@@ -104,7 +104,7 @@ void cmdedit( CHAR_DATA *ch, char *argument)
 {
     if (ch->pcdata->security < MIN_CMDEDIT_SECURITY)
     {
-        send_to_char("CMDEdit: Insuficiente seguridad para modificar comando.\n\r",ch);
+        send_to_char("CMDEdit: Insufficient security level to modify commands.\n\r",ch);
         edit_done(ch);
         return;
     }
@@ -123,9 +123,9 @@ void cmdedit( CHAR_DATA *ch, char *argument)
 
     if (!str_cmp(argument, "save") )
     {
-	send_to_char("Grabando tabla comandos...", ch);
+	send_to_char("Writing to table of commands...", ch);
     	grabar_tabla_comandos();
-    	send_to_char("hecho.\n\r", ch);
+    	send_to_char("finished.\n\r", ch);
     	return;
     }
 
@@ -147,13 +147,13 @@ void do_cmdedit(CHAR_DATA *ch, char *argument)
 
     if ( IS_NULLSTR(argument) )
     {
-    	send_to_char( "Sintaxis : CMDEdit [comando]\n\r", ch );
+    	send_to_char( "Syntax : CMDEdit [command]\n\r", ch );
     	return;
     }
 
     if (ch->pcdata->security < MIN_CMDEDIT_SECURITY)
     {
-    	send_to_char( "CMDEdit : Insuficiente seguridad para editar comandos.\n\r", ch );
+    	send_to_char( "CMDEdit : Insufficent security level to edit commands.\n\r", ch );
     	return;
     }
 
@@ -177,7 +177,7 @@ void do_cmdedit(CHAR_DATA *ch, char *argument)
 
     if ( (comando = cmd_lookup(command)) == -1 )
     {
-    	send_to_char( "CMDEdit : Comando no existe.\n\r", ch );
+    	send_to_char( "CMDEdit : Command does not exist.\n\r", ch );
     	return;
     }
 
@@ -199,19 +199,19 @@ CMDEDIT( cmdedit_show )
 	sprintf( buf, "Name     : [%s]\n\r", pCmd->name );
 	send_to_char( buf, ch );
 	
-	sprintf( buf, "Funcion  : [%s]\n\r", cmd_func_name(pCmd->do_fun) );
+	sprintf( buf, "Function  : [%s]\n\r", cmd_func_name(pCmd->do_fun) );
 	send_to_char( buf, ch );
 	
-	sprintf( buf, "Nivel    : [%d]\n\r", pCmd->level );
+	sprintf( buf, "Level    : [%d]\n\r", pCmd->level );
 	send_to_char( buf, ch );
 	
-	sprintf( buf, "Posicion : [%s]\n\r", position_table[pCmd->position].name );
+	sprintf( buf, "Position : [%s]\n\r", position_table[pCmd->position].name );
 	send_to_char( buf, ch );
 	
 	sprintf( buf, "Log      : [%s]\n\r", flag_string( log_flags, pCmd->log ) );
 	send_to_char( buf, ch );
 	
-	sprintf( buf, "Tipo     : [%s]\n\r", flag_string( show_flags, pCmd->show ) );
+	sprintf( buf, "Type     : [%s]\n\r", flag_string( show_flags, pCmd->show ) );
 	send_to_char( buf, ch );
 	
 	return FALSE;
@@ -223,7 +223,7 @@ void list_funciones(BUFFER *pBuf)
 	char buf[MSL];
 	
 	sprintf( buf, "#UNum %-13.13s Num %-13.13s Num %-13.13s Num %-13.13s#u\n\r",
-		"Nombre", "Nombre", "Nombre", "Nombre" );
+		"Name", "Name", "Name", "Name" );
 	add_buf( pBuf, buf );
 
 	for ( i = 0; cmd_list[i].name; i++ )
@@ -246,7 +246,7 @@ void list_commands(BUFFER *pBuf, int minlev, int maxlev)
 	int i, cnt = 0;
 
 	sprintf( buf, "#UNv %-12.12s %-13.13s Pos Log Nv %-12.12s %-13.13s Pos Log#u\n\r",
-		"Nombre",	"Funcion",	"Nombre",	"Funcion" );
+		"Name",	"Function",	"Name",	"Name" );
 	add_buf( pBuf, buf );
 
 	for ( i = 0; i < MAX_CMD; ++i )
@@ -280,9 +280,9 @@ CMDEDIT( cmdedit_list )
 
 	argument = one_argument( argument, arg );
 
-	if ( IS_NULLSTR(arg) || !is_name(arg, "comandos funciones") )
+	if ( IS_NULLSTR(arg) || !is_name(arg, "commands functions") )
 	{
-		send_to_char( "Sintaxis : list [comandos/funciones] [nivel min] [nivel max]\n\r", ch );
+		send_to_char( "Syntax : list [commands/functions] [level min] [level max]\n\r", ch );
 		return FALSE;
 	}
 
@@ -295,7 +295,7 @@ CMDEDIT( cmdedit_list )
 
 		if ( !is_number( arg2 ) )
 		{
-			send_to_char( "CMDEdit : debes poner un nivel como argumento.\n\r", ch );
+			send_to_char( "CMDEdit : The argument must be a level.\n\r", ch );
 			return FALSE;
 		}
 
@@ -314,10 +314,10 @@ CMDEDIT( cmdedit_list )
 
 	if ( !str_prefix(arg,"comandos") )
 		list_commands(pBuf,minlev,maxlev);
-	else if ( !str_prefix(arg,"funciones") )
+	else if ( !str_prefix(arg,"funcions") )
 		list_funciones(pBuf);
 	else
-		add_buf(pBuf, "Idiota.\n\r");
+		add_buf(pBuf, "Idiot.\n\r");
 
 	page_to_char(buf_string(pBuf),ch);
 	free_buf(pBuf);
@@ -339,13 +339,13 @@ CMDEDIT( cmdedit_name )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : name [nuevo-nombre]\n\r", ch );
+		send_to_char( "Syntax : name [new-name]\n\r", ch );
 		return FALSE;
 	}
 	
 	if ( cmd_lookup(argument) != -1 )
 	{
-		send_to_char( "CMDEdit : Un comando con ese nombre ya existe.\n\r", ch );
+		send_to_char( "CMDEdit : A command with that name already exists.\n\r", ch );
 		return FALSE;
 	}
 	
@@ -358,7 +358,7 @@ CMDEDIT( cmdedit_name )
 	if ( cmd != -1 )
 		ch->desc->pEdit = &cmd_table[cmd];
 	else
-		bugf( "Cmdedit_name : cmd_lookup retorno -1 a %s!", argument );
+		bugf( "Cmdedit_name : cmd_lookup returns -1 a %s!", argument );
 
 	send_to_char( "Ok.\n\r", ch );
 	return TRUE;
@@ -373,7 +373,7 @@ CMDEDIT( cmdedit_new )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : new [nombre-de-nuevo-comando]\n\r", ch );
+		send_to_char( "Syntax : new [name-of-the-new-command]\n\r", ch );
 		return FALSE;
 	}
 
@@ -381,7 +381,7 @@ CMDEDIT( cmdedit_new )
 
 	if (cmd != -1)
 	{
-		send_to_char ("CMDEdit : Un comando con ese nombre ya existe.\n\r",ch);
+		send_to_char ("CMDEdit : A command with that name already exists.\n\r",ch);
 		return FALSE;
 	}
 
@@ -401,7 +401,7 @@ CMDEDIT( cmdedit_new )
 
 	if (!new_table) /* realloc failed */
 	{
-		send_to_char ("Falla en realloc. Preparate para el impacto.\n\r",ch);
+		send_to_char ("Failure in realloc function. Prepare for impact.\n\r",ch);
 		return FALSE;
 	}
 
@@ -422,11 +422,11 @@ CMDEDIT( cmdedit_new )
 	if ( cmd != -1 )
 		ch->desc->pEdit = &cmd_table[cmd];
 	else
-		bugf( "Cmdedit_new : cmd_lookup retorno -1 a %s!", argument );
+		bugf( "Cmdedit_new : cmd_lookup returns -1 a %s!", argument );
 
 	ch->desc->editor	= ED_CMD;
 
-	send_to_char ("Nuevo comando creado.\n\r",ch);
+	send_to_char ("New command created.\n\r",ch);
 	return TRUE;
 }
 
@@ -439,7 +439,7 @@ CMDEDIT( cmdedit_delete )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : delete [nombre-del-comando-a-borrar]\n\r", ch );
+		send_to_char( "Syntax : delete [name-of-the-command-to-be-deleted]\n\r", ch );
 		return FALSE;
 	}
 
@@ -447,7 +447,7 @@ CMDEDIT( cmdedit_delete )
 
 	if (iCmd == -1)
 	{
-		send_to_char( "CMDEdit : ese comando no existe.\n\r", ch );
+		send_to_char( "CMDEdit : That command does not exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -481,7 +481,7 @@ CMDEDIT( cmdedit_delete )
 	MAX_CMD--; /* Important :() */
 
 	crear_tabla_com();
-	send_to_char ("Ahora ese comando es historia.\n\r",ch);
+	send_to_char ("Command deleted.\n\r",ch);
 	return TRUE;
 }
 
@@ -494,13 +494,13 @@ CMDEDIT( cmdedit_funcion )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : funcion [nombre-funcion]\n\r", ch );
+		send_to_char( "Syntax : function [name-of-the-function]\n\r", ch );
 		return FALSE;
 	}
 	
 	if ( (funcion = cmd_func_lookup(argument)) == NULL )
 	{
-		send_to_char( "CMDEdit : Funcion inexistente.\n\r", ch );
+		send_to_char( "CMDEdit : Function does not exist.\n\r", ch );
 		return FALSE;
 	}
 	
@@ -518,20 +518,20 @@ CMDEDIT( cmdedit_nivel )
 
 	if ( IS_NULLSTR(argument) || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : nivel [0 <= nivel <= MAX_LEVEL]\n\r", ch );
+		send_to_char( "Syntax : level [0 <= level <= MAX_LEVEL]\n\r", ch );
 		return FALSE;
 	}
 	
 	niv = atoi(argument);
 	if ( niv < 0 || niv > MAX_LEVEL )
 	{
-		send_to_char( "CMDEdit : Nivel fuera de rango.\n\r", ch );
+		send_to_char( "CMDEdit : Level outside of range.\n\r", ch );
 		return FALSE;
 	}
 
 	if ( pCmd->level > ch->level )
 	{
-		send_to_char( "CMDEdit : No puedes hacer eso.\n\r", ch );
+		send_to_char( "CMDEdit : You can't do that.\n\r", ch );
 		return FALSE;
 	}
 

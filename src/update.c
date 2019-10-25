@@ -43,10 +43,9 @@
 int	hit_gain	args( ( CHAR_DATA *ch ) );
 int	mana_gain	args( ( CHAR_DATA *ch ) );
 int	move_gain	args( ( CHAR_DATA *ch ) );
+int	blood_loss	args( ( CHAR_DATA *ch ) );
 void	mobile_update	args( ( void ) );
-void	weather_update	args( ( void ) );
-void	char_update	args( ( void ) );
-void	obj_update	args( ( void ) );
+
 void	aggr_update	args( ( void ) );
 
 /* used for saving */
@@ -64,14 +63,15 @@ void advance_level( CHAR_DATA *ch, bool hide )
     int add_hp;
     int add_mana;
     int add_move;
+    int add_bp = 0;
     int add_prac;
 
     ch->pcdata->last_level = 
 	( ch->played + (int) (current_time - ch->logon) ) / 3600;
 
-    sprintf( buf, "the %s",
+    /*sprintf( buf, "the %s",
 	title_table [ch->class] [ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
-    set_title( ch, buf );
+    set_title( ch, buf );*/
 
     add_hp	= con_app[get_curr_stat(ch,STAT_CON)].hitp + number_range(
 		    class_table[ch->class].hp_min,
@@ -82,6 +82,8 @@ void advance_level( CHAR_DATA *ch, bool hide )
 	add_mana /= 2;
     add_move	= number_range( 1, (get_curr_stat(ch,STAT_CON)
 				  + get_curr_stat(ch,STAT_DEX))/6 );
+    if (ch->race == 3)
+    add_bp	= 2;
     add_prac	= wis_app[get_curr_stat(ch,STAT_WIS)].practice;
 
     add_hp = add_hp * 9/10;
@@ -95,20 +97,33 @@ void advance_level( CHAR_DATA *ch, bool hide )
     ch->max_hit 	+= add_hp;
     ch->max_mana	+= add_mana;
     ch->max_move	+= add_move;
+    ch->max_bp		+= add_bp;
     ch->practice	+= add_prac;
     ch->train		+= 1;
 
     ch->pcdata->perm_hit	+= add_hp;
     ch->pcdata->perm_mana	+= add_mana;
     ch->pcdata->perm_move	+= add_move;
+    ch->pcdata->perm_bp		+= add_bp;
 
     if (!hide)
     {
+    	if (ch->race == 3)
+    	{
+    	sprintf(buf,
+	    "You gain %d hit point%s, %d mana, %d move, %d blood points, and %d practice%s.\n\r",
+	    add_hp, add_hp == 1 ? "" : "s", add_mana, add_move, add_bp,
+	    add_prac, add_prac == 1 ? "" : "s");
+	send_to_char( buf, ch );	
+	}
+	else
+	{
     	sprintf(buf,
 	    "You gain %d hit point%s, %d mana, %d move, and %d practice%s.\n\r",
 	    add_hp, add_hp == 1 ? "" : "s", add_mana, add_move,
 	    add_prac, add_prac == 1 ? "" : "s");
 	send_to_char( buf, ch );
+	}    
     }
     return;
 }   
@@ -149,7 +164,7 @@ int hit_gain( CHAR_DATA *ch )
     int gain;
     int number;
 
-    if (ch->in_room == NULL)
+    if (ch->in_room == NULL || ch->bp <= ch->max_bp/2)
 	return 0;
 
     if ( IS_NPC(ch) )
@@ -157,7 +172,8 @@ int hit_gain( CHAR_DATA *ch )
 	gain =  5 + ch->level;
  	if (IS_AFFECTED(ch,AFF_REGENERATION))
 	    gain *= 2;
-
+	
+	
 	switch(ch->position)
 	{
 	    default : 		gain /= 2;			break;
@@ -193,7 +209,9 @@ int hit_gain( CHAR_DATA *ch )
 
 	if ( ch->pcdata->condition[COND_THIRST] == 0 )
 	    gain /= 2;
-
+	if( ch->bp >= ch->max_bp * 3 /4 && ch->race == 3)
+	    gain *= 2;
+	
     }
 
     gain = gain * ch->in_room->heal_rate / 100;
@@ -328,6 +346,23 @@ int move_gain( CHAR_DATA *ch )
     return UMIN(gain, ch->max_move - ch->move);
 }
 
+int blood_loss( CHAR_DATA *ch )
+{
+    int loss;
+    int bp_hurt = ch->max_bp / 2;
+    
+    if (ch->in_room == NULL || IS_NPC(ch) || ch->race != 3 || ch->bp == 0)
+    	loss = 0;
+    else
+    {
+    	loss = ch->max_bp / 20;
+    	if ( loss < 1 )
+    		loss = 1;
+    	if ( ch->bp <= bp_hurt && ch->race == 3)
+    		ch->hit = ch->hit - ( ch->max_hit / 20 );	
+    }
+    return loss;				
+}	
 
 
 void gain_condition( CHAR_DATA *ch, int iCond, int value )
@@ -630,6 +665,7 @@ void char_update( void )
     CHAR_DATA *ch;
     CHAR_DATA *ch_next;
     CHAR_DATA *ch_quit;
+    AFFECT_DATA af;
 
     ch_quit	= NULL;
 
@@ -675,6 +711,18 @@ void char_update( void )
 		ch->move += move_gain(ch);
 	    else
 		ch->move = ch->max_move;
+	    if ( ch->bp > 0 && ch->race == 3 )
+	    	ch->bp -= blood_loss(ch);
+	    else
+	    {
+	     	if( ch->race == 3)
+	     	{
+	     	ch->bp = 0;
+	     	ch->hit = ch->hit - ( ch->max_hit / 20 );
+	     	}
+	     	else
+	     	ch->bp = ch->max_bp;
+	    } 			
 	}
 
 	if ( ch->position == POS_STUNNED )
@@ -724,7 +772,55 @@ void char_update( void )
 	    gain_condition( ch, COND_THIRST, -1 );
 	    gain_condition( ch, COND_HUNGER, ch->size > SIZE_MEDIUM ? -2 : -1);
 	}
-
+	/*For displaying the blood heal message*/
+	if( ch->bp >= ch->max_bp * 3 /4 && ch->race == 3)
+	{
+	    ch->bh_set = 1;
+	}
+	
+	if( ch->bh_set > ch->bh_set2 && ch->race == 3)
+	{
+		send_to_char( "Your blood begins to regenerate your wounds more quickly.\n\r", ch );
+		ch->bh_set2 = 1;
+	}
+	
+	if( ch->bp < ch->max_bp * 3 /4 && ch->race == 3)
+	{
+	    ch->bh_set = 0;
+	}
+	if( ch->bh_set < ch->bh_set2 && ch->race == 3)
+	{
+	    send_to_char( "Your wounds heal more slowly as the blood flow ebbs.\n\r", ch );
+	    ch->bh_set = 0;
+	    ch->bh_set2 = 0;
+	}
+	/*end of blood heal display*/
+	
+	/*set vampire racial detection affects if not set*/
+	if( ch->race == 3 && !IS_AFFECTED(ch, AFF_DETECT_INVIS))
+	{
+	    af.where     = TO_AFFECTS;
+   	    af.type      = find_spell(ch, "detect hidden");
+   	    af.level     = ch->level;
+   	    af.duration  = -1;
+   	    af.location  = APPLY_NONE;
+   	    af.modifier  = 0;
+   	    af.bitvector = AFF_DETECT_HIDDEN;
+   	    affect_to_char( ch, &af );
+	}
+	
+	if( ch->race == 3 && !IS_AFFECTED(ch, AFF_DETECT_HIDDEN) )
+	{
+	    af.where     = TO_AFFECTS;
+    	    af.type      = find_spell(ch, "detect invis");
+   	    af.level     = ch->level;
+   	    af.duration  = -1;
+   	    af.modifier  = 0;
+ 	    af.location  = APPLY_NONE;
+   	    af.bitvector = AFF_DETECT_INVIS;
+   	    affect_to_char( ch, &af );
+	}
+	/*end of vamp racial affects*/						
 	for ( paf = ch->affected; paf != NULL; paf = paf_next )
 	{
 	    paf_next	= paf->next;
@@ -1099,7 +1195,7 @@ void aggr_update( void )
  * Random times to defeat tick-timing clients and players.
  */
 
-void update_handler( void )
+void update_handler( int ftick )
 {
     static  int     pulse_area;
     static  int     pulse_mobile;
@@ -1107,32 +1203,32 @@ void update_handler( void )
     static  int     pulse_point;
     static  int	    pulse_music;
 
-    if ( --pulse_area     <= 0 )
+    if ( --pulse_area     <= 0 || ftick == 1)
     {
 	pulse_area	= PULSE_AREA;
 	/* number_range( PULSE_AREA / 2, 3 * PULSE_AREA / 2 ); */
 	area_update	( );
     }
 
-    if ( --pulse_music	  <= 0 )
+    if ( --pulse_music	  <= 0 || ftick == 1)
     {
 	pulse_music	= PULSE_MUSIC;
 	song_update();
     }
 
-    if ( --pulse_mobile   <= 0 )
+    if ( --pulse_mobile   <= 0 || ftick == 1)
     {
 	pulse_mobile	= PULSE_MOBILE;
 	mobile_update	( );
     }
 
-    if ( --pulse_violence <= 0 )
+    if ( --pulse_violence <= 0 || ftick == 1)
     {
 	pulse_violence	= PULSE_VIOLENCE;
 	violence_update	( );
     }
 
-    if ( --pulse_point    <= 0 )
+    if ( --pulse_point    <= 0 || ftick == 1)
     {
 	wiznet("TICK!",NULL,NULL,WIZ_TICKS,0,0);
 	pulse_point     = PULSE_TICK;
@@ -1144,5 +1240,6 @@ void update_handler( void )
 
     aggr_update( );
     tail_chain( );
+    ftick = 0;
     return;
 }

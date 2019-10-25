@@ -86,13 +86,13 @@ void do_enter( CHAR_DATA *ch, char *argument)
 	}
 
 	if (portal->item_type != ITEM_PORTAL 
-        ||  (IS_SET(portal->value[1],EX_CLOSED) && !IS_TRUSTED(ch,ANGEL)))
+        ||  (IS_SET(portal->value[1],EX_CLOSED) && !IS_TRUSTED(ch,AVATAR)))
 	{
 	    send_to_char("You can't seem to find a way in.\n\r",ch);
 	    return;
 	}
 
-	if (!IS_TRUSTED(ch,ANGEL) && !IS_SET(portal->value[2],GATE_NOCURSE)
+	if (!IS_TRUSTED(ch,AVATAR) && !IS_SET(portal->value[2],GATE_NOCURSE)
 	&&  (IS_AFFECTED(ch,AFF_CURSE) 
 	||   IS_SET(old_room->room_flags,ROOM_NO_RECALL)))
 	{

@@ -63,6 +63,8 @@ stand stand male 0
 0 0 medium 'unknown'
 F for AHMV
 F par ABCDEFGHIJK
+M 'SPEECH' 32602 the matrix has you~
+M 'GRALL' 32601 99~
 #32603
 Alf~
 {yAlf{x the furry alien~
@@ -80,6 +82,22 @@ stand stand none 0
 0 0 medium 'unknown'
 F for AHMV
 F par ABCDEFGHIJK
+#32604
+Trainee~
+A Trainee~
+A trainee is here, wishing that he wasn't.
+~
+A trainee is here, performing his daily calisthenics.  Drenched in sweat,
+he barely notices your presence.  
+~
+human~
+AGTY 0 0 0
+5 5 1d3+10 0d0+0 1d2+0 punch
+1 1 1 1
+0 0 0 0
+stand stand male 0
+0 0 medium 'unknown'
+F for H
 #0
 
 
@@ -181,18 +199,6 @@ the air.  Off to a corner, you notice a set of stairs leading up.
 ~
 0
 D 0
-D0
-~
-~
-0 0 32603
-D1
-~
-~
-0 0 32605
-D2
-~
-~
-0 0 32604
 D3
 ~
 ~
@@ -225,11 +231,7 @@ paraphernalia.  Stickers, buttons, pamphlets, and mass-produced mail litter
 everything in sight.  
 ~
 0
-D 0
-D2
-~
-~
-0 0 32602
+CD 0
 S
 #32604
 {yInside a Cubicle{x~
@@ -238,11 +240,7 @@ paraphernalia.  Stickers, buttons, pamphlets, and mass-produced mail litter
 everything in sight.  
 ~
 0
-D 0
-D0
-~
-~
-0 0 32602
+CD 0
 S
 #32605
 {yInside a Cubicle{x~
@@ -251,11 +249,7 @@ paraphernalia.  Stickers, buttons, pamphlets, and mass-produced mail litter
 everything in sight.  
 ~
 0
-D 0
-D3
-~
-~
-0 0 32602
+CD 0
 S
 #32606
 {yAbove the recruiting office{x~
@@ -674,6 +668,14 @@ E 0 32602 0 16
 M 0 32602 1 32616 1
 G 0 32603 0
 M 0 32603 1 32618 1
+M 0 32604 8 32619 1
+M 0 32604 8 32621 1
+M 0 32604 8 32622 1
+M 0 32604 8 32623 1
+M 0 32604 8 32624 1
+M 0 32604 8 32625 1
+M 0 32604 8 32626 1
+M 0 32604 8 32627 1
 M 0 32600 1 32699 1
 E 0 32602 0 16
 S

@@ -78,7 +78,7 @@ void sedit( CHAR_DATA *ch, char *argument)
 {
     if (ch->pcdata->security < MIN_SEDIT_SECURITY)
     {
-        send_to_char("SEdit: Insuficiente seguridad para modificar social.\n\r",ch);
+        send_to_char("SEdit: Insufficient security level to modify socials.\n\r",ch);
         edit_done(ch);
         return;
     }
@@ -112,7 +112,7 @@ void do_sedit(CHAR_DATA *ch, char *argument)
 
     if ( IS_NULLSTR(argument) )
     {
-    	send_to_char( "Sintaxis : SEdit [social]\n\r", ch );
+    	send_to_char( "Syntax :   SEdit [social]\n\r", ch );
     	send_to_char( "           SEdit new [social]\n\r", ch );
     	send_to_char( "           SEdit delete [social]\n\r", ch );
     	return;
@@ -120,7 +120,7 @@ void do_sedit(CHAR_DATA *ch, char *argument)
 
     if (ch->pcdata->security < MIN_SEDIT_SECURITY)
     {
-    	send_to_char( "SEdit : Insuficiente seguridad para editar socials.\n\r", ch );
+    	send_to_char( "SEdit : Insufficient security level to edit socials.\n\r", ch );
     	return;
     }
 
@@ -144,7 +144,7 @@ void do_sedit(CHAR_DATA *ch, char *argument)
 
     if ( (social = social_lookup(command)) == -1 )
     {
-    	send_to_char( "SEdit : Social no existe.\n\r", ch );
+    	send_to_char( "SEdit : Social does not exist.\n\r", ch );
     	return;
     }
 
@@ -164,19 +164,19 @@ SEDIT( sedit_show )
 	EDIT_SOCIAL(ch,pSocial);
 	
 	sprintf (buf, "Social: %s\n\r"
-	              "(cnoarg) Sin argumento, jugador ve :\n\r"
+	              "(cnoarg) Without argument, player sees :\n\r"
 	              "%s\n\r\n\r"
-	              "(onoarg) Sin argumento, otros ven :\n\r"
+	              "(onoarg) Without argument, others see :\n\r"
 	              "%s\n\r\n\r"
-	              "(cfound) Con objetivo, jugador ve :\n\r"
+	              "(cfound) With a target, player sees :\n\r"
 	              "%s\n\r\n\r"
-	              "(ofound) Con objetivo, otros ven :\n\r"
+	              "(ofound) With a target, others see :\n\r"
 	              "%s\n\r\n\r"
-	              "(vfound) Con objetivo, victima ve :\n\r"
+	              "(vfound) With a target, victim sees :\n\r"
 	              "%s\n\r\n\r"
-	              "(cself) Objetivo es el mismo jugador :\n\r"
+	              "(cself) Target is the player :\n\r"
 	              "%s\n\r\n\r"
-	              "(oself) Objetivo es el mismo jugador, otros ven :\n\r"
+	              "(oself) Target is the player, others see :\n\r"
 	              "%s\n\r",
 
 	              pSocial->name,
@@ -202,7 +202,7 @@ SEDIT( sedit_new )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : new [nombre-del-nuevo-social]\n\r", ch );
+		send_to_char( "Syntax : new [name-of-the-new-social]\n\r", ch );
 		return FALSE;
 	}
 	
@@ -210,7 +210,7 @@ SEDIT( sedit_new )
 
 	if (iSocial != -1)
 	{
-		send_to_char ("Un social con ese nombre ya existe!\n\r",ch);
+		send_to_char ("A social with that name already exists!\n\r",ch);
 		return FALSE;
 	}
 
@@ -231,7 +231,7 @@ SEDIT( sedit_new )
 
 	if (!new_table) /* realloc failed */
 	{
-		send_to_char ("Falla en realloc. Preparate para el impacto.\n\r",ch);
+		send_to_char ("Failure in realloc function. Prepare for impact.\n\r",ch);
 		return FALSE;
 	}
 
@@ -250,7 +250,7 @@ SEDIT( sedit_new )
 	ch->desc->editor	= ED_SOCIAL;
 	ch->desc->pEdit		= (void *) &social_table[maxSocial-1];
 
-	send_to_char ("Nuevo social creado.\n\r",ch);
+	send_to_char ("New social created.\n\r",ch);
 	return TRUE;
 }
 
@@ -263,7 +263,7 @@ SEDIT( sedit_delete )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : delete [nombre-del-social-a-borrar]\n\r", ch );
+		send_to_char( "Syntax : delete [name-of-the-social-to-be-deleted]\n\r", ch );
 		return FALSE;
 	}
 
@@ -271,7 +271,7 @@ SEDIT( sedit_delete )
 	
 	if (iSocial == -1)
 	{
-		send_to_char( "SEdit : ese social no existe.\n\r", ch );
+		send_to_char( "SEdit : That social does not exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -305,7 +305,7 @@ SEDIT( sedit_delete )
 
 	maxSocial--; /* Important :() */
 
-	send_to_char ("Ahora ese social es historia.\n\r",ch);
+	send_to_char ("Social deleted.\n\r",ch);
 	return TRUE;
 }
 #endif

@@ -505,6 +505,8 @@ void game_loop_mac_msdos( void )
     struct timeval last_time;
     struct timeval now_time;
     static DESCRIPTOR_DATA dcon;
+    
+    int ftick = 0;
 
     gettimeofday( &last_time, NULL );
     current_time = (time_t) last_time.tv_sec;
@@ -602,7 +604,7 @@ void game_loop_mac_msdos( void )
 	/*
 	 * Autonomous game motion.
 	 */
-	update_handler( );
+	update_handler(ftick);
 
 
 
@@ -675,6 +677,8 @@ void game_loop_unix( int control )
 {
     static struct timeval null_time;
     struct timeval last_time;
+    
+    int ftick = 0;
 
     signal( SIGPIPE, SIG_IGN );
     gettimeofday( &last_time, NULL );
@@ -803,7 +807,7 @@ void game_loop_unix( int control )
 	/*
 	 * Autonomous game motion.
 	 */
-	update_handler( );
+	update_handler(ftick);
 
 
 
@@ -1477,9 +1481,15 @@ case 'b' :
             sprintf( buf2, "%d", ch->max_hit );
             i = buf2; break;
          case 'm' :
+            if(ch->race == 3)	
+            sprintf( buf2, " " );
+            else	
             sprintf( buf2, "%d", ch->mana );
             i = buf2; break;
          case 'M' :
+            if(ch->race == 3)	
+            sprintf( buf2, " " );
+            else	
             sprintf( buf2, "%d", ch->max_mana );
             i = buf2; break;
          case 'v' :
@@ -1538,6 +1548,18 @@ case 'b' :
 	 case 'O' :
 	    sprintf( buf2, "%s", olc_ed_vnum(ch) );
 	    i = buf2; break;
+	 case 'p' :
+	    if( ch->race == 3 )
+	       sprintf (buf2, "%d", ch->bp );
+	    else
+	       sprintf( buf2, " " );
+	    i = buf2; break;
+	 case 'P' :
+	    if( ch->race == 3 )
+	       sprintf (buf2, "%d", ch->max_bp );
+	    else
+	       sprintf( buf2, " " );
+	    i = buf2; break;         
       }
       ++str;
       while( (*point = *i) != '\0' )
@@ -1647,6 +1669,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *ch;
+    AFFECT_DATA af;
     char *pwdnew;
     char *p;
     int iClass,race,i,weapon;
@@ -2099,6 +2122,56 @@ case CON_GET_ALIGNMENT:
         group_add(ch,"rom basics",FALSE);
         group_add(ch,class_table[ch->class].base_group,FALSE);
         ch->pcdata->learned[gsn_recall] = 50;
+        if ( ch->level == 0 )
+	{
+
+	    ch->perm_stat[class_table[ch->class].attr_prime] += 3;
+
+	    ch->level	= 1;
+	    ch->exp	= exp_per_level(ch,ch->pcdata->points);
+	    ch->hit	= ch->max_hit;
+	    ch->mana	= ch->max_mana;
+	    ch->move	= ch->max_move;
+	    ch->bp	= ch->max_bp;
+	    ch->train	 = 3;
+	    ch->practice = 5;
+	    ch->pcdata->cname = ch->name;
+	    /*sprintf( buf, "the %s",
+		title_table [ch->class] [ch->level]
+		[ch->sex == SEX_FEMALE ? 1 : 0] );*/
+	    sprintf( buf, "the Newbie");	
+	    set_title( ch, buf );
+	    /*for newbie vampires*/
+	if( ch->race == 3 )
+	{
+	    af.where     = TO_AFFECTS;
+   	    af.type      = find_spell(ch, "detect hidden");
+   	    af.level     = ch->level;
+   	    af.duration  = -1;
+   	    af.location  = APPLY_NONE;
+   	    af.modifier  = 0;
+   	    af.bitvector = AFF_DETECT_HIDDEN;
+   	    affect_to_char( ch, &af );
+	
+	    af.where     = TO_AFFECTS;
+    	    af.type      = find_spell(ch, "detect invis");
+   	    af.level     = ch->level;
+   	    af.duration  = -1;
+   	    af.modifier  = 0;
+ 	    af.location  = APPLY_NONE;
+   	    af.bitvector = AFF_DETECT_INVIS;
+   	    affect_to_char( ch, &af );
+	    	      	    
+   	    ch->prompt 				= str_dup( "{W-=HP:{R%h/%H {WBP:{M%p/%P {WMV:{C%v/%V {WTNL:{x{M%X%b{W=-{x " );
+   	    ch->pcdata->learned[gsn_feed] = 100;
+   	    /*for vampire warriors*/
+        	if (ch->class == 3)
+        	{
+        	ch->pcdata->learned[gsn_vamp_haste] = 100;
+        	}
+	}
+	/*end of newbie vamp settings*/	
+        }
 	write_to_buffer(d,"Do you wish to customize this character?\n\r",0);
 	write_to_buffer(d,"Customization takes time, but allows a wider range of skills and abilities.\n\r",0);
 	write_to_buffer(d,"Customize (Y/N)? ",0);
@@ -2257,24 +2330,9 @@ case CON_DEFAULT_CHOICE:
 	d->connected	= CON_PLAYING;
 	reset_char(ch);
 
-	if ( ch->level == 0 )
+		
+	if (ch->level == 1)
 	{
-
-	    ch->perm_stat[class_table[ch->class].attr_prime] += 3;
-
-	    ch->level	= 1;
-	    ch->exp	= exp_per_level(ch,ch->pcdata->points);
-	    ch->hit	= ch->max_hit;
-	    ch->mana	= ch->max_mana;
-	    ch->move	= ch->max_move;
-	    ch->train	 = 3;
-	    ch->practice = 5;
-	    ch->pcdata->cname = ch->name;
-	    sprintf( buf, "the %s",
-		title_table [ch->class] [ch->level]
-		[ch->sex == SEX_FEMALE ? 1 : 0] );
-	    set_title( ch, buf );
-
 	    do_function (ch, &do_outfit,"");
 	    obj_to_char(create_object(get_obj_index(OBJ_VNUM_MAP),0),ch);
 
@@ -2293,14 +2351,15 @@ case CON_DEFAULT_CHOICE:
 	}
 	else
 	{
-	    char_to_room( ch, get_room_index( ROOM_VNUM_TEMPLE ) );
+	    char_to_room( ch, get_room_index( ROOM_VNUM_RECALL ) );
 	}
 
 	act( "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
 	do_function(ch, &do_look, "auto" );
 	send_to_char("\n", ch);
 	do_function(ch, &do_board, ""); /* Show board status */
-
+	ch->bh_set = 0; /*set that blood healing to off */
+	ch->bh_set2 = 0;
 
 
 	wiznet("$N has left real life behind.",ch,NULL,
@@ -2769,6 +2828,8 @@ void act_new( const char *format, CHAR_DATA *ch, const void *arg1,
     char 		fname[ MAX_INPUT_LENGTH  ];
     bool		fColour = FALSE;
  
+    
+ 
     /*
      * Discard null and zero-length messages.
      */
@@ -2836,8 +2897,12 @@ void act_new( const char *format, CHAR_DATA *ch, const void *arg1,
                 /* Thx alex for 't' idea */
                 case 't': i = (char *) arg1;                            break;
                 case 'T': i = (char *) arg2;                            break;
-                case 'n': i = PERS( ch,  to  );                         break;
-                case 'N': i = PERS( vch, to  );                         break;
+                case 'n': i = PERS( ch,  to  );
+                	  
+                          break;
+                case 'N': i = PERS( vch, to  );
+                          
+                	  break;
                 case 'e': i = he_she  [URANGE(0, ch  ->sex, 2)];        break;
                 case 'E': i = he_she  [URANGE(0, vch ->sex, 2)];        break;
                 case 'm': i = him_her [URANGE(0, ch  ->sex, 2)];        break;
@@ -2874,8 +2939,15 @@ void act_new( const char *format, CHAR_DATA *ch, const void *arg1,
             ++str;
             while ( ( *point = *i ) != '\0' )
                 ++point, ++i;
+            if( strstr( format, "GOCIAL") != NULL)
+                          {
+                	  *point++ = '{';
+                	  *point++ = 'c';
+                	  }
         }
- 
+      
+	*point++ = '{';
+	*point++ = 'x';
         *point++ = '\n';
         *point++ = '\r';
 		*point   = '\0';

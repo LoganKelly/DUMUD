@@ -19,13 +19,16 @@ A dwarven guard is here.
 ~
 The guard looks very tough and mean.
 ~
-dwarf~
-ABL D 500 0
+vampire~
+ABL 0 500 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
 EFNR 0 0 0
 stand stand male 500
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff F
+F for I
 #6501
 oldstyle dwarf worker miner~
 the dwarven worker~
@@ -33,13 +36,16 @@ A dwarven mining worker is here.
 ~
 He is very dirty, and looks extremely over-worked.
 ~
-dwarf~
+vampire~
 AGL 0 900 0
 12 0 2d10+150 6d9+100 1d10+3 none
 0 0 0 8
 EFNR 0 0 0
 stand stand male 175
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6502
 oldstyle wraith~
 the wraith~
@@ -118,13 +124,16 @@ A dwarven miner is here.
 ~
 The mineworker is very tired, and very dirty, and he has bulging muscles.
 ~
-dwarf~
+vampire~
 ABL 0 0 0
 8 0 2d7+96 4d9+100 1d7+2 none
 3 3 3 9
 EFNR 0 0 0
 stand stand male 2
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6508
 oldstyle dwarf leader~
 the dwarven mine leader~
@@ -132,13 +141,16 @@ A dwarven mine leader is here.
 ~
 The mine leader is very big and very strong.
 ~
-dwarf~
+vampire~
 ABL 0 0 0
 21 0 4d10+360 10d9+100 4d4+5 none
 -5 -5 -5 7
 EFNR 0 0 0
 stand stand male 1000
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6509
 oldstyle dwarf doctor~
 the dwarven doctor~
@@ -146,78 +158,96 @@ The dwarven doctor is here.
 ~
 He is a very skilled surgeon, with hands of steel.
 ~
-dwarf~
-ABL DH 1000 0
+vampire~
+ABL H 1000 0
 9 0 2d6+110 4d9+100 1d8+2 none
 2 2 2 8
 EFNR 0 0 0
 stand stand male 75
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff F
+F for I
 #6510
 oldstyle dwarf peon~
 the dwarven peon~
 A dwarven peon is awaiting help here.
 ~
 ~
-dwarf~
+vampire~
 ABL 0 500 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
 EFNR 0 0 0
 stand stand male 3
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6511
 oldstyle dwarf~
 the dwarf~
 A grinning dwarf is here.
 ~
 ~
-dwarf~
+vampire~
 ABL 0 500 0
 9 0 2d6+110 4d9+100 1d8+2 none
 2 2 2 8
 EFNR 0 0 0
 stand stand male 62
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6512
 oldstyle dwarf son~
 the unwanted son~
 An unwanted son is here.  You feel sorry for the guy.
 ~
 ~
-dwarf~
+vampire~
 AG 0 250 0
 9 0 2d6+110 4d9+100 1d8+2 none
 2 2 2 8
 EFNR 0 0 0
 stand stand male 2
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6513
 oldstyle dwarf daughter~
 the unwanted daughter~
 An unwanted daughter is here.  You feel sorry for her.
 ~
 ~
-dwarf~
+vampire~
 AG 0 250 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
 EFNR 0 0 0
 stand stand female 2
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6514
 oldstyle dwarf guard~
 the barracks guard~
 A barrack guard is here.
 ~
 ~
-dwarf~
+vampire~
 ABL 0 100 0
 16 0 3d9+233 8d9+100 2d6+4 none
 -2 -2 -2 7
 EFNR 0 0 0
 stand stand male 150
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F aff DF
+F for I
 #6515
 oldstyle man~
 the man in waiting~
@@ -320,9 +350,9 @@ weapon 0 AN
 axe 2 7 'cleave' F
 17 50 4100 P
 A
-1 2
-A
 18 2
+A
+1 2
 #6510
 helmet~
 a dwarven helmet~
@@ -340,9 +370,9 @@ gem G AB
 0 0 0 0 0
 7 10 460 P
 A
-19 1
-A
 18 1
+A
+19 1
 #6512
 gloves~
 dwarven gloves~
@@ -352,9 +382,9 @@ armor 0 AH
 5 5 5 0 0
 13 20 2000 P
 A
-2 1
-A
 1 1
+A
+2 1
 #6513
 note~
 a note~

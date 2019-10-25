@@ -1,5 +1,5 @@
 #AREADATA
-Name {YH{ca{Bv{ce{Yn{x~
+Name Haven~
 Builders None~
 VNUMs 3000 3399
 Credits { All } Diku    Haven~
@@ -13,13 +13,12 @@ End
 
 #MOBILES
 #3000
-wizard~
-the wizard~
-A wizard walks around behind the counter, talking to himself.
+Mysterious Old Man~
+the mysterious old man~
+A mysterious old man stands here, awaiting new adventurers.
 ~
-The wizard looks old and senile, and yet he looks like a very powerful
-wizard. He is equipped with fine clothing, and is wearing many fine
-rings and bracelets.
+An odd looking old man with a beard and a wide-brimmed hat stands here. 
+He has a deep, knowing gaze that seems to pierce right through you.  
 ~
 human~
 ABV D 900 0
@@ -261,13 +260,15 @@ This is your master. A short, strong dwarf with bulging muscles.  Several scars
 across his body prove that he was using arms before you were born.  He
 has a calm look on his face.
 ~
-dwarf~
-ABKTV DF 1000 0
+vampire~
+ABKTV 0 1000 0
 36 0 1d1+1999 1d1+199 3d8+24 beating
 -20 -20 -20 -20
 ACDEIK ABCD 0 0
 stand stand male 0
-0 0 medium '0'
+V 0 medium '0'
+F act O
+F for I
 #3024
 sorcerer~
 the sorcerer~
@@ -1185,14 +1186,14 @@ light 0 A
 0 0 250 0 0
 0 40 75 P
 E
-letters~
-They say, "Use 'hold lantern' to activate."
-~
-E
 lantern~
 It is a large and robust but somewhat battered oil lantern made from brass,
 equipped with a handle to make it handy and a hood to protect its flame.
 Some letters have been scratched on its bottom.
+~
+E
+letters~
+They say, "Use 'hold lantern' to activate."
 ~
 #3032
 bag~
@@ -1273,9 +1274,9 @@ treasure G AB
 0 0 0 0 0
 8 10 640 P
 A
-20 -1
-A
 17 -2
+A
+20 -1
 E
 ring~
 It's a silver ring set with a gleaming moonstone.
@@ -1817,12 +1818,12 @@ container 0 0
 34 ABCD 3122 20 100
 0 0 0 G
 E
-drawer~
-You notice a keyhole in the drawer.
-~
-E
 desk~
 The desk looks very sparse, there is a drawer on the left side.
+~
+E
+drawer~
+You notice a keyhole in the drawer.
 ~
 #3131
 safe~
@@ -2546,6 +2547,14 @@ glass~
 potion G AO
 10 'detect invis' 'detect magic' 'detect hidden' ''
 4 10 290 P
+#3298
+{RSex Machine's Cock Gun{x ~
+{RSex Machine's Cock Gun{x~
+A strap-on gun for your nether regions lies here.~
+metal~
+armor 0 AL
+200 200 200 200 0
+103 0 0 P
 #3349
 long sword~
 a glowing long sword~
@@ -2555,9 +2564,9 @@ weapon 0 AN
 sword 4 6 'slash' 0
 29 50 3100 G
 A
-19 2
-A
 18 2
+A
+19 2
 E
 long sword~
 It looks exceptionally sharp and well-balanced. Maybe you should keep it.
@@ -2571,9 +2580,9 @@ weapon G AN
 sword 3 5 'slash' 0
 16 50 1280 P
 A
-19 1
-A
 18 1
+A
+19 1
 E
 sword~
 You see a sword of great craftsmanship.  Imprinted on the side is:
@@ -2588,9 +2597,9 @@ weapon G AN
 dagger 2 5 'pierce' 0
 8 20 590 P
 A
-19 1
-A
 18 1
+A
+19 1
 E
 dagger~
 You see a dagger of great craftsmanship.  Imprinted on the side is:
@@ -2605,9 +2614,9 @@ weapon G AN
 mace 2 4 'pound' 0
 7 100 620 P
 A
-19 2
-A
 18 1
+A
+19 2
 E
 mace~
 You see a mace of great craftsmanship.  Imprinted on the side is:
@@ -2765,9 +2774,9 @@ treasure G AB
 0 0 0 0 0
 16 10 1280 P
 A
-20 -1
-A
 17 -4
+A
+20 -1
 #3365
 banner war merc~
 a war banner~
@@ -2777,9 +2786,9 @@ light AG A
 0 0 500 0 0
 8 10 640 P
 A
-17 -2
-A
 20 -1
+A
+17 -2
 E
 banner~
 This is the official Merc war banner to see you through the darkest realm!
@@ -3314,11 +3323,6 @@ A road sign is here.
 0
 S 1
 E
-chain~
-The the chain reaches the clouds high above you.  It must take some really
-powerful magic to hold such a chain in place.
-~
-E
 sign~
 The sign points in all directions:
 
@@ -3330,6 +3334,11 @@ The sign points in all directions:
 Someone has added the following with red paint:
 
    Up    - Redferne's Flying Citadel.
+~
+E
+chain~
+The the chain reaches the clouds high above you.  It must take some really
+powerful magic to hold such a chain in place.
 ~
 D0
 ~
@@ -3414,8 +3423,8 @@ street ends to the {R{Rnorth{x{x near a run-down neighborhood.
 0
 S 1
 E
-elm tree~
-The fresh young leaves of the elm tree wave gently in the wind.
+grate grating~
+Looks heavy.  A small sign is hanging on it.
 ~
 E
 sign~
@@ -3427,8 +3436,8 @@ The sign says :-
           Please show respect and do not desecrate their tombs.
 ~
 E
-grate grating~
-Looks heavy.  A small sign is hanging on it.
+elm tree~
+The fresh young leaves of the elm tree wave gently in the wind.
 ~
 D0
 You see the beginnings of {YH{ca{Bv{ce{Yn{x's bad neighborhoods.
@@ -3498,11 +3507,6 @@ to the {R{Rnorth{x{x.
 ~
 0
 S 1
-D1
-You can see the heavily guarded southern gate of {YH{ca{Bv{ce{Yn{x.
-~
-~
-0 -1 3255
 D3
 ~
 ~
@@ -3520,11 +3524,6 @@ D1
 ~
 ~
 0 -1 3130
-D3
-You see the {Rsouth{x gate of {YH{ca{Bv{ce{Yn{x.
-~
-~
-0 -1 3255
 S
 #3130
 {BWall Road{x~
@@ -3843,24 +3842,19 @@ half hidden by a stack of books, leads to a room in the back of the shop.
 0
 BCS 0
 E
-window~
-You peer out the window and see a cityguard beating up an old lady.
-~
-E
 bookcase~
 You see many cartographer journals and topographical studies.  You also see
 quite a few tomes written by someone named "Anson MacDonald".
+~
+E
+window~
+You peer out the window and see a cityguard beating up an old lady.
 ~
 D0
 A sign on the door says, "Unauthorized Personel Prohibited".
 ~
 door~
 2 3161 3161
-D2
-To the {Rsouth{x is the {yP{woo{yr A{clle{yy{x.  Across the alley, you see the Grubby Inn.
-~
-~
-0 -1 3024
 S
 #3161
 Melancholy's Room~
@@ -4037,11 +4031,6 @@ check to make sure you still have your wallet.
 ~
 0
 S 1
-D0
-The eastern gate of the city is {R{Rnorth{x{x.
-~
-~
-0 -1 3041
 D2
 ~
 ~
@@ -4134,54 +4123,41 @@ The beautiful promenade lies along the river.  What a romantic place to visit!
 0 -1 3102
 S
 #3255
-{YInside the south Gate of H{ca{Bv{ce{Yn{x~
-Two strong stone towers surround a heavy wooden gate set into the city wall,
-to guard against the goblins that lurk in the southern forests.  You can exit
-the city to the {Rsouth{x, if you dare, or walk down the concourse to the {Reast{x
-or {Rwest{x.
+{WS{wouth {WM{wain {WS{wtreet{x~
+You are on South Main street, which leads to the southern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
 S 1
 D0
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 0 3025
-D1
-The concourse heads {Reast{x along the inside of the city wall.
-~
-~
-0 -1 3129
 D2
-You see the southern gate.
+You see the {WS{wouth {WM{wain {WS{wtreet{x.
 ~
 ~
 1 3133 3256
-D3
-The concourse heads {Rwest{x along the inside of the city wall.
-~
-~
-0 -1 3128
 S
 #3256
-{YOutside the south Gate of H{ca{Bv{ce{Yn{x~
-You are standing outside the strong wooden gate on the southern walls of
-{YH{ca{Bv{ce{Yn{x.  Guards eye you suspiciously from the two towers on either side of
-the gate, as they stand watch to protect the city from the goblins of this
-forest.  The trees and goblins of the Miden'nir are {Rsouth{x, the gate back to 
-Migaard lies {R{Rnorth{x{x.
+{WS{wouth {WM{wain {WS{wtreet{x~
+You are on South Main street, which leads to the southern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
-S 3
+S 1
 D0
-You see the southern gate.
+You see the {WS{wouth {WM{wain {WS{wtreet{x.
 ~
 ~
 1 3133 3255
 D2
-The green forests of the Miden'nir are {Rsouth{x, hiding countless goblin warriors.
 ~
 ~
-0 -1 3505
+0 0 3061
 S
 #3257
 {BWall Road{x~
@@ -4196,11 +4172,6 @@ You see an intersection between {BWall Road{x and a busy Clan street.
 ~
 ~
 0 -1 3258
-D2
-The {Rwest{x gate of the city lies {Rsouth{x.
-~
-~
-0 -1 3040
 S
 #3258
 {BWall Road{x~
@@ -4405,11 +4376,6 @@ You see an intersection with a busy clan street.
 ~
 ~
 0 -1 3266
-D2
-You see the well-guarded {Reast{x gate of {YH{ca{Bv{ce{Yn{x.
-~
-~
-0 -1 3041
 S
 #3268
 {YOutside the north Gate of {YH{ca{Bv{ce{Yn{x~
@@ -4642,13 +4608,13 @@ A smallish sign hangs on the wall, lettered in common.
 0
 DS 0
 E
-tapestries walls~
-You think about peeking behind the tapestries, but think better of it.
-~
-E
 sign~
 Give me your coins, and I shall change them for you, taking but 1 in 20 for
 my fee.  --- Otho the Changer
+~
+E
+tapestries walls~
+You think about peeking behind the tapestries, but think better of it.
 ~
 D0
 Clan Road is to the {R{Rnorth{x{x.
@@ -4666,20 +4632,15 @@ or for use as weapons at one time or another.  Looking around,
 you search vainly for a clean table to sit at, and then give up.
 ~
 0
-DS 0
-E
-wall walls~
-Bare, except for the holes.
-~
+CDS 0
 E
 table tables~
 You find a table that's relatively vomit-free.
 ~
-D2
-A dark alley is to the {Rsouth{x.
+E
+wall walls~
+Bare, except for the holes.
 ~
-~
-0 0 3026
 S
 #3355
 Andy's Pub~
@@ -4799,40 +4760,23 @@ The stairs lead back down to the pub.
 0 -1 3356
 S
 #3001
-{YThe {YT{we{Wmp{wl{Ye {YOf {gD{Wa{wugw{Wo{gk{x~
-You are in the southern end of the temple hall in the Temple of {gD{Wa{wugw{Wo{gk{x.
-The temple has been constructed from giant marble blocks, eternal in
-appearance, and most of the walls are covered by ancient wall paintings
-picturing gods, giants and peasants.
-   Large steps lead down through the grand temple gate, descending the huge
-mound upon which the temple is built and ends on the temple square below.
-   Equally large steps lead UP through a small door into the ENTRANCE to MUD 
-SCHOOL.  (type 'up' to go to MUD SCHOOL.)  A small plaque is on this wall.
+{WN{worth {WM{wain {WS{wtreet{x~
+You are on North Main street, which leads to the northern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
-CDS 0
-E
-plaque~
-This entire world has been integrated, modified, debugged, and enhanced by
-Hatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.
-1992 December 17
-ROM enhancements by Alander.
-~
+S 1
 D0
-At the {R{Rnorth{x{xern end of the temple hall is a statue and a huge altar.
+You see {WN{worth {WM{wain {WS{wtreet{x.
 ~
 ~
-0 -1 3054
+0 0 3054
 D2
-You see the temple square.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3005
-D4
-You see the entrance to Mud School.
-~
-~
-0 0 3700
 S
 #3002
 Cleric's Inner Sanctum~
@@ -4895,46 +4839,35 @@ You see the bar, richly decorated with really stylish furniture.
 ~
 ~
 0 -1 3003
-D1
-You see the Temple Square.
-~
-~
-0 -1 3005
 S
 #3005
-{YThe {YT{we{Wm{Wp{wl{Ye {YS{wq{Wu{Wa{wr{Ye{x~
-You are standing on the temple square.  Huge marble steps lead up to the
-temple gate.  The entrance to the Clerics Guild is to the {Rwest{x, and the old
-Grunting Boar Inn, is to the {Reast{x.  Just {Rsouth{x of here you see the market
-square, the center of {YH{ca{Bv{ce{Yn{x.
+{YM{yarket {YS{yquare{x~
+You are in the northern section of the market square of Haven.  To the
+north, North Main Street begins.  To the east and west, market square
+continues.  
 ~
 0
 S 1
 D0
-You see the temple.
+You see {WN{worth {WM{wain {WS{wtreet{x.
 ~
 ~
 0 -1 3001
 D1
-You see the good old Grunting Boar Inn.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3006
+0 0 3058
 D2
-You see the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3014
 D3
-You see the entrance to the Clerics Guild.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3004
-D4
-You see the air.
-~
-~
-0 -1 3057
+0 0 3059
 S
 #3006
 Entrance to the Grunting Boar Inn~
@@ -4949,11 +4882,6 @@ Surprise! You see the bar.
 ~
 ~
 0 -1 3007
-D3
-You see the temple square.
-~
-~
-0 -1 3005
 D4
 You see the defunct reception room.
 ~
@@ -4971,11 +4899,6 @@ A small sign with big letters is fastened to the bar.
 0
 DS 0
 E
-writing carving carvings symbols symbol~
-Although it is very hard to understand, you think it looks a lot like beer,
-poems about beer, and small beer-mugs.
-~
-E
 sign~
 The sign reads:
 Free instructions provided by the Grunting Boar Inn.
@@ -4983,6 +4906,11 @@ Free instructions provided by the Grunting Boar Inn.
    Buy  - Buy something (drinkable) from the bartender.
    List - The bartender will show you all the different drinks and
           specialties, and tell the price of each.
+~
+E
+writing carving carvings symbols symbol~
+Although it is very hard to understand, you think it looks a lot like beer,
+poems about beer, and small beer-mugs.
 ~
 D3
 You see the exit to the entrance hall.
@@ -5011,15 +4939,7 @@ on the shelves, and seem to be of the finest quality.
 A small sign is on the counter.
 ~
 0
-DS 0
-E
-sign~
-Free instructions provided by the store:
-
-   Buy  - Will buy you some bread or pastry.
-   List - The baker will kindly tell you the price and sort of the bread in
-          his bakery.
-~
+CDS 0
 E
 danish pastry~
 You see that this is truly delicious pastry.  Must be made by a Dane from
@@ -5030,11 +4950,14 @@ Iceland, Estonia etc. etc.
 and your soul sing.
 
 ~
-D2
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+E
+sign~
+Free instructions provided by the store:
+
+   Buy  - Will buy you some bread or pastry.
+   List - The baker will kindly tell you the price and sort of the bread in
+          his bakery.
 ~
-~
-0 -1 3013
 S
 #3010
 The General Store~
@@ -5043,7 +4966,7 @@ behind the counter, safely out of your reach.
 A small note hangs on the wall.
 ~
 0
-DS 0
+CDS 0
 E
 note~
 The note reads:
@@ -5054,11 +4977,6 @@ The note reads:
           pay for your item.
   Sell  - Sell an item.
 ~
-D2
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
-~
-~
-0 -1 3015
 S
 #3011
 The Weapon Shop~
@@ -5076,36 +4994,20 @@ The note reads:
           pay for your item.
   Sell  - Sell an item.
 ~
-D2
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
-~
-~
-0 -1 3016
 S
 #3012
-{YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x~
-You are at the end of the {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x of {YH{ca{Bv{ce{Yn{x.  {Rsouth{x of here is the
-entrance to the Guild of Magic Users.  The street continues {Reast{x towards the
-{YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.  The magic shop is to the {R{Rnorth{x{x and to the {Rwest{x is the city
-gate.
+{WW{west {WM{wain {WS{wtreet{x~
+You are on West Main street, which leads to the western gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
 S 1
-D0
-You see the magic shop.
-~
-~
-0 -1 3033
 D1
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+You see the {WW{west {WM{wain {WS{wtreet{x.
 ~
 ~
 0 -1 3013
-D2
-You see the entrance to the Guild of Magic Users.
-~
-~
-0 -1 3017
 D3
 You see the city gate.
 ~
@@ -5113,122 +5015,127 @@ You see the city gate.
 0 -1 3040
 S
 #3013
-{YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x~
-You are on the {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x passing through the City of {YH{ca{Bv{ce{Yn{x.  {Rsouth{x of
-here is the entrance to the Armoury, and the bakery is to the {R{Rnorth{x{x.  {Reast{x of
-here is the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.
+{YM{yarket {YS{yquare{x~
+You are in the western section of the market square of Haven.  To the
+west, West Main Street begins.  To the north and south, market square
+continues.  
 ~
 0
 S 1
 D0
-You see the bakery.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3009
+0 0 3059
 D1
-You see the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3014
 D2
-You see the armoury.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3020
+0 0 3024
 D3
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+You see the {WW{west {WM{wain {WS{wtreet{x.
 ~
 ~
 0 -1 3012
 S
 #3014
-{YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x~
-You are standing on the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x, the famous Square of {YH{ca{Bv{ce{Yn{x.
-A large, peculiar looking statue is standing in the middle of the square.
-Roads lead in every direction, {R{R{Rnorth{x{x{x to the temple square, {R{Rsouth{x{x to the
-{yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x, {R{Reast{x and {Rwestbound{x is the {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+{YM{yarket {YS{yquare{x~
+You are standing in the center of the market square of the city of Haven,
+what some call the greatest city in the world.  Cobbled road streches out in
+a circular pattern in all directions.  
 ~
 0
-S 1
-E
-statue~
-What you see is the {YH{ca{Bv{ce{Yn{x Worm, stretching around the Palace of {YH{ca{Bv{ce{Yn{x.
-~
+KS 1
 D0
-You see the temple square.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3005
 D1
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+You see the {YM{yarket {YS{yquare{x.  
 ~
 ~
 0 -1 3015
 D2
-You see {yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3025
 D3
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3013
+D6
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3058
+D7
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3059
+D8
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3026
+D9
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3024
 S
 #3015
-{YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x~
-You are on {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x crossing through town.  To the {R{R{Rnorth{x{x{x is the general
-store, and the {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x continues {R{Reast{x{x.  To the {R{Rwest{x{x you see and hear the
-market place and to the {R{Rsouth{x{x is the Jeweller's Shop.
+{YM{yarket {YS{yquare{x~
+You are in the eastern section of the market square of Haven.  To the
+east, East Main Street begins.  To the north and south, market square
+continues.  
 ~
 0
 S 1
 D0
-You see the general store.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3010
+0 0 3058
 D1
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+You see {WE{wast {WM{wain {WS{wtreet{x.
 ~
 ~
 0 -1 3016
 D2
-You see the Jeweller's Shop.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3034
+0 0 3026
 D3
-You see the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3014
 S
 #3016
-{YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x~
-The {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x, to the {R{R{Rnorth{x{x{x is the weapon shop and to the {R{Rsouth{x{x is the
-Guild of Swordsmen.  To the {R{Reast{x{x you leave town and to the {R{Rwest{x{x the street
-leads to the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.
+{WE{wast {WM{wain {WS{wtreet{x~
+You are on East Main street, which leads to the eastern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
 S 1
-D0
-You see the weapon shop.
-~
-~
-0 -1 3011
 D1
-You see the city gate.
+You see {WE{wast {WM{wain {WS{wtreet{x.
 ~
 ~
 0 -1 3041
-D2
-You see the swordsmen's guild.
-~
-~
-0 -1 3021
 D3
-You see the {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x leading to the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.
+You see the street leading to the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3015
@@ -5239,11 +5146,6 @@ The entrance hall is a small, poor lighted room.
 ~
 0
 DS 0
-D0
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
-~
-~
-0 -1 3012
 D2
 You see your favorite place, the Mage's Bar.
 ~
@@ -5299,7 +5201,7 @@ see helmets, shields and chain mails.  To the {R{Rnorth{x{x is {YThe {YM{Bai{Yn 
 On the wall is a small note.
 ~
 0
-DS 0
+CDS 0
 E
 note~
 You can use these commands for trading:
@@ -5312,11 +5214,6 @@ You can use these commands for trading:
         WE DON'T GIVE CREDIT; WE DON'T EXPECT TO RECEIVE CREDIT!
                              NO HAGGLING
 ~
-D0
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
-~
-~
-0 -1 3013
 S
 #3021
 Entrance Hall to the Guild of Swordsmen~
@@ -5326,11 +5223,6 @@ the {R{Rnorth{x{x is the {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
 ~
 0
 DS 0
-D0
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
-~
-~
-0 -1 3016
 D1
 You see the swordsmen's bar, many noises comes from there.
 ~
@@ -5376,94 +5268,82 @@ impossible to climb back up.
 0 -1 7048
 S
 #3024
-{yEastern End of {yP{woo{yr A{clle{yy{x~
-You are at the {yP{woo{yr A{clle{yy{x. {Rsouth{x of here is the Grubby Inn and to the
-{Reast{x you see {yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x. Melancholy's map shop is {R{Rnorth{x{x. The alley continues 
-further {Rwest{x.
+{YM{yarket {YS{yquare{x~
+Various street apostles and lunatics crowd this section of market square.
+Some attempt to convince you to give up your life of sin, while others warn
+that the end is near.  In either case, probably the best thing to do is
+avoid all eye contact.  
 ~
 0
 S 1
 D0
-You see Melancholy's Map Shop
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3160
+0 0 3013
 D1
-You see {yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3025
-D2
-You see the Inn.
+D6
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3048
-D3
-You see the {yP{woo{yr A{clle{yy{x.
-~
-~
-0 -1 3044
+0 0 3014
 S
 #3025
-{yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x~
-{yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x, people pass you, talking to each other.  To the {Rwest{x is
-the {yP{woo{yr A{clle{yy{x and to the {Reast{x is {wThe {MD{mark {MA{mlley{x.  To the {R{Rnorth{x{x, this square
-is connected to the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.  From the {Rsouth{x you notice a nasty smell.
+{YM{yarket {YS{yquare{x~
+You are in the southern section of the market square of Haven.  To the
+south, South Main Street begins.  To the east and west, market square
+continues.  
 ~
 0
 S 1
 D0
-You see the {YM{ca{Br{Bk{ce{Yt {YS{cq{Bu{Ba{cr{Ye{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3014
 D1
-You see {wThe {MD{mark {MA{mlley{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3026
 D2
+You see the {WS{wouth {WM{wain {WS{wtreet{x.
 ~
 ~
 0 0 3255
 D3
-You see the {yP{woo{yr A{clle{yy{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3024
 S
 #3026
-{wThe {MD{mark {MA{mlley{x~
-{wThe {MD{mark {MA{mlley{x, to the {Rwest{x is {yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x and to the {Rsouth{x is the
-Guild of Thieves.  Grebe's Tavern, the famous sailor's dive, is {R{Rnorth{x{x.
-The alley continues {Reast{x.
+{YM{yarket {YS{yquare{x~
+In this area of market square, peddlers of magical potions and performers
+of various feats of illusion attempt to inspire and amaze the masses. 
+Regardless of if it is actual magic, most onlookers look very impressed.  
 ~
 0
 S 1
-E
-guild~
-It is the thieves guild, don't enter if you care about your health or money.
-~
 D0
-You see a foul-smelling sailor's dive.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
-0 -1 3352
-D1
-The alley continues {Reast{x.
-~
-~
-0 -1 3045
-D2
-You see the entrance to the thieves guild.
-~
-~
-0 -1 3027
+0 0 3015
 D3
-You see {yThe {yC{co{wmm{co{yn {yS{cq{wua{cr{ye{x.
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 -1 3025
+D7
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3014
 S
 #3027
 Entrance Hall to the Guild of Thieves~
@@ -5473,11 +5353,6 @@ is {wThe {MD{mark {MA{mlley{x and to the {Reast{x is the thieves' bar.
 ~
 0
 DS 0
-D0
-You see the alley.
-~
-~
-0 -1 3026
 D1
 You see the thieves bar, where everything disappears.
 ~
@@ -5594,23 +5469,18 @@ sorts and sizes.
 0
 DS 0
 E
-scrolls~
-Each scroll is stored in a leather tube that protects it from moist.
+jars bottles~
+Some of them are transparent enabling you to see that some contain colored
+powders while others contain body parts of various animals.
 ~
 E
 books~
 Most of them appear to be very old and dusty.
 ~
 E
-jars bottles~
-Some of them are transparent enabling you to see that some contain colored
-powders while others contain body parts of various animals.
+scrolls~
+Each scroll is stored in a leather tube that protects it from moist.
 ~
-D2
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
-~
-~
-0 -1 3012
 S
 #3034
 The Jeweller's Shop~
@@ -5620,7 +5490,16 @@ surface of the big mahogany desk that stands in the centre of the room.
 A small sign with golden letters stands on the desk.
 ~
 0
-DS 0
+CDS 0
+E
+oil lamps~
+They are made from polished gold and looks as if they are securely fastened
+to the smooth stone walls.
+~
+E
+desk~
+Your face is reflected in its surface.
+~
 E
 sign~
 The golden letters say :-
@@ -5630,20 +5509,6 @@ The golden letters say :-
         'sell <item>' to sell an item and
         'value <item>' to make the jeweller evaluate an item.
 ~
-E
-desk~
-Your face is reflected in its surface.
-~
-E
-oil lamps~
-They are made from polished gold and looks as if they are securely fastened
-to the smooth stone walls.
-~
-D0
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
-~
-~
-0 -1 3015
 S
 #3035
 The Leather Shop~
@@ -5656,17 +5521,8 @@ A wooden sign is hanging above the fireplace.
 0
 DS 0
 E
-sign~
-The wooden sign says :-
-
-    Use 'list' to see what is in store,
-        'buy <item>' to buy an item,
-        'sell <item>' to sell an item and
-        'value <item>' to make the leather worker evaluate an item.
-~
-E
-pot~
-Several large pieces of leather hide are boiling in the iron pot.
+fireplace~
+It is a rather large fireplace made from heavy granite rocks.
 ~
 E
 table~
@@ -5675,8 +5531,17 @@ covered in marks and scratches.  A large burning candle stands directly on
 the table surface, tallow flowing down its sides.
 ~
 E
-fireplace~
-It is a rather large fireplace made from heavy granite rocks.
+pot~
+Several large pieces of leather hide are boiling in the iron pot.
+~
+E
+sign~
+The wooden sign says :-
+
+    Use 'list' to see what is in store,
+        'buy <item>' to buy an item,
+        'sell <item>' to sell an item and
+        'value <item>' to make the leather worker evaluate an item.
 ~
 D2
 You see the alley.
@@ -5685,17 +5550,17 @@ You see the alley.
 0 -1 3044
 S
 #3040
-{YInside the West Gate of {YH{ca{Bv{ce{Yn{x~
-You are by two small towers that have been built into the city wall and
-connected with a footbridge across the heavy wooden gate.  {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x leads
-{Reast{x and {BWall Road{x leads both {R{Rnorth{x{x and {Rsouth{x from here.
+{WW{west {WM{wain {WS{wtreet{x~
+You are on West Main street, which leads to the western gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
 S 1
 E
-wall~
-It is built from large grey rocks that have been fastened to each other with
-some kind of mortar.  It is far too high to climb.
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.
 ~
 E
 tower towers~
@@ -5703,32 +5568,15 @@ Both of the towers are built from large grey rocks that have been fastened to
 each other with some kind of mortar, just like the city wall.
 ~
 E
-gate~
-It is a set of very big double doors made from hard wood.  They have been
-reinforced with large iron bands to make them even more sturdy.  One of the
-doors is equipped with a very big lock.
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.
 ~
-E
-bridge footbridge~
-It is too high up to reach but it looks as if one easily could walk across it
-from one tower to the other.
-~
-D0
-{BWall Road{x runs along the inner city wall to the {R{Rnorth{x{x.
-~
-~
-0 -1 3257
 D1
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.
+You see the {WW{west {WM{wain {WS{wtreet{x.
 ~
 ~
 0 -1 3012
-D2
-You see the road running along the inner side of the city wall.  You notice
-that it is called {BWall Road{x.
-~
-~
-0 -1 3042
 D3
 The city gate is to the {Rwest{x.
 ~
@@ -5736,23 +5584,17 @@ gate~
 1 3133 3052
 S
 #3041
-{YInside the east Gate of {YH{ca{Bv{ce{Yn{x~
-You are by two small towers that have been built into the city wall and
-connected with a footbridge across the heavy wooden gate.  {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x leads
-{Rwest{x from here.  {BWall Road{x crosses the street, heading {R{Rnorth{x{x and {Rsouth{x along
-the city wall.
+{WE{wast {WM{wain {WS{wtreet{x~
+You are on East Main street, which leads to the eastern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
 S 1
 E
-wall~
-It is built from large grey rocks that have been fastened to each other with
-some kind of mortar.  It is far too high to climb.
-~
-E
-tower towers~
-Both of the towers are built from large grey rocks that have been fastened to
-each other with some kind of mortar, just like the city wall.
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.
 ~
 E
 gate~
@@ -5761,27 +5603,28 @@ reinforced with large iron bands to make them even more sturdy.  One of the
 doors is equipped with a very big lock.
 ~
 E
-bridge footbridge~
-It is too high up to reach but it looks as if one easily could walk across it
-from one tower to the other.
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.
+~
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.
 ~
 D0
-{BWall Road{x heads {R{Rnorth{x{x along the city wall.
+You see {MT{mhe {MD{mark {MA{mlley{x
 ~
 ~
-0 -1 3267
+0 0 3069
 D1
 You see the city gate.
 ~
 gate~
 1 3133 3053
-D2
-{BWall Road{x heads {Rsouth{x towards the poor section of town.
-~
-~
-0 0 3250
 D3
-You see {YThe {YM{Bai{Yn {YS{ct{Br{Be{ce{Yt{x.~
+You see {WE{wast {WM{wain {WS{wtreet{x.
+~
 ~
 0 -1 3016
 S
@@ -5797,11 +5640,6 @@ wall~
 It is built from large grey rocks that have been fastened to each other with
 some kind of mortar.  It is far too high to climb.
 ~
-D0
-You see the city gate.
-~
-~
-0 -1 3040
 D2
 The road continues further {Rsouth{x.
 ~
@@ -5817,13 +5655,13 @@ Some letters have been written on the wall here.
 0
 S 1
 E
+letters~
+It says 'Who watches the watchmen?'
+~
+E
 wall~
 It is built from large grey rocks that have been fastened to each other with
 some kind of mortar.  It is far too high to climb.
-~
-E
-letters~
-It says 'Who watches the watchmen?'
 ~
 D0
 The road continues further {R{Rnorth{x{x.
@@ -5852,11 +5690,6 @@ The leather shop is to the {R{Rnorth{x{x.
 ~
 ~
 0 -1 3035
-D1
-The alley leads {Reast{x.
-~
-~
-0 -1 3024
 D2
 There is an ornate doorway to the {Rsouth{x.
 ~
@@ -5890,11 +5723,6 @@ You see the levee.
 ~
 ~
 0 -1 3049
-D3
-The alley leads {Rwest{x.
-~
-~
-0 -1 3026
 S
 #3046
 {wEastern end of {MA{mlley{x~
@@ -5957,12 +5785,7 @@ You are inside the old Grubby Inn.  This place has not been cleaned for
 several decades, vile smells make you dizzy.
 ~
 0
-DS 0
-D0
-You see the alley.
-~
-~
-0 -1 3024
+CDS 0
 S
 #3049
 Levee~
@@ -6011,18 +5834,18 @@ opening in the wall ten feet below the bridge.
 0
 S 1
 E
-wall~
+bridge~
 It is built from large grey rocks that have been fastened to each other with
-some kind of mortar.  It is far too high to climb.
+some kind of mortar, just like the wall.
 ~
 E
 opening~
 You cannot really see it from here as it is somewhere beneath your feet.
 ~
 E
-bridge~
+wall~
 It is built from large grey rocks that have been fastened to each other with
-some kind of mortar, just like the wall.
+some kind of mortar.  It is far too high to climb.
 ~
 D0
 You see the road.
@@ -6045,14 +5868,9 @@ wall.
 0
 S 1
 E
-wall~
-It is built from large grey rocks that have been fastened to each other with
-some kind of mortar.  It is far too high to climb.
-~
-E
-tower towers~
-Both of the towers are built from large grey rocks that have been fastened to
-each other with some kind of mortar, just like the city wall.
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.
 ~
 E
 gate~
@@ -6061,9 +5879,14 @@ reinforced with large iron bands to make them even more sturdy.  One of the
 doors is equipped with a very big lock.
 ~
 E
-bridge footbridge~
-It is too high up to reach but it looks as if one easily could walk across it
-from one tower to the other.
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.
+~
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.
 ~
 D0
 The trail continues around the City of {YH{ca{Bv{ce{Yn{x.
@@ -6091,14 +5914,9 @@ the city wall.
 0
 S 1
 E
-wall~
-It is built from large grey rocks that have been fastened to each other with
-some kind of mortar.  It is far too high to climb.
-~
-E
-tower towers~
-Both of the towers are built from large grey rocks that have been fastened to
-each other with some kind of mortar, just like the city wall.
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.
 ~
 E
 gate~
@@ -6107,9 +5925,14 @@ reinforced with large iron bands to make them even more sturdy.  One of the
 doors is equipped with a very big lock.
 ~
 E
-bridge footbridge~
-It is too high up to reach but it looks as if one easily could walk across it
-from one tower to the other.
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.
+~
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.
 ~
 D0
 The trail continues around the City of {YH{ca{Bv{ce{Yn{x.
@@ -6127,37 +5950,22 @@ gate~
 1 3133 3041
 S
 #3054
-{YBy the T{we{Wmp{wl{Ye A{wl{Wt{wa{Yr{x~
-You are by the temple altar in the northern end of the {YTemple of {gD{Wa{wugw{Wo{gk{x{x.
-A huge altar made from white polished marble is standing in front of you and
-behind it is a ten foot tall sitting statue of {gD{Wa{wugw{Wo{gk{x{x, the King of the Gods.
-The back of the altar opens into a a beautiful atrium, above which can be
-seen a rainbow.
+{WN{worth {WM{wain {WS{wtreet{x~
+You are on North Main street, which leads to the northern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
 ~
 0
-DKS 0
-E
-statue {gD{Wa{wugw{Wo{gk{x king god~
-The statue represents the Supreme God {gD{Wa{wugw{Wo{gk{x.  He is leaning forward,
-seated in a throne of gold. His hands are upon the pommel of a great sword,
-the tip of the blade touching the ground.
+S 1
+D0
 ~
-E
-altar~
-Even though the altar is more than ten feet long it appears to be made from a
-single block of white virgin marble.
 ~
+0 0 3060
 D2
-You see the southern end of the temple.
+You see {WN{worth {WM{wain {WS{wtreet{x.
 ~
 ~
-0 -1 3001
-D4
-Bifrost, the Rainbow Bridge, hangs in the sky above you.
-~
-~
-0 -1 1215
-M 110 H 110
+0 0 3001
 S
 #3056
 The Fountain of Youth Apothecary~
@@ -6184,11 +5992,230 @@ More of the same.
 ~
 ~
 0 0 1017
-D5
-Back down on the earth where you should be!
+S
+#3058
+{YM{yarket {YS{yquare{x~
+There seem to be a larger concentration of delinquents hanging around
+this area, relieving passer-bys of their money with phoney products and
+rigged games.  
+~
+0
+S 1
+D2
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3015
+D3
+You see the {YM{yarket {YS{yquare{x.
 ~
 ~
 0 0 3005
+D9
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3014
+S
+#3059
+{YM{yarket {YS{yquare{x~
+This section of the market square seems a bit more orderly than the other
+parts you have traversed.  The petty thugs still hang around, leaning
+against the walls of buildings, but at least the street is a bit cleaner.  
+~
+0
+S 1
+D1
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3005
+D2
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3013
+D8
+You see the {YM{yarket {YS{yquare{x.
+~
+~
+0 0 3014
+S
+#3060
+{WN{worth {WM{wain {WS{wtreet{x~
+You are on North Main street, which leads to the northern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
+~
+0
+S 1
+D1
+To the east you see {MT{mhe {MD{mark {MA{mlley{x.
+~
+~
+0 0 3062
+D2
+~
+~
+0 0 3054
+S
+#3061
+{WS{wouth {WM{wain {WS{wtreet{x~
+You are on South Main street, which leads to the southern gate of Haven. 
+Squat looking houses and places of business line the streets on either side
+of the road.  
+~
+0
+S 1
+D0
+You see the {WS{wouth {WM{wain {WS{wtreet{x.
+~
+~
+0 0 3256
+S
+#3062
+{MT{mhe {MD{mark {MA{mlley{x~
+An everpresent gloom hangs over this alley, giving you only indirect
+light to aid your eye.  Garbage lays strewn along the sides of the
+buildings.  Here and there shelters are built out of the detritus by the
+homeless.  
+~
+0
+0 1
+D3
+~
+~
+0 0 3060
+D8
+~
+~
+0 0 3063
+S
+#3063
+{MT{mhe {MD{mark {MA{mlley{x~
+An everpresent gloom hangs over this alley, giving you only indirect
+light to aid your eye.  Garbage lays strewn along the sides of the
+buildings.  Here and there shelters are built out of the detritus by the
+homeless.  
+~
+0
+0 1
+D1
+~
+~
+0 0 3064
+D7
+~
+~
+0 0 3062
+S
+#3064
+{MT{mhe {MD{mark {MA{mlley{x~
+An everpresent gloom hangs over this alley, giving you only indirect
+light to aid your eye.  Garbage lays strewn along the sides of the
+buildings.  Here and there shelters are built out of the detritus by the
+homeless.  
+~
+0
+0 1
+D3
+~
+~
+0 0 3063
+D6
+~
+~
+0 0 3065
+S
+#3065
+{cEn{yt{cran{yc{ce to t{yh{ce {yThie{cve{ys' {yGui{cl{yd{x~
+To the north is a large building, that lays largely in disrepair.  One
+would think it abandoned except for the conspicuous grates covering the
+windows, which look relatively new.  An imposing metal door also blocks
+entry to the building.  
+~
+0
+0 1
+D2
+~
+~
+0 0 3066
+D9
+~
+~
+0 0 3064
+S
+#3066
+{MT{mhe {MD{mark {MA{mlley{x~
+An everpresent gloom hangs over this alley, giving you only indirect
+light to aid your eye.  Garbage lays strewn along the sides of the
+buildings.  Here and there shelters are built out of the detritus by the
+homeless.  
+~
+0
+0 1
+D0
+~
+~
+0 0 3065
+D2
+~
+~
+0 0 3067
+S
+#3067
+{MT{mhe {MD{mark {MA{mlley{x~
+An everpresent gloom hangs over this alley, giving you only indirect
+light to aid your eye.  Garbage lays strewn along the sides of the
+buildings.  Here and there shelters are built out of the detritus by the
+homeless.  
+~
+0
+0 1
+D0
+~
+~
+0 0 3066
+D9
+~
+~
+0 0 3068
+S
+#3068
+{MT{mhe {MD{mark {MA{mlley{x~
+An everpresent gloom hangs over this alley, giving you only indirect
+light to aid your eye.  Garbage lays strewn along the sides of the
+buildings.  Here and there shelters are built out of the detritus by the
+homeless.  
+~
+0
+0 1
+D2
+~
+~
+0 0 3069
+D6
+~
+~
+0 0 3067
+S
+#3069
+{MT{mhe {MD{mark {MA{mlley{x~
+An everpresent gloom hangs over this alley, giving you only indirect
+light to aid your eye.  Garbage lays strewn along the sides of the
+buildings.  Here and there shelters are built out of the detritus by the
+homeless.  
+~
+0
+0 1
+D0
+~
+~
+0 0 3068
+D2
+~
+~
+0 0 3041
 S
 #0
 
@@ -6199,7 +6226,6 @@ M 3100 spec_cast_cleric
 M 3120 spec_cast_cleric
 M 3143 spec_mayor
 M 3163 spec_nasty
-M 3000 spec_cast_mage
 M 3005 spec_thief
 M 3011 spec_executioner
 M 3012 spec_cast_adept
@@ -6331,18 +6357,6 @@ G 0 3164 0
 G 0 3163 0
 G 0 3162 0
 M 0 3161 1 3160 1
-M 0 3071 2 3255 2
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3361 0 12
-M 0 3071 2 3255 2
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3362 0 13
 M 0 3072 1 3262 1
 E 0 3365 0 0
 E 0 3364 0 1
@@ -6353,8 +6367,6 @@ M 0 3162 1 3334 1
 O 0 3200 0 3352
 O 0 3200 0 3355
 O 0 3200 0 3356
-M 0 3011 1 3001 1
-E 0 3005 0 16
 M 0 3021 1 3002 1
 M 0 3043 1 3003 1
 G 0 3002 0
@@ -6368,7 +6380,6 @@ E 0 3364 0 1
 E 0 3350 0 16
 E 0 3353 0 5
 E 0 3355 0 4
-O 0 3135 0 3005
 M 0 3061 5 3006 5
 M 0 3040 1 3007 1
 G 0 3000 0
@@ -6404,14 +6415,8 @@ G 0 3027 0
 G 0 3028 0
 G 0 3029 0
 E 0 3022 0 16
-M 0 3062 16 3012 4
-M 0 3060 18 3014 2
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3356 0 6
-M 0 3062 16 3016 4
+M 0 3000 1 3014 1
+O 0 3135 0 3014
 M 0 3024 1 3017 1
 M 0 3060 18 3017 2
 E 0 3365 0 0
@@ -6457,13 +6462,6 @@ G 0 3004 0
 E 0 3022 0 16
 O 0 3200 0 3022
 M 0 3023 1 3023 1
-M 0 3062 16 3024 4
-M 0 3062 16 3025 4
-M 0 3063 5 3026 5
-E 0 3021 0 16
-E 0 3066 0 5
-E 0 3052 0 15
-M 0 3066 1 3026 1
 M 0 3026 1 3027 1
 E 0 3349 0 16
 M 0 3060 18 3027 2
@@ -6516,30 +6514,6 @@ G 0 3071 0
 G 0 3052 0
 G 0 3053 0
 G 0 3054 0
-M 0 3068 2 3040 2
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3361 0 12
-M 0 3068 2 3040 2
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3362 0 13
-M 0 3067 2 3041 2
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3360 0 10
-M 0 3067 2 3041 2
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3354 0 11
 M 0 3065 2 3044 1
 M 0 3046 1 3048 1
 G 0 3003 0
@@ -6551,8 +6525,6 @@ M 0 3006 1 3049 1
 G 0 3050 0
 G 0 3051 0
 M 0 3007 1 3050 1
-O 0 3010 0 3054
-M 0 3012 5 3054 1
 M 0 3070 5 3056 1
 G 0 3080 0
 G 0 3081 0
@@ -6575,7 +6547,6 @@ S
 3100 0 0 0 0 0 110 90 6 23
 3150 0 0 0 0 0 100 100 0 23
 3160 0 0 0 0 0 100 100 0 23
-3000 2 3 4 10 0 105 15 0 23
 3001 0 0 0 0 0 110 100 0 23
 3002 1 8 13 15 19 150 40 0 23
 3003 5 6 7 0 0 120 40 0 23

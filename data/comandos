@@ -1,4 +1,4 @@
-255
+261
 
 #COMANDO
 name north~
@@ -130,7 +130,7 @@ show none~
 name at~
 do_fun do_at~
 position dead~
-level 54
+level 102
 log log_normal~
 show undef~
 #END
@@ -199,6 +199,16 @@ show undef~
 #END
 
 #COMANDO
+name ftick~
+do_fun do_ftick~
+position resting~
+level 103
+log log_normal~
+show undef~
+#END
+
+
+#COMANDO
 name get~
 do_fun do_get~
 position resting~
@@ -211,7 +221,7 @@ show undef~
 name goto~
 do_fun do_goto~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -229,7 +239,7 @@ show undef~
 name guild~
 do_fun do_guild~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -328,7 +338,7 @@ show undef~
 name sockets~
 do_fun do_sockets~
 position dead~
-level 56
+level 102
 log log_normal~
 show undef~
 #END
@@ -373,7 +383,7 @@ show undef~
 name wizhelp~
 do_fun do_wizhelp~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -543,15 +553,6 @@ show undef~
 #COMANDO
 name socials~
 do_fun do_socials~
-position dead~
-level 0
-log log_normal~
-show undef~
-#END
-
-#COMANDO
-name show~
-do_fun do_show~
 position dead~
 level 0
 log log_normal~
@@ -937,6 +938,16 @@ show undef~
 #END
 
 #COMANDO
+name gocial~
+do_fun do_gocial~
+position sleeping~
+level 0
+log log_normal~
+show undef~
+#END
+
+
+#COMANDO
 name ,~
 do_fun do_emote~
 position resting~
@@ -1111,6 +1122,15 @@ show undef~
 name envenom~
 do_fun do_envenom~
 position resting~
+level 0
+log log_normal~
+show undef~
+#END
+
+#COMANDO
+name feed~
+do_fun do_feed~
+position fighting~
 level 0
 log log_normal~
 show undef~
@@ -1634,7 +1654,7 @@ show undef~
 name advance~
 do_fun do_advance~
 position dead~
-level 60
+level 103
 log log_always~
 show undef~
 #END
@@ -1643,7 +1663,7 @@ show undef~
 name dump~
 do_fun do_dump~
 position dead~
-level 60
+level 103
 log log_always~
 show none~
 #END
@@ -1652,7 +1672,7 @@ show none~
 name trust~
 do_fun do_trust~
 position dead~
-level 60
+level 103
 log log_always~
 show undef~
 #END
@@ -1661,7 +1681,7 @@ show undef~
 name violate~
 do_fun do_violate~
 position dead~
-level 60
+level 103
 log log_always~
 show undef~
 #END
@@ -1670,7 +1690,7 @@ show undef~
 name allow~
 do_fun do_allow~
 position dead~
-level 58
+level 103
 log log_always~
 show undef~
 #END
@@ -1679,7 +1699,7 @@ show undef~
 name ban~
 do_fun do_ban~
 position dead~
-level 58
+level 103
 log log_always~
 show undef~
 #END
@@ -1688,7 +1708,7 @@ show undef~
 name deny~
 do_fun do_deny~
 position dead~
-level 59
+level 103
 log log_always~
 show undef~
 #END
@@ -1697,7 +1717,7 @@ show undef~
 name disconnect~
 do_fun do_disconnect~
 position dead~
-level 57
+level 102
 log log_always~
 show undef~
 #END
@@ -1706,7 +1726,7 @@ show undef~
 name flag~
 do_fun do_flag~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1715,7 +1735,7 @@ show undef~
 name freeze~
 do_fun do_freeze~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1724,7 +1744,7 @@ show undef~
 name permban~
 do_fun do_permban~
 position dead~
-level 59
+level 103
 log log_always~
 show undef~
 #END
@@ -1733,7 +1753,7 @@ show undef~
 name protect~
 do_fun do_protect~
 position dead~
-level 59
+level 103
 log log_always~
 show undef~
 #END
@@ -1742,7 +1762,7 @@ show undef~
 name reboo~
 do_fun do_reboo~
 position dead~
-level 59
+level 103
 log log_normal~
 show none~
 #END
@@ -1751,7 +1771,7 @@ show none~
 name reboot~
 do_fun do_reboot~
 position dead~
-level 59
+level 103
 log log_always~
 show undef~
 #END
@@ -1760,7 +1780,7 @@ show undef~
 name set~
 do_fun do_set~
 position dead~
-level 58
+level 103
 log log_always~
 show undef~
 #END
@@ -1769,7 +1789,7 @@ show undef~
 name shutdow~
 do_fun do_shutdow~
 position dead~
-level 59
+level 103
 log log_normal~
 show none~
 #END
@@ -1778,7 +1798,7 @@ show none~
 name shutdown~
 do_fun do_shutdown~
 position dead~
-level 59
+level 103
 log log_always~
 show undef~
 #END
@@ -1787,7 +1807,7 @@ show undef~
 name wizlock~
 do_fun do_wizlock~
 position dead~
-level 58
+level 103
 log log_always~
 show undef~
 #END
@@ -1796,7 +1816,7 @@ show undef~
 name force~
 do_fun do_force~
 position dead~
-level 53
+level 101
 log log_always~
 show undef~
 #END
@@ -1805,7 +1825,7 @@ show undef~
 name load~
 do_fun do_load~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1814,7 +1834,7 @@ show undef~
 name newlock~
 do_fun do_newlock~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1823,7 +1843,7 @@ show undef~
 name nochannels~
 do_fun do_nochannels~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -1832,7 +1852,7 @@ show undef~
 name noemote~
 do_fun do_noemote~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -1841,7 +1861,7 @@ show undef~
 name noshout~
 do_fun do_noshout~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -1859,7 +1879,7 @@ show undef~
 name notell~
 do_fun do_notell~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -1868,7 +1888,7 @@ show undef~
 name pecho~
 do_fun do_pecho~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1877,7 +1897,7 @@ show undef~
 name pardon~
 do_fun do_pardon~
 position dead~
-level 57
+level 102
 log log_always~
 show undef~
 #END
@@ -1886,7 +1906,7 @@ show undef~
 name purge~
 do_fun do_purge~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1895,7 +1915,7 @@ show undef~
 name restore~
 do_fun do_restore~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1904,7 +1924,7 @@ show undef~
 name sla~
 do_fun do_sla~
 position dead~
-level 57
+level 102
 log log_normal~
 show none~
 #END
@@ -1913,7 +1933,7 @@ show none~
 name slay~
 do_fun do_slay~
 position dead~
-level 57
+level 102
 log log_always~
 show undef~
 #END
@@ -1922,7 +1942,7 @@ show undef~
 name teleport~
 do_fun do_transfer~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -1931,7 +1951,7 @@ show undef~
 name transfer~
 do_fun do_transfer~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -1940,7 +1960,7 @@ show undef~
 name poofin~
 do_fun do_bamfin~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -1949,7 +1969,7 @@ show undef~
 name poofout~
 do_fun do_bamfout~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -1958,7 +1978,7 @@ show undef~
 name gecho~
 do_fun do_echo~
 position dead~
-level 56
+level 102
 log log_always~
 show undef~
 #END
@@ -1967,7 +1987,7 @@ show undef~
 name holylight~
 do_fun do_holylight~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -1976,7 +1996,7 @@ show undef~
 name incognito~
 do_fun do_incognito~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -1985,7 +2005,7 @@ show undef~
 name invis~
 do_fun do_invis~
 position dead~
-level 52
+level 101
 log log_normal~
 show none~
 #END
@@ -1994,7 +2014,7 @@ show none~
 name log~
 do_fun do_log~
 position dead~
-level 59
+level 103
 log log_always~
 show undef~
 #END
@@ -2003,7 +2023,7 @@ show undef~
 name memory~
 do_fun do_memory~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2012,7 +2032,7 @@ show undef~
 name mwhere~
 do_fun do_mwhere~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2021,7 +2041,7 @@ show undef~
 name owhere~
 do_fun do_owhere~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2030,7 +2050,7 @@ show undef~
 name peace~
 do_fun do_peace~
 position dead~
-level 55
+level 102
 log log_normal~
 show undef~
 #END
@@ -2039,7 +2059,7 @@ show undef~
 name echo~
 do_fun do_recho~
 position dead~
-level 54
+level 102
 log log_always~
 show undef~
 #END
@@ -2048,7 +2068,7 @@ show undef~
 name return~
 do_fun do_return~
 position dead~
-level 54
+level 102
 log log_normal~
 show undef~
 #END
@@ -2057,7 +2077,7 @@ show undef~
 name snoop~
 do_fun do_snoop~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -2066,7 +2086,7 @@ show undef~
 name stat~
 do_fun do_stat~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2075,7 +2095,7 @@ show undef~
 name string~
 do_fun do_string~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -2084,7 +2104,7 @@ show undef~
 name switch~
 do_fun do_switch~
 position dead~
-level 54
+level 102
 log log_always~
 show undef~
 #END
@@ -2093,7 +2113,7 @@ show undef~
 name wizinvis~
 do_fun do_invis~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2102,7 +2122,7 @@ show undef~
 name vnum~
 do_fun do_vnum~
 position dead~
-level 56
+level 102
 log log_normal~
 show undef~
 #END
@@ -2111,8 +2131,17 @@ show undef~
 name zecho~
 do_fun do_zecho~
 position dead~
-level 56
+level 102
 log log_always~
+show undef~
+#END
+
+#COMANDO
+name wrlist~
+do_fun do_wrlist~
+position dead~
+level 101
+log log_normal~
 show undef~
 #END
 
@@ -2120,7 +2149,7 @@ show undef~
 name clone~
 do_fun do_clone~
 position dead~
-level 55
+level 102
 log log_always~
 show undef~
 #END
@@ -2129,7 +2158,7 @@ show undef~
 name wiznet~
 do_fun do_wiznet~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2138,7 +2167,7 @@ show undef~
 name immtalk~
 do_fun do_immtalk~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2147,7 +2176,7 @@ show undef~
 name imotd~
 do_fun do_imotd~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2156,7 +2185,7 @@ show undef~
 name :~
 do_fun do_immtalk~
 position dead~
-level 52
+level 101
 log log_normal~
 show none~
 #END
@@ -2165,7 +2194,7 @@ show none~
 name smote~
 do_fun do_smote~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2174,7 +2203,7 @@ show undef~
 name prefi~
 do_fun do_prefi~
 position dead~
-level 52
+level 101
 log log_normal~
 show none~
 #END
@@ -2183,7 +2212,7 @@ show none~
 name prefix~
 do_fun do_prefix~
 position dead~
-level 52
+level 101
 log log_normal~
 show undef~
 #END
@@ -2192,7 +2221,7 @@ show undef~
 name mpdump~
 do_fun do_mpdump~
 position dead~
-level 52
+level 101
 log log_never~
 show undef~
 #END
@@ -2201,7 +2230,7 @@ show undef~
 name mpstat~
 do_fun do_mpstat~
 position dead~
-level 52
+level 101
 log log_never~
 show undef~
 #END

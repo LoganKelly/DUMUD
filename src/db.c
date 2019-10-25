@@ -102,6 +102,7 @@ WEATHER_DATA		weather_info;
 
 sh_int			gsn_backstab;
 sh_int			gsn_dodge;
+sh_int			gsn_vamp_haste;
 sh_int			gsn_envenom;
 sh_int			gsn_hide;
 sh_int			gsn_peek;
@@ -142,6 +143,7 @@ sh_int  		gsn_whip;
 sh_int  		gsn_bash;
 sh_int  		gsn_berserk;
 sh_int  		gsn_dirt;
+sh_int  		gsn_feed;
 sh_int  		gsn_hand_to_hand;
 sh_int  		gsn_trip;
  
@@ -531,7 +533,7 @@ void new_load_area( FILE *fp )
     pArea->min_vnum        = 0;
     pArea->max_vnum        = 0;
     pArea->area_flags   = 0;
-/*  pArea->recall       = ROOM_VNUM_TEMPLE;        ROM OLC */
+/*  pArea->recall       = ROOM_VNUM_RECALL;        ROM OLC */
 
     for ( ; ; )
     {

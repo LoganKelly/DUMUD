@@ -1,0 +1,135 @@
+#PLAYER
+Name Vampwar~
+Id   1060377944
+LogO 1071288228
+Vers 5
+CNa  Vampwar~
+Prom {W-=HP:{R%h/%H {WBP:{M%p/%P {WMV:{C%v/%V {WTNL:{x{M%X%b{W=-{x ~
+Race vampire~
+Sex  1
+Cla  3
+Levl 1
+Sec  0
+Plyd 7547
+Scro 22
+Room 3014
+HMVB  -17 20 100 100 100 100 0 20
+Gold 0
+Silv 0
+Exp  1400
+Act  EFGHJQT
+AfBy DFJ
+Comm NO
+Pos  8
+Prac 5
+Trai 3
+Save  -1
+Alig  0
+Hit   1
+ACs 95 95 95 99
+Attr 17 12 14 10 15
+AMod 0 0 0 0 0
+Pass vampwar~
+Titl  the Newbie~
+Pnts 48
+TSex 1
+LLev 1
+HMVP 20 100 100
+Cnd  0 0 0 0
+Boards       5 General 0 Ideas 0 Announce 0 Bugs 0 Personal 0 
+Sk 1 'axe'
+Sk 1 'dagger'
+Sk 1 'flail'
+Sk 1 'mace'
+Sk 1 'polearm'
+Sk 1 'shield block'
+Sk 1 'spear'
+Sk 40 'sword'
+Sk 1 'whip'
+Sk 1 'bash'
+Sk 1 'disarm'
+Sk 1 'enhanced damage'
+Sk 100 'feed'
+Sk 1 'parry'
+Sk 1 'rescue'
+Sk 1 'second attack'
+Sk 1 'third attack'
+Sk 1 'scrolls'
+Sk 1 'staves'
+Sk 1 'wands'
+Sk 50 'recall'
+Sk 1 ''
+Gr 'rom basics'
+Gr 'warrior basics'
+Gr 'warrior default'
+Gr 'weaponsmaster'
+Affc 'detect hidden'   0   1  -1   0   0         32
+Affc 'detect invis'   0   1  -1   0   0          8
+End
+
+#O
+Vnum 3716
+Nest 0
+Cond 0
+Wear 0
+Cost 0
+Val  0 0 74 0 0
+End
+
+#O
+Vnum 3703
+Nest 0
+Cond 0
+Wear 5
+Cost 0
+End
+
+#O
+Vnum 3702
+Nest 0
+Cond 0
+Wear 16
+Cost 360
+End
+
+#O
+Vnum 3704
+Nest 0
+Cond 0
+Wear 11
+Cost 0
+End
+
+#O
+Vnum 3162
+Nest 0
+Cond 0
+Wear -1
+Cost 500
+End
+
+#O
+Vnum 3162
+Nest 0
+Cond 0
+Wear -1
+Cost 500
+End
+
+#O
+Vnum 3162
+Nest 0
+Cond 0
+Wear -1
+Cost 500
+End
+
+#O
+Vnum 3162
+Nest 0
+Cond 0
+Wear -1
+Cost 500
+End
+
+#END

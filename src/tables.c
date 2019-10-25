@@ -305,6 +305,7 @@ const struct flag_type comm_flags[] =
     {   "nochannels",		COMM_NOCHANNELS,	FALSE	},
     {   "snoop_proof",		COMM_SNOOP_PROOF,	FALSE	},
     {   "afk",			COMM_AFK,		TRUE	},
+    {   "nogocial",		COMM_NOGOCIAL,		TRUE	},
     {	NULL,			0,			0	}
 };
 

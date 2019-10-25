@@ -300,6 +300,7 @@ DECLARE_OLC_FUN( skedit_nombre		);
 DECLARE_OLC_FUN( skedit_slot		);
 DECLARE_OLC_FUN( skedit_nivel		);
 DECLARE_OLC_FUN( skedit_rating		);
+DECLARE_OLC_FUN( skedit_race		);
 DECLARE_OLC_FUN( skedit_list		);
 DECLARE_OLC_FUN( skedit_gsn		);
 DECLARE_OLC_FUN( skedit_spell		);

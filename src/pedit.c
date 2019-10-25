@@ -37,7 +37,7 @@ void pedit( CHAR_DATA *ch, char *argument)
 {
     if (ch->pcdata->security < MIN_PEDIT_SECURITY)
     {
-	send_to_char("MPEdit : Insuficiente seguridad para editar codigo.\n\r",ch);
+	send_to_char("MPEdit : Insufficient security level to edit MOBProgs.\n\r",ch);
 	edit_done(ch);
 	return;
     }
@@ -70,7 +70,7 @@ void do_pedit(CHAR_DATA *ch, char *argument)
 
     if ( ch->pcdata->security < MIN_PEDIT_SECURITY )
     {
-    	send_to_char( "PEdit : Seguridad insuficiente para editar codigo.\n\r", ch );
+    	send_to_char( "MPEdit : Insufficient security level to edit MOBProgs.\n\r", ch );
     	return;
     }
 
@@ -82,17 +82,17 @@ void do_pedit(CHAR_DATA *ch, char *argument)
 
 	if ( (pArea = get_vnum_area(atoi(command))) == NULL )
 	{
-		send_to_char( "PEdit : Vnum no asignado a ningun area.\n\r", ch);
+		send_to_char( "MPEdit : Vnum is not assigned to any area.\n\r", ch);
 		return;
 	}
 	if ( !IS_BUILDER(ch, pArea))
 	{
-		send_to_char( "PEdit : Seguridad insuficiente para editar area.\n\r", ch);
+		send_to_char( "MPEdit : Insufficient security level to edit area.\n\r", ch);
 		return;
 	}
 	if (! (pMcode = get_mprog_index( atoi(command) ) ) )
 	{
-		send_to_char("PEdit : Ese vnum no existe.\n\r",ch);
+		send_to_char("MPEdit : That vnum does not exist.\n\r",ch);
 		return;
 	}
 	ch->desc->pEdit		= (void *)pMcode;
@@ -112,8 +112,8 @@ void do_pedit(CHAR_DATA *ch, char *argument)
 	return;
     }
 
-    send_to_char( "Sintaxis : pedit [vnum]\n\r", ch );
-    send_to_char( "           pedit create [vnum]\n\r", ch );
+    send_to_char( "Syntax : mpedit [vnum]\n\r", ch );
+    send_to_char( "         mpedit create [vnum]\n\r", ch );
 
     return;
 }
@@ -128,31 +128,31 @@ MPEDIT (pedit_create)
 
     if (argument[0] == '\0' || value == 0)
     {
-        send_to_char("Sintaxis: pedit create [vnum]\n\r",ch);
+        send_to_char("Syntax: mpedit create [vnum]\n\r",ch);
         return FALSE;
     }
 
     if (get_mprog_index(value) )
     {
-        send_to_char("PEdit: Vnum ya existente.\n\r",ch);
+        send_to_char("MPEdit: Vnum already exists.\n\r",ch);
         return FALSE;
     }
 
     if ( (pArea = get_vnum_area( value )) == NULL )
     {
-    	send_to_char("PEdit: Vnum no asignado a ningun Area.\n\r", ch);
+    	send_to_char("MPEdit: Vnum is not assigned to any area.\n\r", ch);
     	return FALSE;
     }
 
     if ( !IS_BUILDER(ch, pArea) )
     {
-    	send_to_char( "PEdit: Vnum de un area que no puedes editar.\n\r", ch );
+    	send_to_char( "MPEdit: Vnum belongs to an area you cannot edit.\n\r", ch );
     	return FALSE;
     }
 
     if (ch->pcdata->security < MIN_PEDIT_SECURITY)
     {
-        send_to_char("PEdit: Insuficiente seguridad para crear MobProgs.\n\r", ch);
+        send_to_char("MPEdit: Insufficient security level to create MobProgs.\n\r", ch);
         return FALSE;
     }
 
@@ -164,7 +164,7 @@ MPEDIT (pedit_create)
 
     set_editor(ch->desc,ED_PROG,pMcode);
 
-    send_to_char("Programa creado.\n\r",ch);
+    send_to_char("Program created.\n\r",ch);
 
     return TRUE;
 }

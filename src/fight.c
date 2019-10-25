@@ -41,6 +41,7 @@
  */
 void	check_assist	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 bool	check_dodge	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool	check_vamp_haste args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void	check_killer	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 bool	check_parry	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 bool    check_shield_block     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
@@ -208,12 +209,15 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
     if (ch->position < POS_RESTING)
 	return;
 
+    if ( check_vamp_haste (ch, victim) )
+    	return;
+
     if (IS_NPC(ch))
     {
 	mob_hit(ch,victim,dt);
 	return;
     }
-
+    
     one_hit( ch, victim, dt );
 
     if (ch->fighting != victim)
@@ -697,7 +701,7 @@ bool damage(CHAR_DATA *ch,CHAR_DATA *victim,int dam,int dt,int dam_type,
     if ( dam > 1200 && dt >= TYPE_HIT)
     {
 	bug( "Damage: %d: more than 1200 points!", dam );
-	dam = 1200;
+	/*dam = 1200;*/
 	if (!IS_IMMORTAL(ch))
 	{
 	    OBJ_DATA *obj;
@@ -855,14 +859,14 @@ bool damage(CHAR_DATA *ch,CHAR_DATA *victim,int dam,int dt,int dam_type,
 
     case POS_DEAD:
 	act( "$n is DEAD!!", victim, 0, 0, TO_ROOM );
-	send_to_char( "You have been KILLED!!\n\r\n\r", victim );
+	send_to_char( "{RYou have been KILLED!!{x\n\r\n\r", victim );
 	break;
 
     default:
 	if ( dam > victim->max_hit / 4 )
-	    send_to_char( "That really did HURT!\n\r", victim );
+	    send_to_char( "That really did {RHURT!{x\n\r", victim );
 	if ( victim->hit < victim->max_hit / 4 )
-	    send_to_char( "You sure are BLEEDING!\n\r", victim );
+	    send_to_char( "{RYou sure are BLEEDING!{x\n\r", victim );
 	break;
     }
 
@@ -1365,6 +1369,36 @@ bool check_dodge( CHAR_DATA *ch, CHAR_DATA *victim )
     return TRUE;
 }
 
+bool check_vamp_haste ( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+	int chance;
+	
+	if( victim->race != 3 )
+	   return FALSE;
+	/*if( IS_NPC(ch) && (ch->pIndexData->race != 3) )
+	   return FALSE;*/
+	
+	if(!IS_NPC(victim))
+	{
+		if( !(victim->pcdata->learned[gsn_vamp_haste] >= 0) )
+		return FALSE;
+		 
+	}
+	
+	if( !IS_AWAKE(victim) )
+	   return FALSE;
+	
+	chance = get_skill(victim,gsn_vamp_haste) / 2;
+	
+	if ( number_percent( ) >= chance + victim->level - ch->level )
+	   return FALSE;
+	
+	act( "{mYou evade all attacks in a flurry of {Msupernatural speed{m!{x", ch, NULL, victim, TO_VICT    );
+	act( "$N {mturns into a {Mblur{m, evading all attacks!{x", ch, NULL, victim, TO_CHAR    );
+	check_improve(victim, gsn_vamp_haste, TRUE, 3);
+	return TRUE; 
+}
+
 
 
 /*
@@ -1491,6 +1525,7 @@ void make_corpse( CHAR_DATA *ch )
     }
 
     corpse->level = ch->level;
+    corpse->drained = 0;
 
     sprintf( buf, corpse->short_descr, name );
     free_string( corpse->short_descr );
@@ -1956,11 +1991,11 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim, int total_levels )
     }
 
     /* more exp at the low levels */
-    if (gch->level < 6)
+    if (gch->level < 10)
     	xp = 10 * xp / (gch->level + 4);
 
     /* less at high */
-    if (gch->level > 35 )
+    if (gch->level > 65 )
 	xp =  15 * xp / (gch->level - 25 );
 
     /* reduce for playing time */
@@ -2021,7 +2056,7 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim,int dam,int dt,bool immune )
     else if ( dam <= 100)  { vs = "{y={Y={R= {BOBLITERATE {R={Y={y={x";
 			     vp = "{y={Y={R= {MOBLITERATES {R={Y={y={x";		}
     else if ( dam <= 125)  { vs = "{b>{C>{w> {YANNIHILATE {W<{C<{b<{x";
-			     vp = "{b>{C>{W> {YANNIHILATES {<W<{C<{b{x";		}
+			     vp = "{b>{C>{W> {YANNIHILATES {W<{C<{b{x";		}
     else if ( dam <= 150)  { vs = "{w<{W<{B< {GERADICATE {B>{W>{w>{x";
 			     vp = "{w<{W<{B< {GERADICATES {B>{W>{w>{x";			}
     else                   { vs = "{rdo {GU{bN{MS{WP{RE{rA{CK{YA{BB{gL{mE {rthings to{x";

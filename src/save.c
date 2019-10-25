@@ -206,8 +206,8 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
             ? ch->was_in_room->vnum
             : ch->in_room == NULL ? 3001 : ch->in_room->vnum );
 
-    fprintf( fp, "HMV  %d %d %d %d %d %d\n",
-	ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move );
+    fprintf( fp, "HMVB  %d %d %d %d %d %d %d %d\n",
+	ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move, ch->bp, ch->max_bp );
     if (ch->gold > 0)
       fprintf( fp, "Gold %ld\n",	ch->gold		);
     else
@@ -1011,7 +1011,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "Hitroll",	ch->hitroll,		fread_number( fp ) );
 	    KEY( "Hit",		ch->hitroll,		fread_number( fp ) );
 
-	    if ( !str_cmp( word, "HpManaMove" ) || !str_cmp(word,"HMV"))
+	    if ( !str_cmp( word, "HpManaMoveBlood" ) || !str_cmp(word,"HMVB"))
 	    {
 		ch->hit		= fread_number( fp );
 		ch->max_hit	= fread_number( fp );
@@ -1019,6 +1019,8 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 		ch->max_mana	= fread_number( fp );
 		ch->move	= fread_number( fp );
 		ch->max_move	= fread_number( fp );
+		ch->bp 		= fread_number( fp );
+		ch->max_bp	= fread_number( fp );
 		fMatch = TRUE;
 		break;
 	    }

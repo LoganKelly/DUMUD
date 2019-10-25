@@ -9,7 +9,7 @@ struct	race_type	*race_table;
 #endif
 int	maxrace;
 
-#define RACE_FILE	DATA_DIR "razas"
+#define RACE_FILE	DATA_DIR "races"
 #define RAEDIT( fun )		bool fun( CHAR_DATA *ch, char *argument )
 
 extern struct race_type xRace;
@@ -52,7 +52,7 @@ void    raedit (CHAR_DATA * ch, char *argument)
 
 	if (ch->pcdata->security < 7)
 	{
-		send_to_char ("RAEdit : Seguridad insuficiente para editar skills.\n\r", ch);
+		send_to_char ("RAEdit : Insufficient security level to edit races.\n\r", ch);
 		edit_done (ch);
 		return;
 	}
@@ -92,13 +92,13 @@ void do_raedit(CHAR_DATA *ch, char *argument)
 
     if ( ch->pcdata->security < 7 )
     {
-    	send_to_char( "RAEdit : Seguridad insuficiente para editar razas.\n\r", ch );
+    	send_to_char( "RAEdit : Insufficient security level to edit races.\n\r", ch );
     	return;
     }
 
     if ( IS_NULLSTR(argument) || (race = race_lookup(argument)) == 0 )
     {
-    	send_to_char( "Sintaxis : RAEdit [raza]\n\r", ch );
+    	send_to_char( "Syntax : RAEdit [race]\n\r", ch );
     	return;
     }
 
@@ -121,9 +121,9 @@ RAEDIT( raedit_show )
 
 	EDIT_RACE(ch,pRace);
 
-	sprintf( buf,	"Nombre      : [%s]\n\r", pRace->name );
+	sprintf( buf,	"Name      : [%s]\n\r", pRace->name );
 	send_to_char( buf, ch );
-	sprintf( buf,   "Raza PC     : [%s]\n\r", pRace->pc_race ? "SI" : "NO");
+	sprintf( buf,   "PC Race     : [%s]\n\r", pRace->pc_race ? "YES" : "NO");
 	send_to_char( buf, ch );
 	sprintf( buf,  	"Act         : [%s]\n\r", flag_string( act_flags, pRace->act) );
 	send_to_char( buf, ch );
@@ -148,7 +148,7 @@ RAEDIT( raedit_show )
 		size_table[pRace->size].name );
 	send_to_char( buf, ch );
 
-	send_to_char( "Nombre    CMu Exp       Nombre    CMu Exp       Nombre    CMu Exp\n\r", ch );
+	send_to_char( "Name    CMu Exp       Name    CMu Exp       Name    CMu Exp\n\r", ch );
 	for ( i = 0; i < MAX_CLASS; ++i )
 	{
 		sprintf( buf, "%-7.7s   %3d %4d(%3d)%s",
@@ -192,7 +192,7 @@ RAEDIT( raedit_list )
 	
 	for ( i = 0; race_table[i].name; i++ )
 	{
-		sprintf( buf, "%2d %c #B%-33.33s#b", i,
+		sprintf( buf, "{G%2d{x %c %-33.33s", i,
 		race_table[i].pc_race ? '+' : '-',
 		race_table[i].name );
 		if ( i % 2 == 1 )
@@ -221,13 +221,13 @@ RAEDIT( raedit_new )
 	
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : new [nombre-de-nueva-raza]\n\r", ch );
+		send_to_char( "Syntax : new [name-of-new-race]\n\r", ch );
 		return FALSE;
 	}
 
 	if (race_lookup(argument) != 0)
 	{
-		send_to_char ("Una raza con ese nombre ya existe!\n\r",ch);
+		send_to_char ("A race with that name already exists!\n\r",ch);
 		return FALSE;
 	}
 
@@ -250,7 +250,7 @@ RAEDIT( raedit_new )
 
 	if (!new_table) /* realloc failed */
 	{
-		send_to_char ("Falla en realloc. Preparate para el impacto.\n\r",ch);
+		send_to_char ("Failure in realloc function.  Prepare for impact.\n\r",ch);
 		return FALSE;
 	}
 
@@ -285,7 +285,7 @@ RAEDIT( raedit_new )
 	ch->desc->editor	= ED_RACE;
 	ch->desc->pEdit		= (void *) &race_table[maxRace-2];
 
-	send_to_char ("Nueva raza creada.\n\r",ch);
+	send_to_char ("New race created.\n\r",ch);
 	return TRUE;
 }
 
@@ -299,7 +299,7 @@ RAEDIT( raedit_cmult )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : cmult [clase] [multiplicador]\n\r", ch );
+		send_to_char( "Syntax : cmult [class] [multiplier]\n\r", ch );
 		return FALSE;
 	}
 
@@ -307,13 +307,13 @@ RAEDIT( raedit_cmult )
 
 	if ( (vclase = class_lookup( clase )) == -1 )
 	{
-		send_to_char( "RAEdit : Clase inexistente.\n\r", ch );
+		send_to_char( "RAEdit : Class does not exist.\n\r", ch );
 		return FALSE;
 	}
 
 	if ( !is_number(argument) )
 	{
-		send_to_char( "RAEdit : Argumento invalido.\n\r", ch );
+		send_to_char( "RAEdit : Argument invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -321,7 +321,7 @@ RAEDIT( raedit_cmult )
 
 	if ( mult < 1 || mult > 200 )
 	{
-		send_to_char( "RAEdit : Multiplicador invalido.\n\r", ch );
+		send_to_char( "RAEdit : Multiplier invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -340,7 +340,7 @@ RAEDIT( raedit_stats )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : stats [stat] [valor]\n\r", ch );
+		send_to_char( "Syntax : stats [stat] [value]\n\r", ch );
 		return FALSE;
 	}
 
@@ -350,13 +350,13 @@ RAEDIT( raedit_stats )
 
 	if ( vstat == NO_FLAG )
 	{
-		send_to_char( "RAEdit : Stat invalido.\n\r", ch );
+		send_to_char( "RAEdit : Stat invalid.\n\r", ch );
 		return FALSE;
 	}
 
 	if ( !is_number(argument) )
 	{
-		send_to_char( "RAEdit : Valor debe ser un numero.\n\r", ch );
+		send_to_char( "RAEdit : Value must be a number.\n\r", ch );
 		return FALSE;
 	}
 
@@ -364,7 +364,7 @@ RAEDIT( raedit_stats )
 
 	if ( valor < 3 || valor > 25 )
 	{
-		send_to_char( "RAEdit : Valor invalido.\n\r", ch );
+		send_to_char( "RAEdit : Value invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -383,7 +383,7 @@ RAEDIT( raedit_maxstats )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : maxstats [stat] [valor]\n\r", ch );
+		send_to_char( "Syntax : maxstats [stat] [value]\n\r", ch );
 		return FALSE;
 	}
 
@@ -393,13 +393,13 @@ RAEDIT( raedit_maxstats )
 
 	if ( vstat == -1 )
 	{
-		send_to_char( "RAEdit : Stat invalido.\n\r", ch );
+		send_to_char( "RAEdit : Stat invalid.\n\r", ch );
 		return FALSE;
 	}
 
 	if ( !is_number(argument) )
 	{
-		send_to_char( "RAEdit : Valor debe ser un numero.\n\r", ch );
+		send_to_char( "RAEdit : Value must be a number.\n\r", ch );
 		return FALSE;
 	}
 
@@ -407,7 +407,7 @@ RAEDIT( raedit_maxstats )
 
 	if ( valor < 3 || valor > 25 )
 	{
-		send_to_char( "RAEdit : Valor invalido.\n\r", ch );
+		send_to_char( "RAEdit : Value invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -426,7 +426,7 @@ RAEDIT( raedit_skills )
 
 	if (IS_NULLSTR(argument))
 	{
-		send_to_char( "Sintaxis : skills [numero] [skill]\n\r", ch );
+		send_to_char( "Syntax : skills [number] [skill]\n\r", ch );
 		return FALSE;
 	}
 
@@ -434,7 +434,7 @@ RAEDIT( raedit_skills )
 
 	if ( !is_number(snum) )
 	{
-		send_to_char( "RAEdit : Argumento invalido.\n\r", ch );
+		send_to_char( "RAEdit : Argument invalid.\n\r", ch );
 		return FALSE;
 	}
 	
@@ -442,7 +442,7 @@ RAEDIT( raedit_skills )
 
 	if ( num < 0 || num > 4 )
 	{
-		send_to_char( "RAEdit : Numero debe estar entre 0 y 4.\n\r", ch );
+		send_to_char( "RAEdit : The number must be between 0 and 4.\n\r", ch );
 		return FALSE;
 	}
 
@@ -450,7 +450,7 @@ RAEDIT( raedit_skills )
 
 	if ( sk == -1 )
 	{
-		send_to_char( "RAEdit : Argumento no es un skill.\n\r", ch );
+		send_to_char( "RAEdit : Argument is not a skill.\n\r", ch );
 		return FALSE;
 	}
 

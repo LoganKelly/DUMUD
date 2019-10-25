@@ -1110,7 +1110,9 @@ void handle_con_note_text (DESCRIPTOR_DATA *d, char * argument)
 	
 	
       string_append( ch, &ch->pcdata->in_progress->text );
-	d->connected = CON_NOTE_FINISH;
+
+      
+      d->connected = CON_NOTE_FINISH;
 	
 }
 

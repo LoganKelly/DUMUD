@@ -41,10 +41,23 @@
 #include "tables.h"
 #include "lookup.h"
 
+DECLARE_DO_FUN(do_rstat		);
+DECLARE_DO_FUN(do_mstat		);
+
 /*
  * Local functions.
  */
 ROOM_INDEX_DATA *	find_location	args( ( CHAR_DATA *ch, char *arg ) );
+
+
+void do_ftick (CHAR_DATA *ch, char *argument )
+{
+    int ftick = 1;
+    update_handler(ftick);
+    send_to_char( "You Have Forced Time To Fly By....TICK\n\r", ch );
+    return;
+}
+
 
 void do_wiznet( CHAR_DATA *ch, char *argument )
 {
@@ -68,14 +81,14 @@ void do_wiznet( CHAR_DATA *ch, char *argument )
 
     if (!str_prefix(argument,"on"))
     {
-	send_to_char("Welcome to Wiznet!\n\r",ch);
+	send_to_char("{WWelcome to Wiznet!\n\r{x",ch);
 	SET_BIT(ch->wiznet,WIZ_ON);
 	return;
     }
 
     if (!str_prefix(argument,"off"))
     {
-	send_to_char("Signing off of Wiznet.\n\r",ch);
+	send_to_char("{WSigning off of Wiznet.\n\r{x",ch);
 	REMOVE_BIT(ch->wiznet,WIZ_ON);
 	return;
     }
@@ -2286,10 +2299,7 @@ void do_return( CHAR_DATA *ch, char *argument )
 /* trust levels for load and clone */
 bool obj_check (CHAR_DATA *ch, OBJ_DATA *obj)
 {
-    if (IS_TRUSTED(ch,GOD)
-	|| (IS_TRUSTED(ch,IMMORTAL) && obj->level <= 20 && obj->cost <= 1000)
-	|| (IS_TRUSTED(ch,DEMI)	    && obj->level <= 10 && obj->cost <= 500)
-	|| (IS_TRUSTED(ch,ANGEL)    && obj->level <=  5 && obj->cost <= 250)
+    if (IS_TRUSTED(ch,AVATAR)
 	|| (IS_TRUSTED(ch,AVATAR)   && obj->level ==  0 && obj->cost <= 100))
 	return TRUE;
     else
@@ -2398,11 +2408,7 @@ void do_clone(CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ((mob->level > 20 && !IS_TRUSTED(ch,GOD))
-	||  (mob->level > 10 && !IS_TRUSTED(ch,IMMORTAL))
-	||  (mob->level >  5 && !IS_TRUSTED(ch,DEMI))
-	||  (mob->level >  0 && !IS_TRUSTED(ch,ANGEL))
-	||  !IS_TRUSTED(ch,AVATAR))
+	if (!IS_TRUSTED(ch,AVATAR))
 	{
 	    send_to_char(
 		"Your powers are not great enough for such a task.\n\r",ch);
@@ -2685,13 +2691,19 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	temp_prac = victim->practice;
 	victim->level    = 1;
 	victim->exp      = exp_per_level(victim,victim->pcdata->points);
-	victim->max_hit  = 10;
-	victim->max_mana = 100;
-	victim->max_move = 100;
+	victim->max_hit  = 18;
+	victim->max_mana = 98;
+	victim->max_move = 94;
+	victim->max_bp	 = 18;
+	victim->pcdata->perm_hit	= 18;
+    	victim->pcdata->perm_mana	= 98;
+    	victim->pcdata->perm_move	= 94;
+    	victim->pcdata->perm_bp		= 18;
 	victim->practice = 0;
 	victim->hit      = victim->max_hit;
 	victim->mana     = victim->max_mana;
 	victim->move     = victim->max_move;
+	victim->bp     	 = victim->max_bp;
 	advance_level( victim, TRUE );
 	victim->practice = temp_prac;
     }
@@ -2782,8 +2794,21 @@ void do_restore( CHAR_DATA *ch, char *argument )
             vch->hit 	= vch->max_hit;
             vch->mana	= vch->max_mana;
             vch->move	= vch->max_move;
+            vch->bp	= vch->max_bp;
             update_pos( vch);
             act("$n has restored you.",ch,NULL,vch,TO_VICT);
+            	/*For displaying the blood heal message*/
+		if( vch->bp >= vch->max_bp * 3 /4 && vch->race == 3)
+		{
+	    	vch->bh_set = 1;
+		}
+	
+		if( vch->bh_set > vch->bh_set2 && vch->race == 3)
+		{
+		send_to_char( "Your blood begins to regenerate your wounds more quickly.\n\r", vch );
+		vch->bh_set2 = 1;
+		}
+		/*end of blood heal display*/
         }
 
         sprintf(buf,"$N restored room %d.",ch->in_room->vnum);
@@ -2814,6 +2839,30 @@ void do_restore( CHAR_DATA *ch, char *argument )
             victim->hit 	= victim->max_hit;
             victim->mana	= victim->max_mana;
             victim->move	= victim->max_move;
+            victim->bp		= victim->max_bp;
+            /*For displaying the blood heal message*/
+	if( victim->bp >= victim->max_bp * 3 /4 && victim->race == 3)
+	{
+	    victim->bh_set = 1;
+	}
+	
+	if( victim->bh_set > victim->bh_set2 && victim->race == 3)
+	{
+		send_to_char( "Blood Healing turns on.\n\r", victim );
+		victim->bh_set2 = 1;
+	}
+	
+	if( victim->bp < victim->max_bp * 3 /4 && victim->race == 3)
+	{
+	    victim->bh_set = 0;
+	}
+	if( victim->bh_set < victim->bh_set2 && victim->race == 3)
+	{
+	    send_to_char( "Blood Healing turns off.\n\r", victim );
+	    victim->bh_set = 0;
+	    victim->bh_set2 = 0;
+	}
+	/*end of blood heal display*/
             update_pos( victim);
 	    if (victim->in_room != NULL)
                 act("$n has restored you.",ch,NULL,victim,TO_VICT);
@@ -2836,6 +2885,30 @@ void do_restore( CHAR_DATA *ch, char *argument )
     victim->hit  = victim->max_hit;
     victim->mana = victim->max_mana;
     victim->move = victim->max_move;
+    victim->bp	 = victim->max_bp;
+    /*For displaying the blood heal message*/
+	if( victim->bp >= victim->max_bp * 3 /4 && victim->race == 3)
+	{
+	    victim->bh_set = 1;
+	}
+	
+	if( victim->bh_set > victim->bh_set2 && victim->race == 3)
+	{
+		send_to_char( "Blood Healing turns on.\n\r", victim );
+		victim->bh_set2 = 1;
+	}
+	
+	if( victim->bp < victim->max_bp * 3 /4 && victim->race == 3)
+	{
+	    victim->bh_set = 0;
+	}
+	if( victim->bh_set < victim->bh_set2 && victim->race == 3)
+	{
+	    send_to_char( "Blood Healing turns off.\n\r", victim );
+	    victim->bh_set = 0;
+	    victim->bh_set2 = 0;
+	}
+	/*end of blood heal display*/
     update_pos( victim );
     act( "$n has restored you.", ch, NULL, victim, TO_VICT );
     sprintf(buf,"$N restored %s",
@@ -4363,7 +4436,113 @@ void do_incognito( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_wrlist( CHAR_DATA *ch, char *argument )
+{
+  AREA_DATA *pArea;
+  ROOM_INDEX_DATA *room = NULL;
+  ROOM_INDEX_DATA *in_room;
+  MOB_INDEX_DATA *mob;
+  OBJ_INDEX_DATA *obj;
+  char arg[MAX_STRING_LENGTH];
+  char arg1[MAX_STRING_LENGTH];
+  char arg2[MAX_STRING_LENGTH];
+  int uvnum;
+  int lvnum;
+  int MR = 60000;
+  int type = -1;
+  pArea = ch->in_room->area;
+  int resetcount = 0;
+  
+  argument = one_argument( argument, arg );
+  argument = one_argument( argument, arg1 );
+  argument = one_argument( argument, arg2 );
+  uvnum = ( is_number( arg2 ) ) ? atoi( arg2 ) : 0;
+  lvnum = ( is_number( arg1 ) ) ? atoi( arg1 ) : 0;  
 
+  if ( !str_cmp( arg, "o" ) )
+    type = 2;
+  if ( !str_cmp( arg, "m" ) )
+    type = 1;
+  if ( !str_cmp( arg, "rx" ) )
+    type = 0;
+  if ( !str_cmp( arg, "r" ) )
+    type = 3;
+
+  if ( ( uvnum - lvnum ) > 200 )
+  {
+    send_to_char( "{WThat range is too large.\n\r{x", ch );
+    return;
+  }
+    
+  if ( ( arg[0] == '\0' ) 
+   || ( type == -1 ) )
+  {
+    send_to_char( "Syntax: wrlist [type] [lvnum] [uvnum]\n\r", ch );
+    return;
+  }
+  if ( uvnum == 0 ) uvnum = pArea->max_vnum;
+  if ( lvnum == 0 ) lvnum = pArea->min_vnum;
+  
+
+  if ( uvnum > MR || uvnum < 1 || lvnum > MR || lvnum < 1 || lvnum > uvnum )
+  {
+    send_to_char( "{WInvalid level(s).\n\r{x", ch );
+    return;
+  }
+
+  in_room = ch->in_room;  
+  if ( type == 0 )
+  {
+    char_from_room( ch );
+  }
+  for ( MR = lvnum; MR <= uvnum; MR++ )
+  {
+    if ( type == 0 )
+    {
+      resetcount++;
+      if ( resetcount >= 25 )
+      {
+      send_to_char( "{WMaximum reset number reached.\n\r{x", ch );
+      break;
+      }		
+      if ( ( room = get_room_index( MR ) ) )
+      {
+        sprintf( log_buf, "{R%-5d  {w%-20s\n\r", room->vnum, room->name );
+        send_to_char( log_buf, ch );
+        char_to_room( ch, room );
+        do_resets( ch, "" );
+        char_from_room( ch );
+      }
+    }
+    if ( type == 3 )
+    {
+    	if ( ( room = get_room_index( MR ) ) )
+    	{
+    	sprintf( log_buf, "{R%-5d  {w%-20s\n\r", room->vnum, room->name );
+        send_to_char( log_buf, ch );
+        }
+    }	
+    if ( type == 2 )
+    {
+      if ( ( obj = get_obj_index( MR ) ) )
+      {
+        sprintf( log_buf, "{R%-5d  {w%-20s\n\r",  obj->vnum, obj->name );
+        send_to_char( log_buf, ch );
+      }
+    }
+    if ( type == 1 )
+    {
+      if ( ( mob = get_mob_index( MR ) ) )
+      {
+        sprintf( log_buf, "{R%-5d  {w%-20s\n\r", mob->vnum, mob->player_name );
+        send_to_char( log_buf, ch );
+      }
+    }
+  }
+  if ( type == 0 )
+    char_to_room( ch, in_room );
+  return;
+}
 
 void do_holylight( CHAR_DATA *ch, char *argument )
 {
@@ -4422,3 +4601,4 @@ void do_prefix (CHAR_DATA *ch, char *argument)
 
     ch->prefix = str_dup(argument);
 }
+

@@ -530,7 +530,11 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	send_to_char( "You don't have enough mana.\n\r", ch );
 	return;
     }
-      
+    if ( !IS_NPC(ch) && (ch->bp < mana / 10) && ch->race == 3 )
+    {
+    	send_to_char( "You don't have enough blood.\n\r", ch );
+      	return;
+    }  	
     if ( str_cmp( skill_table[sn].name, "ventriloquate" ) )
 	say_spell( ch, sn );
       
@@ -540,10 +544,16 @@ void do_cast( CHAR_DATA *ch, char *argument )
     {
 	send_to_char( "You lost your concentration.\n\r", ch );
 	check_improve(ch,sn,FALSE,1);
+	if( ch->race == 3)
+	ch->bp -= mana / 20;
+	else
 	ch->mana -= mana / 2;
     }
     else
     {
+    	if( ch->race == 3)
+    	ch->bp -= mana / 10;
+    	else
         ch->mana -= mana;
         if (IS_NPC(ch) || class_table[ch->class].fMana) 
 	/* class has spells */
@@ -4440,7 +4450,7 @@ void spell_word_of_recall( int sn, int level, CHAR_DATA *ch,void *vo,int target)
     if (IS_NPC(victim))
       return;
    
-    if ((location = get_room_index( ROOM_VNUM_TEMPLE)) == NULL)
+    if ((location = get_room_index( ROOM_VNUM_RECALL)) == NULL)
     {
 	send_to_char("You are completely lost.\n\r",victim);
 	return;

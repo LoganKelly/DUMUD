@@ -6,17 +6,29 @@ To      all~
 Subject Work so far on the mud~
 Text
 Features we have added to the MUD so far:
+
 #1:The MUD came with Lope's color code, and Ivan's OLC v.201 + MobProgs
+
 #2:Added NE, NW, SE, and SW directions
+
 #3:Set equipment slots that are empty to show in equipment list
+
 #4:Added the lifebar battle prompt
+
 #5:Fixed issue with characters with colored names so that they would save to the correct file
+
 #6:Spiffed up the score sheet, still needs debugging
+
 #7:Lengthend prompt from 50 to 100 characters max length
+
 #8:Added auto-damage, and got it to work correctly
+
 #9:Added Erwin's Board System, and made string editor usable for writing notes (w00t!)
+
 #10: Midgaard is now replaced with Haven, and southern midgaard is removed
+
 #11: Newbie boot camp being worked on, Vnums 32600-32699
+
 ~
 
 Sender  Neepzeep~
@@ -27,6 +39,7 @@ To      all~
 Subject Board Change~
 Text
 Added total notes column to board
+
 ~
 
 Sender  Neepzeep~
@@ -37,7 +50,9 @@ To      all~
 Subject Auto flags changed~
 Text
 Set more autoflags to on by default for new characters (autodamage,
+
 autoexit, autosac, autoloot, and autogold).  
+
 ~
 
 Sender  Neepzeep~
@@ -48,6 +63,7 @@ To      all~
 Subject Ansi color at startup~
 Text
 Prompt for ANSI color was added at startup
+
 ~
 
 Sender  Neepzeep~
@@ -58,5 +74,156 @@ To      all~
 Subject Title Screen added~
 Text
 Title screen added for DUMUD
+
+~
+
+Sender  Neepzeep~
+Date    Thu Jul  3 21:42:25 2003~
+Stamp   1057286721
+Expire  1109126565
+To      all~
+Subject Score sheet and Boot Camp~
+Text
+Finished overall structure of the newbie boot camp, and did some
+
+debugging of the score sheet 
+
+~
+
+Sender  Neepzeep~
+Date    Mon Jul  7 10:50:13 2003~
+Stamp   1057593068
+Expire  1109433019
+To      all~
+Subject socials~
+Text
+Fixed all socials so that they all function, added Atomic Wedgie social,
+
+it is awesome 
+
+~
+
+Sender  Neepzeep~
+Date    Tue Jul  8 14:41:47 2003~
+Stamp   1057693366
+Expire  1109533321
+To      all~
+Subject max level increased~
+Text
+The maximum level was increased to 103, 100 mortal and 3 immortal levels.
+
+Still some issues with spells and skills though (i think).  
+
+~
+
+Sender  Neepzeep~
+Date    Tue Jul  8 15:46:05 2003~
+Stamp   1057697226
+Expire  1109537175
+To      all~
+Subject Automated titles~
+Text
+Got rid of automated titles when players advance to a new level.  All
+
+titles stay as "the Newbie" until otherwise specified 
+
+~
+
+Sender  Neepzeep~
+Date    Sun Aug  3 21:27:34 2003~
+Stamp   1059964216
+Expire  1111804074
+To      all~
+Subject Ftick, Blood Points, etc.~
+Text
+Added the immortal command FTICK, allows level 103 immortals to force a
+
+tick at any time.  Blood points added for vampires, drains at a constant
+
+rate over time.  When blood points reach zero, health decreases.  When blood
+
+points are high, added regeneration effect called Blood Heal takes effect.  
+
+~
+
+Sender  Neepzeep~
+Date    Mon Aug  4 23:08:34 2003~
+Stamp   1060056788
+Expire  1111896530
+To      all~
+Subject Feed skill~
+Text
+Added the feed skill for vampires, which currently allows them to gain
+
+blood points from corpses.  
+
+~
+
+Sender  Neepzeep~
+Date    Thu Aug  7 23:08:19 2003~
+Stamp   1060315815
+Expire  1112155731
+To      all~
+Subject Vamp prompt, Feed, etc.~
+Text
+Added a new prompt for vampires, which displays blood points instead of
+
+mana.  Feed skill also revised, works during combat as well as on corpses. 
+
+When vampires cast spells, they now use blood points instead of mana as
+
+well.  
+
+~
+
+Sender  Neepzeep~
+Date    Tue Oct 14 20:07:00 2003~
+Stamp   1066180154
+Expire  1118020048
+To      all~
+Subject Wrlist command added~
+Text
+Wrlist command added for immortals, allows them to list room names,
+
+resets, mobs, or objects for a specified vnum range.  
+
+~
+
+Sender  Neepzeep~
+Date    Sun Oct 26 21:18:02 2003~
+Stamp   1067224877
+Expire  1119064692
+To      all~
+Subject Vampiric Haste, Race field on skills~
+Text
+Added the vampiric haste skill for vampire warriors, and also added an
+extra field onto all skills in the game, the race field.  The race field
+determines which races are able to use a particular skill, so now we are
+able to make certain skills only usable by particular race/class
+combinations.  New characters who are NOT both a vampire and a warrior
+should not be able to gain the new vampiric haste skill when they customize,
+(hopefully).  
+~
+
+Sender  Neepzeep~
+Date    Wed Oct 29 21:18:11 2003~
+Stamp   1067484008
+Expire  1119323908
+To      all~
+Subject Gocials added~
+Text
+Added the gocials command to the MUD, uses socials on a public channel
+(like SOTF) 
+~
+
+Sender  Neepzeep~
+Date    Sun Nov 16 11:45:41 2003~
+Stamp   1069004811
+Expire  1120844751
+To      all~
+Subject Name Colorization~
+Text
+All players are now able to set their name color with the namecolor
+command.  
 ~
 

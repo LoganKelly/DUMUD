@@ -85,7 +85,7 @@ const	struct	olc_comm_type	mob_olc_comm_table	[]	=
  { "mshow",	NULL,				ed_olded,		medit_show	},
  { "oshow",	NULL,				ed_olded,		oedit_show	},
  { "olist",	(void *) &xMob.area,		ed_olist,		NULL		},
- { "copiar",	NULL,				ed_olded,		medit_copy	},
+ { "copy",	NULL,				ed_olded,		medit_copy	},
  { "commands",	NULL,				ed_olded,		show_commands	},
  { "?",		NULL,				ed_olded,		show_help	},
  { "version",	NULL,				ed_olded,		show_version	},
@@ -149,7 +149,7 @@ const	struct	olc_comm_type	room_olc_comm_table	[]	=
  { "rlist",	NULL,				ed_olded,		redit_rlist	},
  { "mlist",	NULL,				ed_olded,		redit_mlist	},
  { "olist",	(void *) &xRoom.area,		ed_olist,		NULL		},
- { "copiar",	NULL,				ed_olded,		redit_copy	},
+ { "copy",	NULL,				ed_olded,		redit_copy	},
  { "listreset",	NULL,				ed_olded,		redit_listreset },
  { "checkobj",	NULL,				ed_olded,		redit_checkobj	},
  { "checkmob",	NULL,				ed_olded,		redit_checkmob	},
@@ -469,7 +469,7 @@ bool    edit_done (CHAR_DATA * ch)
 COMMAND(do_clear)
 
 	if (ch->desc->editor != ED_NONE)
-		send_to_char("Saliendo del editor.\n\r", ch);
+		send_to_char("Editor closed.\n\r", ch);
 	ch->desc->pEdit = NULL;
 	ch->desc->editor = ED_NONE;
 	ch->desc->pagina = 0;
@@ -569,7 +569,7 @@ void    redit (CHAR_DATA * ch, char *argument)
 		return;
 	}
 
-	if ( emptystring(argument) )
+	if ( emptystring(argument))
 	{
 		redit_show (ch, argument);
 		return;
@@ -735,7 +735,7 @@ void    do_aedit (CHAR_DATA * ch, char *argument)
 
 	if (!IS_BUILDER (ch, pArea) || ch->pcdata->security < 9)
 	{
-		send_to_char ("Insuficiente seguridad para editar areas.\n\r", ch);
+		send_to_char ("Insufficient security level to edit area.\n\r", ch);
 		return;
 	}
 
@@ -759,19 +759,19 @@ void    do_redit (CHAR_DATA * ch, char *argument)
 	{
 		if (!IS_BUILDER (ch, pRoom->area))
 		{
-			send_to_char ("Insuficiente seguridad para modificar cuartos.\n\r", ch);
+			send_to_char ("Insufficient security level to edit room.\n\r", ch);
 			return;
 		}
 
 		reset_room (pRoom);
-		send_to_char ("Cuarto reseteado.\n\r", ch);
+		send_to_char ("Room reset.\n\r", ch);
 		return;
 	}
 	else if (!str_cmp (arg1, "create"))
 	{
 		if (argument[0] == '\0' || atoi (argument) == 0)
 		{
-			send_to_char ("Sintaxis : edit room create [vnum]\n\r", ch);
+			send_to_char ("Syntax : edit room create [vnum]\n\r", ch);
 			return;
 		}
 
@@ -789,14 +789,14 @@ void    do_redit (CHAR_DATA * ch, char *argument)
 
 		if ( pRoom == NULL )
 		{
-			send_to_char( "Cuarto inexistente.\n\r", ch );
+			send_to_char( "Room does not exist.\n\r", ch );
 			return;
 		}
 	}
 
 	if (!IS_BUILDER (ch, pRoom->area))
 	{
-		send_to_char ("Insuficiente seguridad para modificar cuartos.\n\r", ch);
+		send_to_char ("Insufficient security level to edit room.\n\r", ch);
 		return;
 	}
 
@@ -844,7 +844,7 @@ void    do_oedit (CHAR_DATA * ch, char *argument)
 
 		if (!IS_BUILDER (ch, pObj->area))
 		{
-			send_to_char ("Insuficiente seguridad para modificar objetos.\n\r", ch);
+			send_to_char ("Insufficient security level to edit object.\n\r", ch);
 			return;
 		}
 
@@ -874,7 +874,7 @@ void    do_oedit (CHAR_DATA * ch, char *argument)
 
 			if (!IS_BUILDER (ch, pArea))
 			{
-				send_to_char ("Insuficiente seguridad para modificar objetos.\n\r", ch);
+				send_to_char ("Insufficient security level to edit object.\n\r", ch);
 				return;
 			}
 
@@ -914,7 +914,7 @@ void    do_medit (CHAR_DATA * ch, char *argument)
 
 		if (!IS_BUILDER (ch, pMob->area))
 		{
-			send_to_char ("Insuficiente seguridad para modificar mobs.\n\r", ch);
+			send_to_char ("Insufficient security level to edit mob.\n\r", ch);
 			return;
 		}
 
@@ -944,7 +944,7 @@ void    do_medit (CHAR_DATA * ch, char *argument)
 
 			if (!IS_BUILDER (ch, pArea))
 			{
-				send_to_char ("Insuficiente seguridad para modificar mobs.\n\r", ch);
+				send_to_char ("Insufficient security level to edit mob.\n\r", ch);
 				return;
 			}
 
@@ -1011,7 +1011,7 @@ void    display_resets (CHAR_DATA * ch, ROOM_INDEX_DATA * pRoom)
 				}
 
 				pMob = pMobIndex;
-				sprintf (buf, "M[%5d] %-13.13s en el suelo         R[%5d] %2d-%2d %-15.15s\n\r",
+				sprintf (buf, "M[%5d] %-13.13s on the ground         R[%5d] %2d-%2d %-15.15s\n\r",
 				   pReset->arg1, pMob->short_descr, pReset->arg3,
 				   pReset->arg2, pReset->arg4, pRoomIndex->name);
 				strcat (final, buf);
@@ -1049,7 +1049,7 @@ void    display_resets (CHAR_DATA * ch, ROOM_INDEX_DATA * pRoom)
 					continue;
 				}
 
-				sprintf (buf, "O[%5d] %-13.13s en el suelo         "
+				sprintf (buf, "O[%5d] %-13.13s on the ground         "
 				   "R[%5d]       %-15.15s\n\r",
 				   pReset->arg1, pObj->short_descr,
 				   pReset->arg3, pRoomIndex->name);
@@ -1110,7 +1110,7 @@ void    display_resets (CHAR_DATA * ch, ROOM_INDEX_DATA * pRoom)
 				if (pMob->pShop)
 				{
 					sprintf (buf,
-					   "O[%5d] %-13.13s en el inventario de S[%5d]       %-15.15s\n\r",
+					   "O[%5d] %-13.13s in the inventory of S[%5d]       %-15.15s\n\r",
 					   pReset->arg1,
 					   pObj->short_descr,
 					   pMob->vnum,
@@ -1364,7 +1364,7 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 					if ((temp->item_type != ITEM_CONTAINER) &&
 					   (temp->item_type != ITEM_CORPSE_NPC))
 					{
-						send_to_char ("Objeto 2 no es container.\n\r", ch);
+						send_to_char ("Object 2 is not a container.\n\r", ch);
 						return;
 					}
 					pReset = new_reset_data ();
@@ -1383,7 +1383,7 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 				{
 					if (get_obj_index (atoi (arg3)) == NULL)
 					{
-						send_to_char ("Vnum no existe.\n\r", ch);
+						send_to_char ("Vnum does not exist.\n\r", ch);
 						return;
 					}
 					pReset = new_reset_data ();
@@ -1408,7 +1408,7 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 					}
 					if (get_obj_index (atoi (arg3)) == NULL)
 					{
-						send_to_char ("Vnum no existe.\n\r", ch);
+						send_to_char ("Vnum does not exist.\n\r", ch);
 						return;
 					}
 					pReset = new_reset_data ();
@@ -1458,11 +1458,11 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 
 			if ( is_number(arg2) )
 			{
-				send_to_char(	"Sintaxis erronea.\n\r"
-						"Las posibilidades son :\n\r"
-						"reset anadir mob [vnum/nombre]\n\r"
-						"reset anadir obj [vnum/nombre]\n\r"
-						"reset anadir [nombre]\n\r", ch );
+				send_to_char(	"Syntax error.\n\r"
+						"Valid commands are :\n\r"
+						"reset anadir mob [vnum/name]\n\r"
+						"reset anadir obj [vnum/name]\n\r"
+						"reset anadir [name]\n\r", ch );
 				return;
 			}
 
@@ -1502,8 +1502,8 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 
 			if (found == 0)
 			{
-				printf_to_char(ch, "%s no encontrado en el area.\n\r",
-					(tvar == 0) ? "Mob/objeto" : ((tvar == 1) ? "Mob" : "Objeto") );
+				printf_to_char(ch, "%s not found in the area.\n\r",
+					(tvar == 0) ? "Mob/object" : ((tvar == 1) ? "Mob" : "Object") );
 				return;
 			}
 			pReset		= new_reset_data ();
@@ -1513,10 +1513,10 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 			pReset->arg3	= ch->in_room->vnum;
 			pReset->arg4	= (tvar == 2) ? 0 : MAX_MOB;	/* Min # */
 
-			printf_to_char(ch, "Anadiendo reset del %s %d...", tvar == 1 ? "mob" : "objeto", found );
+			printf_to_char(ch, "Anadiendo reset of %s %d...", tvar == 1 ? "mob" : "object", found );
 			add_reset(ch->in_room, pReset, -1); // al final
 			SET_BIT(ch->in_room->area->area_flags, AREA_CHANGED);
-			send_to_char("hecho.\n\r", ch);
+			send_to_char("Done.\n\r", ch);
 		} // anadir
 	}
 
@@ -1687,13 +1687,13 @@ extern	void UpdateOLCScreen	(DESCRIPTOR_DATA *);
 	||  ch->desc == NULL
 	||  ch->desc->editor == ED_NONE )
 	{
-		send_to_char( "No estas editando nada.\n\r", ch );
+		send_to_char( "There is nothing to edit.\n\r", ch );
 		return;
 	}
 
 	if (!is_number(argument))
 	{
-		send_to_char( "A que pagina te quieres cambiar?\n\r", ch );
+		send_to_char( "Do you want to change to that page?\n\r", ch );
 		return;
 	}
 
@@ -1701,7 +1701,7 @@ extern	void UpdateOLCScreen	(DESCRIPTOR_DATA *);
 
 	if ( num <= 0 )
 	{
-		send_to_char( "No seas estupido.\n\r", ch );
+		send_to_char( "Don't be an idiot.\n\r", ch );
 		return;
 	}
 
@@ -1710,6 +1710,6 @@ extern	void UpdateOLCScreen	(DESCRIPTOR_DATA *);
 	InitScreen(ch->desc);
 	UpdateOLCScreen(ch->desc);
 
-	send_to_char( "Pagina cambiada. Si no ves nada, cambiate a otra.\n\r", ch );
+	send_to_char( "Changed page.  If you do not see anything, go to another one.\n\r", ch );
 	return;
 }

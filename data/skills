@@ -1,8 +1,9 @@
-150
+152
 #SKILL
 name reserved~
-skill_level 99 99 99 99 @
-rating 99 99 99 99 @
+skill_level 103 103 103 103 @
+rating 103 103 103 103 @
+race 103 103 103 103 103 @
 spell_fun ~
 target tar_ignore~
 minimum_position standing~
@@ -17,8 +18,9 @@ msg_obj ~
 
 #SKILL
 name acid blast~
-skill_level 28 53 35 32 @
+skill_level 55 101 70 64 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_acid_blast~
 target tar_char_offensive~
 minimum_position fighting~
@@ -33,8 +35,9 @@ msg_obj ~
 
 #SKILL
 name armor~
-skill_level 7 2 10 5 @
+skill_level 14 4 20 10 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_armor~
 target tar_char_defensive~
 minimum_position standing~
@@ -49,8 +52,9 @@ msg_obj ~
 
 #SKILL
 name bless~
-skill_level 53 7 53 8 @
+skill_level 101 14 101 16 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_bless~
 target tar_obj_char_def~
 minimum_position standing~
@@ -65,8 +69,9 @@ msg_obj $p's holy aura fades.~
 
 #SKILL
 name blindness~
-skill_level 12 8 17 15 @
+skill_level 24 16 34 30 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_blindness~
 target tar_char_offensive~
 minimum_position fighting~
@@ -81,8 +86,9 @@ msg_obj ~
 
 #SKILL
 name burning hands~
-skill_level 7 53 10 9 @
+skill_level 14 101 20 18 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_burning_hands~
 target tar_char_offensive~
 minimum_position fighting~
@@ -97,8 +103,9 @@ msg_obj ~
 
 #SKILL
 name call lightning~
-skill_level 26 18 31 22 @
+skill_level 52 36 62 44 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_call_lightning~
 target tar_ignore~
 minimum_position fighting~
@@ -113,8 +120,9 @@ msg_obj ~
 
 #SKILL
 name calm~
-skill_level 48 16 50 20 @
+skill_level 96 32 100 40 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_calm~
 target tar_ignore~
 minimum_position fighting~
@@ -129,8 +137,9 @@ msg_obj ~
 
 #SKILL
 name cancellation~
-skill_level 18 26 34 34 @
+skill_level 36 52 68 68 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cancellation~
 target tar_char_defensive~
 minimum_position fighting~
@@ -145,8 +154,9 @@ msg_obj ~
 
 #SKILL
 name cause critical~
-skill_level 53 13 53 19 @
+skill_level 101 26 101 38 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cause_critical~
 target tar_char_offensive~
 minimum_position fighting~
@@ -161,8 +171,9 @@ msg_obj ~
 
 #SKILL
 name cause light~
-skill_level 53 1 53 3 @
+skill_level 101 1 101 6 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cause_light~
 target tar_char_offensive~
 minimum_position fighting~
@@ -177,8 +188,9 @@ msg_obj ~
 
 #SKILL
 name cause serious~
-skill_level 53 7 53 10 @
+skill_level 101 14 101 20 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cause_serious~
 target tar_char_offensive~
 minimum_position fighting~
@@ -193,8 +205,9 @@ msg_obj ~
 
 #SKILL
 name chain lightning~
-skill_level 33 53 39 36 @
+skill_level 66 101 78 72 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_chain_lightning~
 target tar_char_offensive~
 minimum_position fighting~
@@ -209,8 +222,9 @@ msg_obj ~
 
 #SKILL
 name change sex~
-skill_level 53 53 53 53 @
+skill_level 101 101 101 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_change_sex~
 target tar_char_defensive~
 minimum_position fighting~
@@ -225,8 +239,9 @@ msg_obj ~
 
 #SKILL
 name charm person~
-skill_level 20 53 25 53 @
+skill_level 40 101 50 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_charm_person~
 target tar_char_offensive~
 minimum_position standing~
@@ -241,8 +256,9 @@ msg_obj ~
 
 #SKILL
 name chill touch~
-skill_level 4 53 6 6 @
+skill_level 8 101 12 12 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_chill_touch~
 target tar_char_offensive~
 minimum_position fighting~
@@ -257,8 +273,9 @@ msg_obj ~
 
 #SKILL
 name colour spray~
-skill_level 16 53 22 20 @
+skill_level 32 101 44 40 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_colour_spray~
 target tar_char_offensive~
 minimum_position fighting~
@@ -273,8 +290,9 @@ msg_obj ~
 
 #SKILL
 name continual light~
-skill_level 6 4 6 9 @
+skill_level 12 8 12 18 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_continual_light~
 target tar_ignore~
 minimum_position standing~
@@ -289,8 +307,9 @@ msg_obj ~
 
 #SKILL
 name control weather~
-skill_level 15 19 28 22 @
+skill_level 30 38 55 44 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_control_weather~
 target tar_ignore~
 minimum_position standing~
@@ -305,8 +324,9 @@ msg_obj ~
 
 #SKILL
 name create food~
-skill_level 10 5 11 12 @
+skill_level 20 10 22 24 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_create_food~
 target tar_ignore~
 minimum_position standing~
@@ -321,8 +341,9 @@ msg_obj ~
 
 #SKILL
 name create rose~
-skill_level 16 11 10 24 @
+skill_level 32 22 20 48 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_create_rose~
 target tar_ignore~
 minimum_position standing~
@@ -337,8 +358,9 @@ msg_obj ~
 
 #SKILL
 name create spring~
-skill_level 14 17 23 20 @
+skill_level 28 34 46 40 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_create_spring~
 target tar_ignore~
 minimum_position standing~
@@ -353,8 +375,9 @@ msg_obj ~
 
 #SKILL
 name create water~
-skill_level 8 3 12 11 @
+skill_level 16 12 24 22 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_create_water~
 target tar_obj_inv~
 minimum_position standing~
@@ -369,8 +392,9 @@ msg_obj ~
 
 #SKILL
 name cure blindness~
-skill_level 53 6 53 8 @
+skill_level 101 12 101 16 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cure_blindness~
 target tar_char_defensive~
 minimum_position fighting~
@@ -385,8 +409,9 @@ msg_obj ~
 
 #SKILL
 name cure critical~
-skill_level 53 13 53 19 @
+skill_level 101 26 101 38 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cure_critical~
 target tar_char_defensive~
 minimum_position fighting~
@@ -401,8 +426,9 @@ msg_obj ~
 
 #SKILL
 name cure disease~
-skill_level 53 13 53 14 @
+skill_level 101 26 101 28 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cure_disease~
 target tar_char_defensive~
 minimum_position standing~
@@ -417,8 +443,9 @@ msg_obj ~
 
 #SKILL
 name cure light~
-skill_level 53 1 53 3 @
+skill_level 101 1 101 6 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cure_light~
 target tar_char_defensive~
 minimum_position fighting~
@@ -433,8 +460,9 @@ msg_obj ~
 
 #SKILL
 name cure poison~
-skill_level 53 14 53 16 @
+skill_level 101 28 101 32 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cure_poison~
 target tar_char_defensive~
 minimum_position standing~
@@ -449,8 +477,9 @@ msg_obj ~
 
 #SKILL
 name cure serious~
-skill_level 53 7 53 10 @
+skill_level 101 14 101 20 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_cure_serious~
 target tar_char_defensive~
 minimum_position fighting~
@@ -465,8 +494,9 @@ msg_obj ~
 
 #SKILL
 name curse~
-skill_level 18 18 26 22 @
+skill_level 36 36 52 44 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_curse~
 target tar_obj_char_off~
 minimum_position fighting~
@@ -481,8 +511,9 @@ msg_obj $p is no longer impure.~
 
 #SKILL
 name demonfire~
-skill_level 53 34 53 45 @
+skill_level 101 68 101 90 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_demonfire~
 target tar_char_offensive~
 minimum_position fighting~
@@ -497,8 +528,9 @@ msg_obj ~
 
 #SKILL
 name detect evil~
-skill_level 11 4 12 53 @
+skill_level 22 8 24 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_detect_evil~
 target tar_char_self~
 minimum_position standing~
@@ -513,8 +545,9 @@ msg_obj ~
 
 #SKILL
 name detect good~
-skill_level 11 4 12 53 @
+skill_level 22 8 24 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_detect_good~
 target tar_char_self~
 minimum_position standing~
@@ -529,8 +562,9 @@ msg_obj ~
 
 #SKILL
 name detect hidden~
-skill_level 15 11 12 53 @
+skill_level 30 22 24 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_detect_hidden~
 target tar_char_self~
 minimum_position standing~
@@ -545,8 +579,9 @@ msg_obj ~
 
 #SKILL
 name detect invis~
-skill_level 3 8 6 53 @
+skill_level 6 16 12 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_detect_invis~
 target tar_char_self~
 minimum_position standing~
@@ -561,8 +596,9 @@ msg_obj ~
 
 #SKILL
 name detect magic~
-skill_level 2 6 5 53 @
+skill_level 4 12 10 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_detect_magic~
 target tar_char_self~
 minimum_position standing~
@@ -577,8 +613,9 @@ msg_obj ~
 
 #SKILL
 name detect poison~
-skill_level 15 7 9 53 @
+skill_level 30 14 18 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_detect_poison~
 target tar_obj_inv~
 minimum_position standing~
@@ -593,8 +630,9 @@ msg_obj ~
 
 #SKILL
 name dispel evil~
-skill_level 53 15 53 21 @
+skill_level 101 30 101 42 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_dispel_evil~
 target tar_char_offensive~
 minimum_position fighting~
@@ -609,8 +647,9 @@ msg_obj ~
 
 #SKILL
 name dispel good~
-skill_level 53 15 53 21 @
+skill_level 101 30 101 42 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_dispel_good~
 target tar_char_offensive~
 minimum_position fighting~
@@ -625,8 +664,9 @@ msg_obj ~
 
 #SKILL
 name dispel magic~
-skill_level 16 24 30 30 @
+skill_level 32 48 60 60 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_dispel_magic~
 target tar_char_offensive~
 minimum_position fighting~
@@ -641,8 +681,9 @@ msg_obj ~
 
 #SKILL
 name earthquake~
-skill_level 53 10 53 14 @
+skill_level 101 20 101 28 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_earthquake~
 target tar_ignore~
 minimum_position fighting~
@@ -657,8 +698,9 @@ msg_obj ~
 
 #SKILL
 name enchant armor~
-skill_level 16 53 53 53 @
+skill_level 32 101 101 101 @
 rating 2 2 4 4 @
+race 1 1 1 1 1 @
 spell_fun spell_enchant_armor~
 target tar_obj_inv~
 minimum_position standing~
@@ -673,8 +715,9 @@ msg_obj ~
 
 #SKILL
 name enchant weapon~
-skill_level 17 53 53 53 @
+skill_level 34 101 101 101 @
 rating 2 2 4 4 @
+race 1 1 1 1 1 @
 spell_fun spell_enchant_weapon~
 target tar_obj_inv~
 minimum_position standing~
@@ -689,8 +732,9 @@ msg_obj ~
 
 #SKILL
 name energy drain~
-skill_level 19 22 26 23 @
+skill_level 38 44 52 46 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_energy_drain~
 target tar_char_offensive~
 minimum_position fighting~
@@ -705,8 +749,9 @@ msg_obj ~
 
 #SKILL
 name faerie fire~
-skill_level 6 3 5 8 @
+skill_level 12 6 10 16 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_faerie_fire~
 target tar_char_offensive~
 minimum_position fighting~
@@ -721,8 +766,9 @@ msg_obj ~
 
 #SKILL
 name faerie fog~
-skill_level 14 21 16 24 @
+skill_level 28 42 32 48 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_faerie_fog~
 target tar_ignore~
 minimum_position standing~
@@ -737,8 +783,9 @@ msg_obj ~
 
 #SKILL
 name farsight~
-skill_level 14 16 16 53 @
+skill_level 28 32 32 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_farsight~
 target tar_ignore~
 minimum_position standing~
@@ -753,8 +800,9 @@ msg_obj ~
 
 #SKILL
 name fireball~
-skill_level 22 53 30 26 @
+skill_level 44 101 60 52 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_fireball~
 target tar_char_offensive~
 minimum_position fighting~
@@ -769,8 +817,9 @@ msg_obj ~
 
 #SKILL
 name fireproof~
-skill_level 13 12 19 18 @
+skill_level 26 24 38 36 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_fireproof~
 target tar_obj_inv~
 minimum_position standing~
@@ -785,8 +834,9 @@ msg_obj $p's protective aura fades.~
 
 #SKILL
 name flamestrike~
-skill_level 53 20 53 27 @
+skill_level 101 40 101 54 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_flamestrike~
 target tar_char_offensive~
 minimum_position fighting~
@@ -801,8 +851,9 @@ msg_obj ~
 
 #SKILL
 name fly~
-skill_level 10 18 20 22 @
+skill_level 20 36 40 44 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_fly~
 target tar_char_defensive~
 minimum_position standing~
@@ -817,8 +868,9 @@ msg_obj ~
 
 #SKILL
 name floating disc~
-skill_level 4 10 7 16 @
+skill_level 8 20 14 32 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_floating_disc~
 target tar_ignore~
 minimum_position standing~
@@ -833,8 +885,9 @@ msg_obj ~
 
 #SKILL
 name frenzy~
-skill_level 53 24 53 26 @
+skill_level 101 48 101 52 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_frenzy~
 target tar_char_defensive~
 minimum_position standing~
@@ -849,8 +902,9 @@ msg_obj ~
 
 #SKILL
 name gate~
-skill_level 27 17 32 28 @
+skill_level 54 34 64 55 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_gate~
 target tar_ignore~
 minimum_position fighting~
@@ -865,8 +919,9 @@ msg_obj ~
 
 #SKILL
 name giant strength~
-skill_level 11 53 22 20 @
+skill_level 22 101 44 40 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_giant_strength~
 target tar_char_defensive~
 minimum_position standing~
@@ -881,8 +936,9 @@ msg_obj ~
 
 #SKILL
 name harm~
-skill_level 53 23 53 28 @
+skill_level 101 46 101 55 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_harm~
 target tar_char_offensive~
 minimum_position fighting~
@@ -897,8 +953,9 @@ msg_obj ~
 
 #SKILL
 name haste~
-skill_level 21 53 26 29 @
+skill_level 42 101 52 58 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_haste~
 target tar_char_defensive~
 minimum_position fighting~
@@ -913,8 +970,9 @@ msg_obj ~
 
 #SKILL
 name heal~
-skill_level 53 21 33 30 @
+skill_level 101 42 66 60 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_heal~
 target tar_char_defensive~
 minimum_position fighting~
@@ -929,8 +987,9 @@ msg_obj ~
 
 #SKILL
 name heat metal~
-skill_level 53 16 53 23 @
+skill_level 101 32 101 46 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_heat_metal~
 target tar_char_offensive~
 minimum_position fighting~
@@ -945,8 +1004,9 @@ msg_obj ~
 
 #SKILL
 name holy word~
-skill_level 53 36 53 42 @
+skill_level 101 72 101 84 @
 rating 2 2 4 4 @
+race 1 1 1 1 1 @
 spell_fun spell_holy_word~
 target tar_ignore~
 minimum_position fighting~
@@ -961,8 +1021,9 @@ msg_obj ~
 
 #SKILL
 name identify~
-skill_level 15 16 18 53 @
+skill_level 30 32 36 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_identify~
 target tar_obj_inv~
 minimum_position standing~
@@ -977,8 +1038,9 @@ msg_obj ~
 
 #SKILL
 name infravision~
-skill_level 9 13 10 16 @
+skill_level 18 26 20 32 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_infravision~
 target tar_char_defensive~
 minimum_position standing~
@@ -993,8 +1055,9 @@ msg_obj ~
 
 #SKILL
 name invisibility~
-skill_level 5 53 9 53 @
+skill_level 10 101 18 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_invis~
 target tar_obj_char_def~
 minimum_position standing~
@@ -1009,8 +1072,9 @@ msg_obj $p fades into view.~
 
 #SKILL
 name know alignment~
-skill_level 12 9 20 53 @
+skill_level 24 18 40 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_know_alignment~
 target tar_char_defensive~
 minimum_position fighting~
@@ -1025,8 +1089,9 @@ msg_obj ~
 
 #SKILL
 name lightning bolt~
-skill_level 13 23 18 16 @
+skill_level 26 46 36 32 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_lightning_bolt~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1041,8 +1106,9 @@ msg_obj ~
 
 #SKILL
 name locate object~
-skill_level 9 15 11 53 @
+skill_level 18 30 22 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_locate_object~
 target tar_ignore~
 minimum_position standing~
@@ -1057,8 +1123,9 @@ msg_obj ~
 
 #SKILL
 name magic missile~
-skill_level 1 53 2 2 @
+skill_level 1 101 4 4 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_magic_missile~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1073,8 +1140,9 @@ msg_obj ~
 
 #SKILL
 name mass healing~
-skill_level 53 38 53 46 @
+skill_level 101 76 101 92 @
 rating 2 2 4 4 @
+race 1 1 1 1 1 @
 spell_fun spell_mass_healing~
 target tar_ignore~
 minimum_position standing~
@@ -1089,8 +1157,9 @@ msg_obj ~
 
 #SKILL
 name mass invis~
-skill_level 22 25 31 53 @
+skill_level 44 50 62 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_mass_invis~
 target tar_ignore~
 minimum_position standing~
@@ -1105,8 +1174,9 @@ msg_obj ~
 
 #SKILL
 name nexus~
-skill_level 40 35 50 45 @
+skill_level 80 70 100 90 @
 rating 2 2 4 4 @
+race 1 1 1 1 1 @
 spell_fun spell_nexus~
 target tar_ignore~
 minimum_position standing~
@@ -1121,8 +1191,9 @@ msg_obj ~
 
 #SKILL
 name pass door~
-skill_level 24 32 25 37 @
+skill_level 48 64 50 74 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_pass_door~
 target tar_char_self~
 minimum_position standing~
@@ -1137,8 +1208,9 @@ msg_obj ~
 
 #SKILL
 name plague~
-skill_level 23 17 36 26 @
+skill_level 46 34 72 52 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_plague~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1153,8 +1225,9 @@ msg_obj ~
 
 #SKILL
 name poison~
-skill_level 17 12 15 21 @
+skill_level 34 24 30 42 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_poison~
 target tar_obj_char_off~
 minimum_position fighting~
@@ -1169,8 +1242,9 @@ msg_obj The poison on $p dries up.~
 
 #SKILL
 name portal~
-skill_level 35 30 45 40 @
+skill_level 70 60 90 80 @
 rating 2 2 4 4 @
+race 1 1 1 1 1 @
 spell_fun spell_portal~
 target tar_ignore~
 minimum_position standing~
@@ -1185,8 +1259,9 @@ msg_obj ~
 
 #SKILL
 name protection evil~
-skill_level 12 9 17 11 @
+skill_level 24 18 34 22 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_protection_evil~
 target tar_char_self~
 minimum_position standing~
@@ -1201,8 +1276,9 @@ msg_obj ~
 
 #SKILL
 name protection good~
-skill_level 12 9 17 11 @
+skill_level 24 18 34 22 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_protection_good~
 target tar_char_self~
 minimum_position standing~
@@ -1217,8 +1293,9 @@ msg_obj ~
 
 #SKILL
 name ray of truth~
-skill_level 53 35 53 47 @
+skill_level 101 70 101 94 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_ray_of_truth~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1233,8 +1310,9 @@ msg_obj ~
 
 #SKILL
 name recharge~
-skill_level 9 53 53 53 @
+skill_level 18 101 101 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_recharge~
 target tar_obj_inv~
 minimum_position standing~
@@ -1249,8 +1327,9 @@ msg_obj ~
 
 #SKILL
 name refresh~
-skill_level 8 5 12 9 @
+skill_level 16 10 24 18 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_refresh~
 target tar_char_defensive~
 minimum_position standing~
@@ -1265,8 +1344,9 @@ msg_obj ~
 
 #SKILL
 name remove curse~
-skill_level 53 18 53 22 @
+skill_level 101 36 101 44 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_remove_curse~
 target tar_obj_char_def~
 minimum_position standing~
@@ -1281,8 +1361,9 @@ msg_obj ~
 
 #SKILL
 name sanctuary~
-skill_level 36 20 42 30 @
+skill_level 72 40 84 60 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_sanctuary~
 target tar_char_defensive~
 minimum_position standing~
@@ -1297,8 +1378,9 @@ msg_obj ~
 
 #SKILL
 name shield~
-skill_level 20 35 35 40 @
+skill_level 40 70 70 80 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_shield~
 target tar_char_defensive~
 minimum_position standing~
@@ -1313,8 +1395,9 @@ msg_obj ~
 
 #SKILL
 name shocking grasp~
-skill_level 10 53 14 13 @
+skill_level 20 101 28 26 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_shocking_grasp~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1329,8 +1412,9 @@ msg_obj ~
 
 #SKILL
 name sleep~
-skill_level 10 53 11 53 @
+skill_level 20 101 22 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_sleep~
 target tar_char_offensive~
 minimum_position standing~
@@ -1345,8 +1429,9 @@ msg_obj ~
 
 #SKILL
 name slow~
-skill_level 23 30 29 32 @
+skill_level 46 60 58 64 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_slow~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1361,8 +1446,9 @@ msg_obj ~
 
 #SKILL
 name stone skin~
-skill_level 25 40 40 45 @
+skill_level 50 80 80 90 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_stone_skin~
 target tar_char_self~
 minimum_position standing~
@@ -1377,8 +1463,9 @@ msg_obj ~
 
 #SKILL
 name summon~
-skill_level 24 12 29 22 @
+skill_level 48 24 58 44 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_summon~
 target tar_ignore~
 minimum_position standing~
@@ -1393,8 +1480,9 @@ msg_obj ~
 
 #SKILL
 name teleport~
-skill_level 13 22 25 36 @
+skill_level 26 44 50 72 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_teleport~
 target tar_char_self~
 minimum_position fighting~
@@ -1409,8 +1497,9 @@ msg_obj ~
 
 #SKILL
 name ventriloquate~
-skill_level 1 53 2 53 @
+skill_level 1 101 4 101 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_ventriloquate~
 target tar_ignore~
 minimum_position standing~
@@ -1425,8 +1514,9 @@ msg_obj ~
 
 #SKILL
 name weaken~
-skill_level 11 14 16 17 @
+skill_level 22 28 32 34 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_weaken~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1441,8 +1531,9 @@ msg_obj ~
 
 #SKILL
 name word of recall~
-skill_level 32 28 40 30 @
+skill_level 64 55 80 60 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_word_of_recall~
 target tar_char_self~
 minimum_position resting~
@@ -1457,8 +1548,9 @@ msg_obj ~
 
 #SKILL
 name acid breath~
-skill_level 31 32 33 34 @
+skill_level 62 64 66 68 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_acid_breath~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1473,8 +1565,9 @@ msg_obj ~
 
 #SKILL
 name fire breath~
-skill_level 40 45 50 51 @
+skill_level 80 90 100 100 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_fire_breath~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1489,8 +1582,9 @@ msg_obj ~
 
 #SKILL
 name frost breath~
-skill_level 34 36 38 40 @
+skill_level 68 72 76 80 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_frost_breath~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1505,8 +1599,9 @@ msg_obj ~
 
 #SKILL
 name gas breath~
-skill_level 39 43 47 50 @
+skill_level 78 86 94 100 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_gas_breath~
 target tar_ignore~
 minimum_position fighting~
@@ -1521,8 +1616,9 @@ msg_obj ~
 
 #SKILL
 name lightning breath~
-skill_level 37 40 43 46 @
+skill_level 74 80 86 92 @
 rating 1 1 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_lightning_breath~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1537,8 +1633,9 @@ msg_obj ~
 
 #SKILL
 name general purpose~
-skill_level 53 53 53 53 @
+skill_level 101 101 101 101 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun spell_general_purpose~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1553,8 +1650,9 @@ msg_obj ~
 
 #SKILL
 name high explosive~
-skill_level 53 53 53 53 @
+skill_level 101 101 101 101 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun spell_high_explosive~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1571,6 +1669,7 @@ msg_obj ~
 name axe~
 skill_level 1 1 1 1 @
 rating 6 6 5 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1587,6 +1686,7 @@ msg_obj ~
 name dagger~
 skill_level 1 1 1 1 @
 rating 2 3 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1603,6 +1703,7 @@ msg_obj ~
 name flail~
 skill_level 1 1 1 1 @
 rating 6 3 6 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1619,6 +1720,7 @@ msg_obj ~
 name mace~
 skill_level 1 1 1 1 @
 rating 5 2 3 3 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1635,6 +1737,7 @@ msg_obj ~
 name polearm~
 skill_level 1 1 1 1 @
 rating 6 6 6 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1651,6 +1754,7 @@ msg_obj ~
 name shield block~
 skill_level 1 1 1 1 @
 rating 6 4 6 2 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1667,6 +1771,7 @@ msg_obj ~
 name spear~
 skill_level 1 1 1 1 @
 rating 4 4 4 3 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1683,6 +1788,7 @@ msg_obj ~
 name sword~
 skill_level 1 1 1 1 @
 rating 5 6 3 2 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1699,6 +1805,7 @@ msg_obj ~
 name whip~
 skill_level 1 1 1 1 @
 rating 6 5 5 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1713,8 +1820,9 @@ msg_obj ~
 
 #SKILL
 name backstab~
-skill_level 53 53 1 53 @
+skill_level 101 101 1 101 @
 rating 0 0 5 0 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -1729,8 +1837,9 @@ msg_obj ~
 
 #SKILL
 name bash~
-skill_level 53 53 53 1 @
+skill_level 101 101 101 1 @
 rating 0 0 0 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1745,8 +1854,9 @@ msg_obj ~
 
 #SKILL
 name berserk~
-skill_level 53 53 53 18 @
+skill_level 101 101 101 36 @
 rating 0 0 0 5 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1761,8 +1871,9 @@ msg_obj ~
 
 #SKILL
 name dirt kicking~
-skill_level 53 53 3 3 @
+skill_level 101 101 6 6 @
 rating 0 0 4 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1777,8 +1888,9 @@ msg_obj ~
 
 #SKILL
 name disarm~
-skill_level 53 53 12 11 @
+skill_level 101 101 24 22 @
 rating 0 0 6 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1793,8 +1905,9 @@ msg_obj ~
 
 #SKILL
 name dodge~
-skill_level 20 22 1 13 @
+skill_level 40 44 1 26 @
 rating 8 8 4 6 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1809,8 +1922,9 @@ msg_obj ~
 
 #SKILL
 name enhanced damage~
-skill_level 45 30 25 1 @
+skill_level 90 60 50 1 @
 rating 10 9 5 3 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1825,8 +1939,9 @@ msg_obj ~
 
 #SKILL
 name envenom~
-skill_level 53 53 10 53 @
+skill_level 101 101 20 101 @
 rating 0 0 4 0 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position resting~
@@ -1840,9 +1955,27 @@ msg_obj ~
 #END
 
 #SKILL
+name feed~
+skill_level 1 1 1 1 @
+rating 1 1 1 1 @
+race 0 0 0 1 0 @
+spell_fun spell_null~
+target tar_ignore~
+minimum_position standing~
+pgsn gsn_feed~
+slot 0
+min_mana 0
+beats 2
+noun_damage bite~
+msg_off !Feed!~
+msg_obj ~
+#END
+
+#SKILL
 name hand to hand~
-skill_level 25 10 15 6 @
+skill_level 50 20 30 12 @
 rating 8 5 6 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1857,8 +1990,9 @@ msg_obj ~
 
 #SKILL
 name kick~
-skill_level 53 12 14 8 @
+skill_level 101 24 28 16 @
 rating 0 4 6 3 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_char_offensive~
 minimum_position fighting~
@@ -1873,8 +2007,9 @@ msg_obj ~
 
 #SKILL
 name parry~
-skill_level 22 20 13 1 @
+skill_level 44 40 26 1 @
 rating 8 8 6 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1889,8 +2024,9 @@ msg_obj ~
 
 #SKILL
 name rescue~
-skill_level 53 53 53 1 @
+skill_level 101 101 101 1 @
 rating 0 0 0 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1905,8 +2041,9 @@ msg_obj ~
 
 #SKILL
 name trip~
-skill_level 53 53 1 15 @
+skill_level 101 101 1 30 @
 rating 0 0 4 8 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1921,8 +2058,9 @@ msg_obj ~
 
 #SKILL
 name second attack~
-skill_level 30 24 12 5 @
+skill_level 60 48 24 10 @
 rating 10 8 5 3 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1937,8 +2075,9 @@ msg_obj ~
 
 #SKILL
 name third attack~
-skill_level 53 53 24 12 @
+skill_level 101 101 48 24 @
 rating 0 0 10 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position fighting~
@@ -1953,8 +2092,9 @@ msg_obj ~
 
 #SKILL
 name fast healing~
-skill_level 15 9 16 6 @
+skill_level 30 18 32 12 @
 rating 8 5 6 4 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position sleeping~
@@ -1969,8 +2109,9 @@ msg_obj ~
 
 #SKILL
 name haggle~
-skill_level 7 18 1 14 @
+skill_level 14 36 1 28 @
 rating 5 8 3 6 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position resting~
@@ -1985,8 +2126,9 @@ msg_obj ~
 
 #SKILL
 name hide~
-skill_level 53 53 1 12 @
+skill_level 101 101 1 24 @
 rating 0 0 4 6 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position resting~
@@ -2001,8 +2143,9 @@ msg_obj ~
 
 #SKILL
 name lore~
-skill_level 10 10 6 20 @
+skill_level 20 20 12 40 @
 rating 6 6 4 8 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position resting~
@@ -2017,8 +2160,9 @@ msg_obj ~
 
 #SKILL
 name meditation~
-skill_level 6 6 15 15 @
+skill_level 12 12 30 30 @
 rating 5 5 8 8 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position sleeping~
@@ -2033,8 +2177,9 @@ msg_obj ~
 
 #SKILL
 name peek~
-skill_level 8 21 1 14 @
+skill_level 16 42 1 28 @
 rating 5 7 3 6 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2049,8 +2194,9 @@ msg_obj ~
 
 #SKILL
 name pick lock~
-skill_level 25 25 7 25 @
+skill_level 50 50 7 50 @
 rating 8 8 4 8 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2065,8 +2211,9 @@ msg_obj ~
 
 #SKILL
 name sneak~
-skill_level 53 53 4 10 @
+skill_level 101 101 8 20 @
 rating 0 0 4 6 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2081,8 +2228,9 @@ msg_obj ~
 
 #SKILL
 name steal~
-skill_level 53 53 5 53 @
+skill_level 101 101 10 101 @
 rating 0 0 4 0 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2099,6 +2247,7 @@ msg_obj ~
 name scrolls~
 skill_level 1 1 1 1 @
 rating 2 3 5 8 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2115,6 +2264,7 @@ msg_obj ~
 name staves~
 skill_level 1 1 1 1 @
 rating 2 3 5 8 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2128,9 +2278,27 @@ msg_obj ~
 #END
 
 #SKILL
+name vampiric haste~
+skill_level 1 1 1 1 @
+rating 0 0 0 6 @
+race 0 0 0 1 0 @
+spell_fun spell_null~
+target tar_ignore~
+minimum_position fighting~
+pgsn gsn_vamp_haste~
+slot 0
+min_mana 0
+beats 0
+noun_damage ~
+msg_off !Vampiric Haste!~
+msg_obj ~
+#END
+
+#SKILL
 name wands~
 skill_level 1 1 1 1 @
 rating 2 3 5 8 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2147,6 +2315,7 @@ msg_obj ~
 name recall~
 skill_level 1 1 1 1 @
 rating 2 2 2 2 @
+race 1 1 1 1 1 @
 spell_fun spell_null~
 target tar_ignore~
 minimum_position standing~
@@ -2163,6 +2332,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2179,6 +2349,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2195,6 +2366,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2211,6 +2383,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2227,6 +2400,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2243,6 +2417,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2259,6 +2434,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2275,6 +2451,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2291,6 +2468,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2307,6 +2485,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2323,6 +2502,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2339,6 +2519,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2355,6 +2536,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2371,6 +2553,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~
@@ -2387,6 +2570,7 @@ msg_obj ~
 name ~
 skill_level 0 0 0 0 @
 rating 0 0 0 0 @
+race 1 1 1 1 1 @
 spell_fun ~
 target tar_ignore~
 minimum_position dead~

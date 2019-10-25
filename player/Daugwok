@@ -1,40 +1,41 @@
 #PLAYER
 Name DaugWok~
 Id   1056323825
-LogO 1059934067
+LogO 1071805797
 Vers 5
-CNa  {gD{wa{Wugw{wo{gk{x~
+CNa  {gD{Wa{wugw{Wo{gk{x~
 Prom {W-=HP:{R%h/%H {WMP:{B%m/%M {WMV:{C%v/%V {WVNUM:{M%R %z %b{W=-{x ~
-Race giant~
+Race human~
 Sex  1
 Cla  3
-Levl 60
+Levl 103
 Sec  9
-Plyd 88811
+Plyd 2488932
 Scro 98
-Room 32600
-HMV  9999 9999 9999 9999 9999 9999
+Room 32618
+HMVB  9999 9999 9999 9999 9999 9999 10 10
 Gold 0
-Silv 138
+Silv 96
 Exp  1000
-Act  DEFGJQT
-Comm NOQ
+Act  DEFJQT
+Comm NO
+Wizn A
 Pos  8
 Prac 484
 Trai 322
 Save  -1
-Alig  0
+Alig  -1000
 ACs 96 96 96 99
 Attr 99 99 99 99 99
 AMod 0 0 0 0 0
 Pass cowgod~
-Titl  The Alpha and the Alpha~
+Titl  {Ythe Ultimate {BBacon {RCheeseburger{x~
 Pnts 40
 TSex 1
 LLev 2
 HMVP 9999 9999 9999
 Cnd  0 48 48 48
-Boards       5 General 1056784729 Ideas 0 Announce 1056919033 Bugs 0 Personal 0 
+Boards       5 General 1058131176 Ideas 1068614913 Announce 1069004811 Bugs 0 Personal 0 
 Sk 100 'acid blast'
 Sk 100 'armor'
 Sk 100 'bless'

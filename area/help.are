@@ -61,6 +61,7 @@ reading them).
 {RPROMPT{x without an argument will turn your prompt on or off.
 {RPROMPT ALL{x will give you the standard "<hits mana moves>" prompt.
 {RPROMPT MORT{x will give you a more colorful and thorough prompt. {G*FOR MORTALS{x
+{RPROMPT VAMP{x will give vampires a prompt containing blood points. {G*FOR VAMPIRES{x
 {RPROMPT IMM{x will give immortals a more colorful and useful prompt. {G*FOR IMMORTALS{x
 {RPROMPT <%*>{x where the %* are the various variables you may set yourself.
  
@@ -586,8 +587,19 @@ Syntax: title <string>
 
 Sets your title to a given string.
 
-The game supplies a title when your character is created and when you
-advance a level.  You can use TITLE to set your title to something else.
+The game supplies a title when your character is created.  You can use 
+TITLE to set your title to something else.
+~
+
+0 NAMECOLOR~
+Syntax: namecolor <string>
+
+Sets your name to a given string, which must be spelled the same and
+be in the same case as your original name.
+
+Characters names are uncolored by default, all players are able to use
+this command to set their name to colors of their choosing.
+
 ~
 
 0 WIMPY~
@@ -1695,6 +1707,822 @@ frost can break objects, and acid can damage armor.
 
 High level mages may learn and cast these spells as well.
 ~
+-1 OLC EDIT~
+Syntax: AEDIT   [create/reset] [vnum]	    - Area Creation and Repoping.
+Syntax: REDIT   [create/reset] [vnum] 	    - Room Creation and Editing.
+Syntax: OEDIT   [create] <vnum>		    - Object Creation and Editing.
+Syntax: MEDIT   [create] <vnum>		    - Mobile Creation and Editing.
+Syntax: MPEDIT  [create] <vnum>             - MobProg Creation/Editing.
+Syntax: HEDIT   [create] <vnum>             - Helpfile Creation/Editing.
+Syntax: SKEDIT  [skill]                     - Skill and Spell Creation/Editing.
+Syntax: RAEDIT  [race]                      - Race Creation/Editing.
+Syntax: SEDIT   [social]                    - Social Creation/Editing.
+Syntax: GEDIT   [group]                     - Spell and Skill Group Creation/Editing.
+Syntax: CMDEDIT [command]                   - Command Creation/Editing.
+
+Syntax: ASAVE  <world/area/changed/list>    - Save {R*ALL*{x Editing to Disk.
+Syntax: ALIST                               - Listing of Areas.
+Syntax: WRLIST [type] [lvnum] [uvnum]       - Lists Objects/Resets/Rooms/Mobs.
+Syntax: RESET  See Help Resets.	            - Set Game Resets.
+
+Definition: [optional]  <required>  (combined arguments)
+
+     The above commands are used to expand the game world.  The original
+code is based on was written by Surreality and installed in The Isles by Locke.
+It was then converted to work with Envy by Jason Dinkel, and ported to ROM
+2.3 by Hans Birkeland (Hugin). Port to Rom 2.4 by Ivan Toledo (ver 2.01).
+
+     Inside an editor, typing COMMANDS lists working commands and ? gives
+help. AEDIT and REDIT default to the current area or room. EDIT ROOM RESET
+resets the current room.  Most commands with no arguments display syntax.
+
+See also help: AEDIT REDIT MEDIT OEDIT MPEDIT HEDIT SKEDIT RAEDIT SEDIT GEDIT CMDEDIT
+               WRLIST
+~
+
+0 ALIST~
+Syntax: ALIST
+
+This command gives you a listing of all the areas along with their
+vnum assignments and the builder(s) assigned to editing them.
+~
+
+0 WRLIST~
+Syntax: WRLIST
+
+This command gives you a listing of all the rooms, rooms and their resets,
+objects, or mobs within a given vnum range.
+
+wrlist r <lowest vnum> <highest vnum> - Lists rooms.
+wrlist rx <lowest vnum> <highest vnum> - Lists rooms and their resets.
+wrlist o <lowest vnum> <highest vnum> - Lists objects.
+wrlist m <lowest vnum> <highest vnum> - Lists mobiles.
+~
+
+
+0 AEDIT~
+Syntax: edit area	 -Enters the editor for the current area.
+Syntax: edit area <vnum> -Enters the editor for the selected area.
+
+The following commands are available from within the AEDITOR:
+
+age <number>        - set the age of the area
+builder <player>    - toggle that builder's access
+commands            - prints a list of possible commands
+create              - create a brand new area and switch to it
+done                - exits the area editor and returns to normal play
+filename <filename> - change the file name for the area (be careful)
+name <name>         - change the 'AREAS' name of this area
+reset               - resets the current area
+security <rating>   - set the security rating for this area
+show                - hitting return, or 'show' shows the area stats
+vnum <lower> <upper>- set the lower and upper vnum's
+lvnum <lower>       - set the lower vnum
+uvnum <upper>       - set the upper vnum
+<flags>             - area flags, type ? AREA for a list
+~
+
+0 HEDIT~
+Syntax: hedit <string> 	    -Enters the editor for the specified helpfile.
+
+The following commands are available from within the HEDITOR:
+
+keyword <string>    - specifies the keywords which can be used to invoke the helpfile
+text                - enters the text editor
+new <number>        - creates a new help file assigned to a new number
+level <-1 to 103>   - level at which a character can view the help file
+list all            - list all help files in the game
+list area           - list all help files in the current area
+show                - hitting return, or 'show' shows the help file's stats
+delete              - deletes the help file currently being edited 
+done                - exits the help editor and returns to normal play
+
+~
+
+0 MPEDIT~
+Syntax: mpedit <string>     -Enters the editor for the specified MobProg.
+
+The following commands are available from within the MPEDITOR:
+
+code			  - enters the string editor to input the actions that the MobProg 
+			    executes
+create <vnum>       - creates a new Mob Prog with the specified VNUM
+show                - hitting return, or 'show' shows the mob prog's stats
+commands            - prints a list of possible commands
+version             - displays version information about the OLC
+done                - exits the mob prog editor and returns to normal play
+
+See also help: 'MOB PROGS' 
+~
+
+0 RAEDIT~
+Syntax: raedit <string>     -Enters the editor for the specified race.
+
+name                - sets the name of the race
+pcrace              - determines if the race is playable by PCs or not
+act <flag>          - race's action flags
+aff <flag>          - race's affects flags
+off <flag>          - race's off attack flags
+res <flag>          - race's resistance flags
+vuln <flag>         - race's vulnerability flags
+imm <flag>          - race's immunity flags
+form <flag>         - sets the race's body form flag
+part <flag>         - sets body parts that can be cut off in combat
+who <string>        - sets how race name will appear in who list
+points <number>     - amount of creation points used
+cmult <class>       - experience multiplier for the class
+stats <stat>        - set stats for the race
+  <value>
+maxstats <stat>     - set maximum stats for the race
+  <value>
+skills <number>     - set racial skills, maximum of 4
+  <skill>
+size <size>         - set race's size
+list                - lists all PC and NPC races in the game
+commands            - prints a list of possible commands
+version             - displays version information about the OLC
+done                - exits the race editor and returns to normal play
+~
+
+0 SKEDIT~
+Syntax : skedit <skill>    -Enters the editor for the specified skill or spell.
+
+name                - sets the name of the skill
+beats <number>      - delay of the skill (4 beats=1 second)
+position <position> - sets the minimum position in which the skill/spell can 
+                      be used
+slot <number>       - used for spells to index for magical objects
+target <flags>      - designates who can be targeted by the skill/spell
+mana <number>       - sets the amount of mana used by the spell
+level <class>       - level at which the specified class gets the skill/spell
+  <level>
+rating <class>      - sets the difficulty of learning the spell/skill for
+  <level>             the specified class
+gsn <name-of-gsn>   - sets the global skill/spell number, used for ones 
+gsn null              frequently referenced in the game
+spell <name-of-spell> - designates a spell as a spell, unused by skills
+spell spell_null
+noun <string>       - sets the noun or noun phrase containing the damage message
+                      for skills or spells that deal damage
+off <string>        - the message sent to the character when the skill/spell wears
+                      off
+obj <string>        - wear-off message for the skill/spell on an object
+new <name-of-the-new-skill> - creates a new skill or spell
+list <gsns/skills/spells/slots> - lists all of the gsns, skills, spells, or slots 
+                                  in the game
+show                - hitting return, or 'show' shows the skill's/spell's stats
+commands            - prints a list of possible commands
+version             - displays version information about the OLC
+done                - exits the skill editor and returns to normal play
+~
+
+0 SEDIT~
+Syntax : sedit <social>    -Enters the editor for the specified social.
+
+cnoarg              - what the player sees, without an argument
+onoarg              - what others see, without an argument
+cfound              - what the player sees, with a target
+ofound              - what others see, with a target
+vfound              - what the victim sees, with a target
+cself               - what the player sees, target is the player
+oself               - what others see, target is the player
+new <social>        - creates a new social with the specified name
+show                - hitting return, or 'show' shows the social's stats
+commands            - prints a list of possible commands
+version             - displays version information about the OLC
+done                - exits the social editor and returns to normal play
+~
+
+0 GEDIT~
+Syntax : gedit <group>    -Enters the editor for the specified group of skills/spells.
+
+name <name>         - sets the name of the group
+rating <class>      - sets the cost of learning the group for the different classes
+  <cost>
+spell new <name>    - adds/deletes skills/spells in the group
+spell delete <name>
+list                - lists all groups in the game
+show                - hitting return, or 'show' shows the group's stats
+commands            - prints a list of possible commands
+done                - exits the social editor and returns to normal play
+~
+
+0 CMDEDIT~
+Syntax : cmdedit <command>    -Enters the editor for the specified command.
+
+name                - sets the name of the command
+function            - assigns the command to the proper function to execute
+level               - what level the player must be to use this command
+position <position> - minimum position allowed to use this command
+log <flag>          - sets if the use of the command is logged or not
+type <flag>         - sets the type of command
+new <name>          - new command with specified name
+delete <name>       - delete the command with specified name
+list                - list all commands/functions within specified range
+show                - hitting return, or 'show' shows the command's stats
+commands            - prints a list of possible commands
+version             - displays version information about the OLC
+done                - exits the command editor and returns to normal play
+~
+
+0 ADDPROG~
+Syntax: addprog [vnum] [trigger] [phrase]     -Adds a specified mob prog to a mob.
+
+List of all triggers and the appropriate phrase/argument for it:
+
+{GACT{x
+Keyword	: 'act'
+Argument: string
+
+	The argument is a phrase, a text string. The trigger is activated
+whenever the phrase is contained in the	act() message.
+
+NOTE:  	Most general trigger. Applies to almost every event which happens
+	in the mud. Anytime the function act() is called with a message
+	to be delivered TO_CHAR,TO_VICT,TO_ROOM,etc. the act can be
+	triggered.  Basically this will trigger on almost everything
+	you'll ever want. Output of "say", "shout" and "emote" do not
+	trigger this event.
+
+{GSPEECH{x
+Keyword : 'speech'
+Argument: string
+
+NOTE:  	This is only triggered when the phrase is contained in a
+	message which has been said by a PC in the same room as the mob.
+	The PC restriction is not necessary, but makes infinite loops
+	between two talking mobiles impossible. It also makes it impossible
+	for two NPC's to stand and discuss the weather however. 
+
+{GRANDOM{x
+Keyword : 'random'
+Argument: number
+
+	The argument is a number betweeen 0 and 99 inclusive.
+
+NOTE:  	This trigger is checked at each PULSE_MOBILE and if the argument is
+	greater than a percentage roll the trigger is activated. This
+	will happen even if there is no PC in the room with the mob,
+	but there must be players in the same area. 
+	It is useful to give mobiles a bit of a personality. For instance
+	a janitor who stops to spit tobacco, or complain about the hours,
+	or wonder why there are no woman janitors on muds, or a fido which
+	barks or growls or pees on the curb is much more alive than one
+	which just sits there scavenging.
+	Note that this trigger is checked only when there are players in
+	the area. If you want this event to be triggered always, you must
+	set the ACT_UPDATE_ALWAYS flag of the mobile.
+
+{GGREET/GREET ALL{x
+Keyword : 'greet'
+Argument: number
+
+	Again a percentage argument.
+
+NOTE:  	Whenever someone enters the room with the mobile, and the mobile saw
+	the person enter, this is checked. Good for shopkeepers who want
+	to welcome customers, or for pseudo-aggressive mobiles which need to
+	discriminate on who they attack.
+	Greet trigger activates only when the mobile is not busy (fighting,
+	sitting, sleeping etc.). If you want to be sure to catch all players,
+	use grall.
+
+Keyword : 'grall'
+Argument: number
+
+	Again a percentage argument.
+
+NOTE:  	Like greet, but it can be triggered even if the mobile didn't
+	see the	arrival (i.e. sneak, invis, etc) or is busy. Most useful for
+	faking teleport rooms or for impassable guardians.
+	
+{GENTRY{x
+Keyword : 'entry'
+Argument: number
+
+	Again a percentage argument.
+
+NOTE:  	The opposite of greet trigger. Whenver the mobile itself enters a new
+	room, this can be triggered.  Useful for looking around, or waving
+	or other things that real PCs do when they arrive at a crowded room.
+	IMPORTANT: In an entry program, the mobile can only refer to a
+	random pc ($r in if checks) -- there's no way to know how many PCs
+	exist in the room the mobile enters! Also, you must check visibility
+	of the target in your program.
+
+{GEXIT/EXIT ALL{x
+Keyword : 'exit'
+Argument: number
+
+	Argument is the exit number (0:north, 1:east, 2:south 3:west etc.)
+
+NOTE:  	The opposite of entry trigger. This is activated when PC tries to
+	leave a room through an exit indicated by the argument, and the
+	mobile sees the person leave. Useful for having a single guardian to
+	watch several exits. An exit trigger works better than an entry
+	trigger, since you can refer to a specific PC instead of a random PC.
+	IMPORTANT: If this event is triggered, the victim will not move
+	through the exit. If necessary, you must move the character yourself
+	in your program (see MOB TRANSFER/MOB GTRANSFER). Also, this event
+	is not triggered when a character flees from combat or the mobile
+	is not in its default position.
+
+Keyword : 'exall'
+Argument: number
+
+	Argument is the exit number (0 = north etc.)
+
+	The same as exit trigger, but it can be triggered even if the
+	mobile cannot see the person trying to leave the room or if
+	the mobile is busy.
+
+{GGIVE{x 
+Keyword : 'give'
+Argument: string or object vnum
+
+	The argument is either the a string containing words to be
+	matched against the keywords of the object, or the word "all";
+	e.g. argument "long sword" will match to objects "long bow" and
+	"small sword".
+	Alternatively, the argument can be the virtual number of a single
+	object.
+
+NOTE:  	This is triggered whenever something is given to the mobile.  Best
+	used for quests.  Since the first successful trigger is the only one
+	of this type which is processed, having an "all" argument in the
+	script at the end of the MOBprogram list is essentially a default
+	response.
+
+{GBRIBE{x
+Keyword : 'bribe'
+Argument: number
+
+	The argument is any positive integer number.
+
+NOTE:  	This trigger is activated whenever money is given to the mobile.
+	If the amount given exceeds the number, then process the commands.
+	Note again, that an argument of '1' would act as a default response.
+	Also note that if the script is not triggered (because of too little
+	money having been given), the mobile still keeps the money...
+
+	ROM 2.4 NOTE: Since ROM 2.4 has two different types of currency
+	(gold and silver coins), for bribe trigger the amount to be given
+	is converted to silver coins with the rate of 1 gold = 100 silver.
+	Thus, the number in the argument should be the expected amount in
+	silver coins.
+
+{GKILL{x
+Keyword : 'kill'
+Argument: number
+
+	The argument is a percent once again.
+
+NOTE:  	This trigger is checked whenever a PC attacks the mobile. The check
+	occurs only ONCE, in the beginning of combat. Useful for summoning
+	assistance etc. (See MOB MLOAD).
+
+{GFIGHT{x
+Keyword : 'fight'
+Argument: number
+
+	The argument is a percentage.
+
+NOTE:  	Useful for giving mobiles combat attitude. It is checked every
+	PULSE_VIOLENCE when the mobile is fighting. Can be used to cast
+	spells (see MOB CAST), curse at the opponent, or whatever. Only the
+	first successful one will be processed to save time.  Also, this
+	means that the mobile wont get lucky and 1. curse, cast a fireball
+	and 2. spit on the player, cast another fireball in the same pulse.
+
+{GHIT POINT PERCENTAGE{x
+Keyword : 'hpcnt'
+Argument: number
+
+	The argument is a percentage.
+
+NOTE:  	Is activated at each PULSE_VIOLENCE when the mobile is fighting. It
+	checks to see if the hitpoints of the mobile are below the given
+	percentage. Multiple hpcnt triggers should be listed in increasing
+	order of percent since a 40% will always be activated before a 20%
+	and, only the first successful trigger is performed. (See also
+	MOB FLEE).
+
+{GDEATH{x
+Keyword : 'death'
+Argument: number
+
+	The argument is a percent once again.
+
+NOTE:  	When the mobile dies, if the random percentage is less than the
+	argument the mobile performs the MOBprogram commands rather than the
+	usual death_cry() sequence.  This is done before the corpse is made,
+	so the commands can be considered the mobiles last gasp. It could
+	perhaps	destroy the items it was holding (see MOB REMOVE and MOB
+	JUNK), or create some (see MOB OLOAD), or cast a spell (see MOB
+	CAST) on the killer and the room, or even goto a new location (see
+	MOB GOTO) and die there (with a text message, the corpse would seem
+	to vanish) The position of the mobile is set to STANDING, and so it
+	can do all the normal commands, without worrying about being DEAD.
+	However, even if the mobile restores itself to full hitpoints, it
+	will still die.
+	This is not a way to immortal mobiles. However, the last thing this
+	mobile does could be to goto some vacant room, load a fresh version
+	of itself, drop all its items, force the new mobile to get all the
+	items and wear them, send the new mobile back to the character who
+	killed it and force the new mobile to attack that character. Along
+	with a text message which said the mobile restored itself, this
+	might be a convincing effect. (Note that your kitten could turn into
+	a dragon this way too).
+
+
+{GDELAY{x
+Keyword : 'delay'
+Argument: number
+
+	The argument is a percentage chance.
+
+NOTE:  	This trigger activates when the delay of a mobile (set with the
+	MOB DELAY command) expires. This trigger can be used to create
+	staged mobile behavior, for example, a guardian could see a
+	player entering a room, give a warning and activate a delay.
+	If the player is still present when the delay expires, the
+	guard would attack the player. (See also MOB REMEMBER).
+	A mobile can have several delay triggers, but every time the
+	delay timer expires, all the triggers are checked and the first
+	successful one executed.
+
+{GSURRENDER{x
+Keyword : 'surr'
+Argument: number
+
+	The argument is a percentage.
+
+NOTE:	This trigger activates when the mobile is fighting and the
+	opponent issues a "surrender" command. When triggered, both parties
+	will cease fighting, and the mobile can accept the surrender
+	(perhaps taking all equipment from the character with MOB REMOVE).
+	Note that if the mobile does not accept the surrender, it must
+	resume fighting with MOB KILL.
+	If a character surrenders and the mobile does not have a surrender
+	trigger, or the trigger does not activate, the fight resumes
+	normally.
+
+NOTE: No MOBprograms will be successful when the mobile is charmed
+(since it has no self volition, it should act like it has none) to protect
+mobiles which are given special powers from being implemented by a player.
+
+
+See also help: 'MOB PROGS' 
+~
+
+0 'MOB PROGS' 'MOB PROGRAMS' 'MOBILE PROGRAMS'~
+{/Mob Progs are most easily described as scripts of actions that cause
+a mob to do something in response to a trigger action by either a PC or 
+even another NPC.  The intent is to make the game world of the MUD to
+be more interactive with the players, and make mobs something more than 
+just a punching bag that players use to gain experience and items off of.
+
+Creating and using Mob Progs is a two step process.  First of all, 
+you must create a new Mob Prog using {GMPEDIT{x that defines the script of 
+action that your mob will execute.  You must first choose an appropriate 
+VNUM for your Mob Prog, and then define the code of the program, for 
+example "say Hello, good sir!" (dont use the quotations.)
+
+Then, you must edit the mob that you want to execute the program
+so that it will actually use it.  This is done by entering the {GMEDITOR{x
+for the mob, and then using the {GADD{x command. 
+
+{G(Syntax:   add [vnum] [trigger] [phrase]){x
+
+You must choose the appropriate VNUM for your Mob Prog, and then 
+define the type of trigger which will cause it to activate (for example, 
+if you want it to activate when someone drops a particular item, or 
+says a particular phrase, or just whenever someone enters the room.)  
+Finally, you must define the exact argument for the trigger, such as 
+"hello" (again ignore the quotations).  The argument will vary in its 
+content depending upon the type of trigger, sometimes it can be a 
+percentage, so that the trigger is only activated randomly.
+
+An example for adding a program to a mob:
+{Gadd 42900 speech hello{x
+
+This will cause trigger number 42900 to activate whenever someone 
+says hello in the room.  If you need further assistance, don't 
+hesitate to ask an IMM or post a note on the board if one is not 
+currently available.
+~
+
+
+0 REDIT~
+Syntax: edit room		-Enters the editor for the current room.
+
+The following commands are available from within the REDITOR:
+
+commands            - prints a list of possible commands
+create <vnum>       - creates a room with a certain vnum
+desc                - edit description of room
+done                - exists the room editor and returns to normal play
+ed                  - type this command for additonal extra-description help
+format              - format(wordwrap) the room description
+name <room title>   - changes the room title
+show                - hitting return, or 'show' shows the room stats
+oshow <vnum>        - shows an object with given vnum
+olist               - lists objects in this area.
+mshow <vnum>        - shows a mobile with given vnum
+mlist               - lists mobiles in this area.
+room <flags>        - room attributes, type ? ROOM for a list
+sector <type>       - terrain of room, type ? SECTOR for a list
+<direction>         - see help EXIT, or type <dir> ?
+~
+
+0 EXIT~
+For exits, type the direction (north/s/e/w) followed by:
+
+dig <vnum>         - creates the room and makes a two way link
+link <room vnum>   - make a two way link
+room <room vnum>   - make a one way link (use with caution)
+key <object vnum>  - makes specified object the vnum of the key required
+name <door name>   - makes the door's name/keywords = to the given name
+desc               - edit the description of the exit
+delete             - delete this exit
+<exit-flags>       - type ? EXIT for a list(make exit door, locked etc.)
+
+The exit flags are presented in the following manner.  The capitalized
+flags are ones not included in the reset info.  i.e. closed is due to
+a player closing the door and not due to the door being set to be closed.
+
+-South to [ 3744] Key: [   -1] Exit flags: [door CLOSED bashed pickproof]
+~
+
+0 OEDIT~
+Syntax: edit object <vnum>	-Enters the editor for the selected object.
+
+The following commands are available from within the OEDITOR:
+
+addaffect           - applies an affect to an object, no args for help
+delaffect           - removes an affect to an object, no args for help
+commands            - prints a list of possible commands
+cost <gold>         - sets the gold value of the object
+create <vnum>       - creates object with specified vnum
+done                - exits the object editor and returns to normal play
+ed                  - type this for info on adding/editing extended descripts
+long                - edit long description (the one in the room)
+name <keywords>     - sets the keywords on an object
+short <desc>        - sets the 'name' of an object (a sword, a fish etc)
+show                - hitting return, or 'show' shows the object stats
+v0 <num>            - sets the value '0' on the object
+v1 <num>            - sets the value '1' on the object
+v2 <num>            - sets the value '2' on the object
+v3 <num>            - sets the value '3' on the object
+v4 <num>            - sets the value '4' on the objcet
+weight <num>        - sets the weight of the object
+type         	    - type of object, type ? TYPE for a list
+extra		    - attributes of object, type ? EXTRA for a list
+wear                - where object is worn, type ? WEAR for a list
+material            - material the object is made from
+~
+
+0 MEDIT~
+Syntax: medit <vnum>		-Enters the editor for the selected mobile.
+
+The following commands are available from within the MEDITOR:
+
+alignment <value>   - set the mobile's alignment
+commands            - prints a list of possible commands
+create <vnum>       - creates mobile with specified vnum
+desc                - edit the mobile's description (when looked at)
+done                - exits the mobile editor and returns to normal play
+level <level>       - set the mobile's level
+long                - edit long description (the one in the room)
+name <keywords>     - sets the keywords on an mobile
+shop                - type this command for further information
+short <desc>        - sets the 'name' of an mobile (a sword, a fish etc)
+show                - hitting return, or 'show' shows the mobile stats
+spec                - sets a mobiles spec proc, type ? SPEC for a list
+sex                 - set the mobile's sex, type ? SEX for a list
+act                 - mobiles actions, type ? ACT for a list
+affect              - mobile affects, type ? AFFECT for a list
+ac		    - set the mobile's ac, type ? AC for a list
+form		    - mobiles body-form, type ? FORM for a list
+part		    - mobiles bodyparts, type ? PART for a list
+imm		    - mobile is immune to, type ? IMM for a list
+res		    - mobile is resistant to, type ? RES for a list
+vuln		    - mobile is vulnerable to, type ? VULN for a list
+material	    - material mobile is made from, type ? MATERIAL for a list
+off		    - offensive behaviour, type ? OFF for a list
+size		    - size, type ? SIZE for a list
+hitdice		    - dice to toss to get mobile's hitpoints
+manadice	    - dice to toss to get mobile's mana
+damdice		    - dice to toss to get mobile's hand to hand damage
+wealth <amount> - amount of money given by mob upon death (in silver)
+addprog         - adds a mob prog to the mob, see also help: ADDPROG
+delprog <number> - deletes the mob prog of the specified number, see 
+                   also help: ADDPROG
+
+type 'help HITDICE', 'help MANADICE', 'help DAMDICE' for lists of reasonable dice 
+combinations on different levels.
+~
+
+0 HITDICE~
+A high number of dice makes for less variance in mobiles hitpoints.
+Suggested values are:
+
+       level:     dice         min         max        mean
+         1:       1d2+6       7(  7)     8(   8)     8(   8)
+	 2:       1d3+15     16( 15)    18(  18)    17(  17)
+	 3:       1d6+24     25( 24)    30(  30)    27(  27)
+	 5:      1d17+42     43( 42)    59(  59)    51(  51)
+	10:      3d22+96     99( 95)   162( 162)   131( 129)
+	15:      5d30+161   166(159)   311( 311)   239( 235)
+	30:     10d61+416   426(419)  1026(1026)   726( 723)
+	50:    10d169+920   930(923)  2610(2610)  1770(1767)
+
+Diff = max - min.  Mean is the arithmetic mean.
+The values in parenthesis are the the standard merc values.
+~
+
+0 MANADICE~
+A high number of dice makes for less variance in mobiles mana.
+The values the server generates for merc-type mobs is
+
+  <level> d 10 + 100
+
+where level is the level of the mobile.
+~
+
+0 DAMDICE~
+A high number of dice makes for less variance in mobiles hitpoints.
+Suggested values are:
+
+       Level      dice       min      min    mean
+        1         1d2+0       1        2       2
+        2         1d2+1       2        3       3
+        3         1d3+2       3        5       4
+        5         2d3+2       4        8       6
+       10         2d5+5       7       15      11
+       15         3d5+8      11       23      17
+       20         4d5+10     14       30      22
+       30         5d6+15     20       45      33
+       50         5d10+25    30       75      53
+
+Mean is the arithmetic mean.  The values in parenthesis are the the
+standard merc values.  (Will be put in when there's time to calculate
+them...)
+~
+
+0 RESETS~
+Syntax: RESET <number> OBJ <vnum> <location on body>    - equips last mobile
+        RESET <number> OBJ <vnum> inside <obj vnum>     - store in container
+        RESET <number> OBJ <vnum> room                  - store in room
+        RESET <number> MOB <vnum> [<max #>]             - load a mobile
+        RESET <number> DELETE                           - delete a reset
+
+RESET alone will display the resets in the current room.  The <number> will
+be displayed with this list.  Typing ? WEAR-LOC will list possible locations
+that an object can be loaded to.  The [<max #>] is the maximum number of
+mobiles allowed in this room and will default to 1 if no number is entered.
+
+For resets to be successful make sure that you add them in a logical order.
+For example if you are equiping a mobile don't load a container in the room
+and fill it with some objects and then continue equiping the mobile.  It is
+likely that resets will backfire if they are not carefully entered.
+
+If you wish to reset the room then use EDIT ROOM RESET.  
+~
+
+0 MOB_AC~
+The values ROM generates for a merc format mob is:
+
+   level      pierce    bash    slash   exotic
+     1          95       95       95      95
+     5          70       70       70      85
+    10          40       40       40      70
+    15           5        5        5      55
+    20         -25      -25      -25      40
+    25         -55      -55      -55      20
+    30         -90      -90      -90       5
+    35        -120     -120     -120     -10
+    40        -150     -150     -150     -25
+    45        -180     -180     -180     -40
+    50        -215     -215     -215     -55
+    55        -245     -245     -245     -70
+    60        -275     -275     -275     -90
+    65        -305     -305     -305    -105
+    70        -340     -340     -340    -120
+    80        -400     -400     -400    -150
+
+These values are 10 times what you would put in an area file. This
+is because the server multiplies what it reads from file with 10.
+~
+
+0 ITEM_LIGHT~
+.   value 0    unused
+   value 1    unused
+   value 2    hours of light available, 0 is dead, -1 or 999 is infinite            
+   value 3    unused
+   value 4    unused
+~
+
+0 ITEM_STAFF_WAND~
+.   value 0    level
+   value 1    max charges
+   value 2    current charges
+   value 3    spell name
+   value 4    unused
+
+
+An up-to-date list of spells can be obtained by typing:
+? SPELLS [ignore/attack/defend/self/object/all]
+~
+
+0 ITEM_SCROLL_POTION_PILL~
+.   value 0    level
+   value 1    spell name 1
+   value 2    spell name 2
+   value 3    spell name 3
+   value 4    unused
+
+An up-to-date list of spells can be obtained by typing:
+? SPELLS [ignore/attack/defend/self/object/all]
+~
+
+0 ITEM_ARMOR~
+.   value 0    ac pierce
+   value 1    ac bash
+   value 2    ac slash
+   value 3    ac exotic (magic)
+   value 4    unused
+~
+
+0 ITEM_WEAPON~
+.   value 0    weapon class.
+   value 1    number of dice to roll.
+   value 2    type of dice to roll.
+   value 3    weapon type.
+   value 4    special weapon type.
+
+An up-to-date list of values can be obtained by typing
+? WCLASS
+help WEAPON_DICE
+? WEAPON
+? WTYPE
+~
+
+0 WEAPON_DICE~
+These are the values the server generates automatically when
+converting a merc-format mobile to ROM format.  A higher
+number of dice gives less variance in damage.  There is no
+dice-bonus on weapon dice.
+
+      level:   dice 
+        1:     1d8
+        2:     2d5
+        3:     2d5
+        5:     2d6
+       10:     4d5
+       20:     5d5
+       30:     5d7
+       50:     5d11
+~
+
+0 ITEM_CONTAINER~
+.   value 0    weight capacity
+   value 1    flags: closeable, pickproof, closed, locked            
+   value 2    key vnum
+   value 3    unused
+   value 4    unused
+
+An up-to-date list of flags can be obtained by typing
+? CONTAINTER
+~
+
+0 ITEM_DRINK~
+.   value0    capacity
+   value 1    current quantity
+   value 2    liquid type
+   value 3    poisoned?
+   value 4    unused
+
+An up-to-date list of liquid types can be obtained by typing
+? LIQUID
+~
+
+0 ITEM_FOOD~
+.   value 0    hours of food value
+   value 1    unused
+   value 2    unused
+   value 3    poisoned?
+   value 4    unused
+~
+
+0 ITEM_MONEY~
+.   value 0    value in gold pieces
+   value 1    unused
+   value 2    unused
+   value 3    unused
+   value 4    unused
+~
+
 
 0 $~
 

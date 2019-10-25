@@ -536,7 +536,8 @@ void list_group_costs(CHAR_DATA *ch)
         if (!ch->gen_data->skill_chosen[sn] 
 	&&  ch->pcdata->learned[sn] == 0
 	&&  skill_table[sn].spell_fun == spell_null
-	&&  skill_table[sn].rating[ch->class] > 0)
+	&&  skill_table[sn].rating[ch->class] > 0
+	&&  skill_table[sn].race[ch->race] > 0)
         {
             sprintf(buf,"%-18s %-5d ",skill_table[sn].name,
                                     skill_table[sn].rating[ch->class]);
@@ -742,7 +743,8 @@ bool parse_gen_groups(CHAR_DATA *ch,char *argument)
 	    }
 
 	    if (skill_table[sn].rating[ch->class] < 1
-	    ||  skill_table[sn].spell_fun != spell_null)
+	    ||  skill_table[sn].spell_fun != spell_null
+	    ||  skill_table[sn].race[ch->race] < 1)
 	    {
 		send_to_char("That skill is not available.\n\r",ch);
 		return TRUE;

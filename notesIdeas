@@ -1,0 +1,13 @@
+Sender  Neepzeep~
+Date    Tue Nov 11 23:22:21 2003~
+Stamp   1068614913
+Expire  1155014560
+To      all~
+Subject Armor class~
+Text
+Make armor class determine damage taken rather than chance of being hit. 
+In addition, eliminate negative armor classes, make armor better as it
+increases rather than worse.  Also, use dexterity to determine chance of
+being hit rather than AC.  
+~
+

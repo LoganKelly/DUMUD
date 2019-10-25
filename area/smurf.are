@@ -1,9 +1,9 @@
 #AREADATA
 Name Smurfville~
-Builders None~
+Builders Dsmurf~
 VNUMs 100 199
 Credits { 1 10} Generic Smurf Village~
-Security 9
+Security 8
 Low 0
 High 0
 Version 1
@@ -213,9 +213,9 @@ clothing A AE
 0 0 0 0 0
 3 20 270 P
 A
-4 1
-A
 2 -1
+A
+4 1
 #102
 smurf hat~
 a smurf hat~
@@ -282,6 +282,14 @@ oldstyle~
 key 0 A
 B 0 0 0 0
 0 20 0 P
+#198
+fallus~
+{x~
+{BThe Fallus Erectus{/~
+Dragon bone~
+weapon CEJLS AN
+sword 20 20 'none' 0
+50 0 50000000 P
 #0
 
 
